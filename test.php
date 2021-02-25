@@ -2,12 +2,9 @@
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 include('includes/include_once/db.php');
-?>
-<div id="main-wrapper">
-    <!-- ============================================================== -->
+?>        
 
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
+<div id="main-wrapper">
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Container fluid  -->
@@ -19,7 +16,8 @@ include('includes/include_once/db.php');
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item"><a href="dash.php">Home</a></li>
+                        <li class="breadcrumb-item">Test</li>
                         <li class="breadcrumb-item active">Staff</li>
                     </ol>
                 </div>
@@ -32,152 +30,186 @@ include('includes/include_once/db.php');
                 </p>
                 <div class="collapse" id="collapseExample">
                     <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <center class="m-t-30"> <img src="../assets/images/users/5.jpg" class="img-circle"
-                                        width="150" />
-                                    <h4 class="card-title m-t-10">Hanna Gover</h4>
-                                    <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i
-                                                    class="icon-people"></i>
-                                                <font class="font-medium">254</font>
-                                            </a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i
+                    <!-- ============================================================== -->
+                    <!-- Row -->
+                    <div class="row">
+                        <!-- Column -->
+                        <div class="col-lg-4 col-xlg-3 col-md-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <center class="m-t-30"> <img src="images/people/6.png" class="img-circle"width="150" />
+                                        <input class="input-img" form="staff-form" type="file" name="profilePic">
+                                        <h4 class="card-title m-t-10" id="input_name"></h4>
+                                        <h6 class="card-subtitle" id="input_designation"></h6>
+                                        <div class="row text-center justify-content-md-center">
+                                            <div class="col-4"><span class="fa fa-birthday-cake"></span>
+                                                <font class="font-medium" id="input_birth"></font>
+                                            </div>
+<!--                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i
                                                     class="icon-picture"></i>
                                                 <font class="font-medium">54</font>
-                                            </a></div>
-                                    </div>
-                                </center>
+                                            </a></div>-->
+                                        </div>
+                                    </center>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <!-- Tab panes -->
-                            <div class="card-body">
-                                <form action="staffProcess.php" method="POST">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label>Fullname<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control"  name="fullname">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">email<span style="color:red">*</span></label>
-                                    <input type="email" class="form-control" id="inputPassword4" name="email">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Primary Contact Number<span style="color:red">*</span></label>
-                                    <input type="phone" class="form-control" id="validationDefault03" name="primaryno">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Alternate Contact Number</label>
-                                    <input type="phone" class="form-control" id="validationDefault03" name="alternateno">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Date of Birth<span style="color:red">*</span></label>
-                                    <input type="date" class="form-control" name="dob">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">Gender<span style="color:red">*</span></label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected disabled>Choose...</option>
-                                        <option name="gender" value="Male">Male</option>
-                                        <option name="gender" value="Female">Female</option>
-                                        <option name="gender" value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">Marital Status<span style="color:red">*</span></label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected disabled>Choose...</option>
-                                        <option name="marstatus" value="Unmarried">Unmarried</option>
-                                        <option name="marstatus" value="Married">Married</option>
-                                        <option name="marstatus" value="Divorced">Divorced</option>
-                                        <option name="marstatus"value="Widowed">Widowed</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Address<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="addr1">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="addr2">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputCity">City<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" id="inputCity" name="city">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">State<span style="color:red">*</span></label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option name="state" value="Goa">Goa</option>
-                                        <option name="state" value="Kerala">Kerala</option>
-                                        <option name="state" value="U.P">U.P</option>
-                                        <option name="state" value="Maharastra">Maharastra</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputZip">Pincode<span style="color:red">*</span></label>
-                                    <input type="number" class="form-control" id="inputZip" name="pincode">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Joining Date<span style="color:red">*</span></label>
-                                    <input type="date" class="form-control" name="joindate">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Shift Timing<span style="color:red">*</span></label>
-                                    <input type="time" class="form-control" name="shifttime">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Designation<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="designation">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label>School/College Marksheet<span style="color:red">*</span></label>
-                                    <input type="file" class="form-control" name="marksheet">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Certification<span>  (Optional)</span></label>
-                                    <input type="file" class="form-control" name="certification">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Photo ID Proof<span style="color:red">*</span></label>
-                                    <input type="file" class="form-control" name="idproof">
-                                </div>
+                        <!-- Column -->
+<!--                        <style>
+                            .input-img{
 
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck" name="yes">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Create Account<span>  (Optional)</span>
-                                    </label>
+                                position: absolute;
+                                top:0;
+                                z-index: 0;
+                                width: 50px;
+                                margin-top: 0px;
+                                background: black;
+                                /*visibility: hidden;*/
+                                
+                            }
+                            .img-card{
+                                position:relative;
+                                width:100%;
+                                margin-left: auto;
+                                margin-right: auto;
+                                
+                            }
+                        </style>-->
+                        <!-- Column -->
+                        <script>
+                            function inputFunctionName(element) {
+                                var name = element.value;
+                                document.getElementById("input_name").innerHTML = name;
+                            }
+                            function inputFunctionDesignation(element) {
+                                var designation = element.value;
+                                document.getElementById("input_designation").innerHTML = designation;
+                            }
+                            function inputFunctionBirth(element) {
+                                var birth = element.value;
+                                document.getElementById("input_birth").innerHTML = birth;
+                            }
+
+                        </script>
+                        <div class="col-lg-8 col-xlg-9 col-md-7">
+                            <div class="card">
+                                <!-- Tab panes -->
+                                <div class="card-body">
+                                    <form action="process/staffProcess.php" method="POST" id="staff-form">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Fullname<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control"  name="sfname" oninput="inputFunctionName(this)">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">email<span style="color:red">*</span></label>
+                                                <input type="email" class="form-control" id="inputPassword4" name="semail">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Primary Contact Number<span style="color:red">*</span></label>
+                                                <input type="phone" class="form-control" id="validationDefault03" name="sprimaryno">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Alternate Contact Number</label>
+                                                <input type="phone" class="form-control" id="validationDefault03" name="salternateno">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Date of Birth<span style="color:red">*</span></label>
+                                                <input type="date" class="form-control" name="sDOB" oninput="inputFunctionBirth(this)">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputState">Gender<span style="color:red">*</span></label>
+                                                <select id="inputState" class="form-control" name="sgender">
+                                                    <option selected disabled>Choose...</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputState">Marital Status<span style="color:red">*</span></label>
+                                                <select id="inputState" class="form-control" name="marstatus">
+                                                    <option selected disabled>Choose...</option>
+                                                    <option value="Unmarried">Unmarried</option>
+                                                    <option value="Married">Married</option>
+                                                    <option value="Divorced">Divorced</option>
+                                                    <option value="Widowed">Widowed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputAddress">Address<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="saddr1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputAddress2">Address 2</label>
+                                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="saddr2">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputCity">City<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" id="inputCity" name="scity">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputState">State<span style="color:red">*</span></label>
+                                                <select id="inputState" class="form-control" name="state">
+                                                    <option selected>Choose...</option>
+                                                    <option  value="Goa">Goa</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="U.P">U.P</option>
+                                                    <option value="Maharastra">Maharastra</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputZip">Pincode<span style="color:red">*</span></label>
+                                                <input type="number" class="form-control" id="inputZip" name="pincode">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Joining Date<span style="color:red">*</span></label>
+                                                <input type="date" class="form-control" name="joindate">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Shift Timing<span style="color:red">*</span></label>
+                                                <input type="time" class="form-control" name="shifttime">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Designation<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" name="designation" oninput="inputFunctionDesignation(this)">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label>School/College Marksheet<span style="color:red">*</span></label>
+                                                <input type="file" class="form-control" name="marksheet">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Certification<span>  (Optional)</span></label>
+                                                <input type="file" class="form-control" name="certification">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Photo ID Proof<span style="color:red">*</span></label>
+                                                <input type="file" class="form-control" name="idproof">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck" name="status" value="yes">
+                                                <label class="form-check-label" for="gridCheck">
+                                                    Create Account<span>  (Optional)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" name="submit">submit</button>
+                                    </form>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" name="submit">submit</button>
-                        </form>
-                            </div>
                         </div>
+                        <!-- Column -->
                     </div>
-                    <!-- Column -->
-                </div>
-                <!-- Row -->
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
+                    <!-- Row -->
+                    <!-- ============================================================== -->
+                    <!-- End PAge Content -->
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -257,11 +289,11 @@ include('includes/include_once/db.php');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
+<?php
 //                                        $data = "SELECT * FROM gymestaff";
 //                                        $query = mysqli_query($connect, $data);
 //                                        while ($result = mysqli_fetch_assoc($query)) {
-                                            ?>
+?>
     <!--                                            <tr>
                                                     <td><?php echo $result['sID']; ?></td>
                                                     <td><?php echo $result['sName']; ?></td>
@@ -270,9 +302,9 @@ include('includes/include_once/db.php');
                                                     <td><?php echo $result['sEmail']; ?></td>
                                                     <td><?php echo $result['sDOB']; ?></td>
                                                 </tr>-->
-                                            <?php
+<?php
 //                                        }
-                                            ?>
+?>
                                             <tr>
                                                 <td style="width:50px;"><img class="round" src="images/people/suraj.jpg" > </td>
                                                 <td>
@@ -348,7 +380,7 @@ include('includes/include_once/db.php');
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- End Page Content -->
@@ -370,6 +402,6 @@ include('includes/include_once/db.php');
         <!-- ============================================================== -->
     </div>
 
-    <?php
-    include('includes/include_once/footer.php');
-    ?>
+<?php
+include('includes/include_once/footer.php');
+?>

@@ -78,8 +78,8 @@
                 <li> <a class="waves-effect waves-dark" href="packages" aria-expanded="false"><i
                             class="fa fa-gift"></i><span class="hide-menu">Packages</span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i
-                            class="fa fa-bookmark-o"></i><span class="hide-menu">Blank</span></a>
+                <li> <a class="waves-effect waves-dark" href="test.php" aria-expanded="false"><i
+                            class="fa fa-bookmark-o"></i><span class="hide-menu">Test</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i
                             class="fa fa-question-circle"></i><span class="hide-menu">Blank</span></a>

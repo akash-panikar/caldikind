@@ -149,60 +149,6 @@ include('includes/include_once/db.php');
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="table-responsive m-t-20 no-wrap">
-    <!--                                <table class="table vm no-th-brd pro-of-month">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">Name</th>
-                                                <th>Designation</th>
-                                                <th>Contact No.</th>
-                                                <th>Join Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="width:50px;"><img class="round" src="images/people/suraj.jpg" > </td>
-                                                <td>
-                                                    <h6>Sunil Joshi</h6><small class="text-muted">Web Designer</small>
-                                                </td>
-                                                <td>Elite Admin</td>
-                                                <td>9876543210</td>
-                                                <td>12-02-2021</td>
-                                            </tr>
-                                            <tr class="active">
-                                                <td><span class="round"><img src="../assets/images/users/2.jpg"
-                                                                             alt="user" width="50"></span></td>
-                                                <td>
-                                                    <h6>Andrew</h6><small class="text-muted">Project Manager</small>
-                                                </td>
-                                                <td>Real Homes</td>
-                                                <td>$23.9K</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="round round-success">B</span></td>
-                                                <td>
-                                                    <h6>Bhavesh patel</h6><small class="text-muted">Developer</small>
-                                                </td>
-                                                <td>MedicalPro Theme</td>
-                                                <td>$12.9K</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="round round-primary">N</span></td>
-                                                <td>
-                                                    <h6>Nirav Joshi</h6><small class="text-muted">Frontend Eng</small>
-                                                </td>
-                                                <td>Elite Admin</td>
-                                                <td>$10.9K</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="round round-warning">M</span></td>
-                                                <td>
-                                                    <h6>Micheal Doe</h6><small class="text-muted">Content Writer</small>
-                                                </td>
-                                                <td>Helping Hands</td>
-                                                <td>$12.9K</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>-->
                                     <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
                                         <thead>
                                             <tr>

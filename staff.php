@@ -1,6 +1,7 @@
 <?php
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
+$defaultImage = "images/people/6.png";
 ?>
 
 <div id="main-wrapper">
@@ -36,7 +37,7 @@ include('includes/include_once/nav.php');
                             <div class="card">
                                 <div class="card-body">
                                     <center class="m-t-30"> <img src="images/people/6.png" class="img-circle"width="150" />
-                                        <input class="input-img form-control" form="staff-form" type="file" name="profilePic">
+                                        <input class="input-img form-control" form="staff-form" value="images/people/6.png" type="file" name="profilePic">
                                         <h4 class="card-title m-t-10" id="input_name"></h4>
                                         <h6 class="card-subtitle" id="input_designation"></h6>
                                         <div class="row text-center justify-content-md-center">
@@ -119,29 +120,34 @@ include('includes/include_once/nav.php');
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
-                                                <label for="inputCity">City<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control" id="inputCity" required name="scity">
+                                                <label for="inputZip">Pincode<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" id="inputZip" oninput="getDetails(this)" required name="pincode">
+                                            </div>                                            
+                                            <div class="form-group col-md-4">
+                                                <label for="city">City<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control" id="city" required name="scity">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="inputState">State<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="state">
+                                                <label for="state">State<span style="color:red">*</span></label>
+                                                <input type="text" id="state" class="form-control" required name="state">
+<!--                                                <select id="inputState" class="form-control" required name="state">
                                                     <option selected disabled>Choose...</option>
                                                     <option  value="Goa">Goa</option>
                                                     <option value="Kerala">Kerala</option>
                                                     <option value="U.P">U.P</option>
                                                     <option value="Maharastra">Maharastra</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputZip">Pincode<span style="color:red">*</span></label>
-                                                <input type="number" class="form-control" id="inputZip" required name="pincode">
+                                                </select>-->
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Joining Date<span style="color:red">*</span></label>
                                                 <input type="date" class="form-control" required name="joindate">
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <label>Shift Timing<span style="color:red">*</span></label>
+                                            <div class="form-group col-md-2">
+                                                <label>Shift From<span style="color:red">*</span></label>
+                                                <input type="time" class="form-control" required name="shifttime">
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label>Shift To<span style="color:red">*</span></label>
                                                 <input type="time" class="form-control" required name="shifttime">
                                             </div>
                                             <div class="form-group col-md-4">
@@ -208,44 +214,50 @@ include('includes/include_once/nav.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sr=0;
-                                                include('includes/include_once/db.php');
-                                                $data = "SELECT sID, profilePicture, sName, sPrimaryContact, sAlternateContact, sEmail, sJoiningDate, sDesignation FROM gymstaff";
-                                                $query = mysqli_query($connect, $data);
-                                                while ($result = mysqli_fetch_assoc($query)){                                                                                               
+                                            $sr = 0;
+                                            include('includes/include_once/db.php');
+                                            $data = "SELECT sID, profilePicture, sName, sPrimaryContact, sAlternateContact, sEmail, sJoiningDate, sDesignation FROM gymstaff";
+                                            $query = mysqli_query($connect, $data);
+                                            while ($result = mysqli_fetch_assoc($query)) {
 //                                                print_r($result);
 //                                                exit();
-                                                    ?>
-                                            <tr>
-                                                <td><?php echo ++$sr;?></td>
-                                                <td style="width:50px;"><img class="round" src="<?php echo $result['profilePicture']; ?>" > </td>
-                                                <td>
-                                                    <h6><?php echo $result['sName']; ?></h6><small class="text-muted"><?php echo $result['sDesignation']; ?></small>
-                                                </td>
-                                                <td><?php echo $result['sPrimaryContact']; ?></td>
-                                                <td><?php echo $result['sAlternateContact']; ?></td>
-                                                <td><?php echo $result['sEmail']; ?></td>
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo ++$sr; ?></td>
+                                                    <td style="width:50px;"><img class="round" src="<?php echo 'images/' . $result['profilePicture']; ?>" > </td>
+                                                    <td>
+                                                        <h6><?php echo $result['sName']; ?></h6><small class="text-muted"><?php echo $result['sDesignation']; ?></small>
+                                                    </td>
+                                                    <td><?php echo $result['sPrimaryContact']; ?></td>
+                                                    <td><?php echo $result['sAlternateContact']; ?></td>
+                                                    <td><?php echo $result['sEmail']; ?></td>
                                                     <td><?php echo $result['sJoiningDate']; ?></td>
                                                     <td class="table-action">
-                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editStaff.php?id=<?=$result['sID'];?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" type="button" href="delete.php?id=<?=$result['sID'];?>" data-toggle="modal" data-target="#exampleModal"></a>  <!--  -->
+                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
+                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID'];?>" onclick="myButton(<?php echo $result['sID'];?>)" type="button" href="delete.php?<?php $deleteRowID = $result['sID'];?>" data-toggle="modal" data-target="#exampleModal"></a>  <!--  -->
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<!--                                                                            <span aria-hidden="true">&times;</span>-->
-                                                                        </button>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
-                                                                    <div class="modal-body">
-                                                                        Are You Sure You Want To Delete ?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                        <a type="button" class="btn btn-primary">Yes ! Delete</a>
-                                                                    </div>
+                                                                    <form action="process/staffProcess.php" id="deleteForm" method="POST">
+                                                                        <div class="modal-body">
+                                                                            Are You Sure You Want To Delete ?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
+                                                                        </div>
+                                                                    </form>
+                                                                    <script>
+                                                                        function myButton(id){
+                                                                            //alert(document.getElementById("deleteForm").action);
+                                                                            document.getElementById("deleteForm").action= "process/staffProcess.php?id="+id;
+                                                                        }
+                                                                    </script>
                                                                 </div>
                                                             </div>
                                                         </div>

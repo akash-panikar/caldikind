@@ -6,34 +6,6 @@ $rowID = $_GET['id'];
 $searchQuery = "SELECT * from gymstaff WHERE sID=$rowID";
 $execQuery = mysqli_query($connect, $searchQuery);
 $result = mysqli_fetch_assoc($execQuery);
-//if (isset($_POST['edit'])) {
-//    if (count($result) == 1) {
-//        $staffEditFullname = $result['sfname'];
-//        $staffEditEmail = $result['semail'];
-//        $staffEditprimContact = $result['sprimaryno'];
-//        $staffEditAltContact = $result['salternateno'];
-//        $staffEditDOB = $result['sDOB'];
-//        $staffEditGender = $result['sgender'];
-//        $staffEditMarital = $result['marstatus'];
-//        $staffEditAddr1 = $result['saddr1'];
-//        $staffEditAddr2 = $result['saddr2'];
-//        $staffEditCity = $result['scity'];
-//        $staffEditState = $result['state'];
-//        $staffEditPincode = $result['pincode'];
-//        $staffEditJoining = $result['joindate'];
-//        $staffEditShiftTime = $result['shifttime'];
-//        $staffEditDesignation = $result['designation'];
-//        $staffEditProfilePic = $result['profilePic'];
-//        $staffEditMarksheet = $result['marksheet'];
-//        $staffEditCertification = $result['certification'];
-//        $staffEditIDProof = $result['idproof'];
-//        if (empty($result['status'])) {
-//            $staffAccount = 'NO';
-//        } else {
-//            $staffAccount = 'YES';
-//        }
-//    }
-//}
 ?>
 <div id="main-wrapper">
     <!-- ============================================================== -->
@@ -51,8 +23,8 @@ $result = mysqli_fetch_assoc($execQuery);
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item">Staff</li>
+                        <li class="breadcrumb-item"><a href="dash.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="staff.php">Staff</a></li>
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div>
@@ -62,7 +34,7 @@ $result = mysqli_fetch_assoc($execQuery);
                 <div class="col-lg-4 col-xlg-3 col-md-5">
                     <div class="card">
                         <div class="card-body">
-                            <center class="m-t-30"> <img src="images/people/6.png" class="img-circle"width="150" />
+                            <center class="m-t-30"> <img src="<?='images/'.$result['profilePicture'];?>" class="img-circle"width="150" />
                                 <input class="input-img form-control" form="staff-form" type="file" name="profilePic">
                                 <h4 class="card-title m-t-10" id="input_name"></h4>
                                 <h6 class="card-subtitle" id="input_designation"></h6>
@@ -99,6 +71,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                     <div class="form-group col-md-6">
                                         <label>Fullname<span style="color:red">*</span></label>
                                         <input type="text" class="form-control" required  name="sfname" value="<?=$result['sName'];?>" oninput="inputFunctionName(this)">
+                                        <input type="text" name="rowID" value="<?php echo $rowID; ?>" style="display:none;">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">E-mail<span></span></label>
@@ -114,12 +87,12 @@ $result = mysqli_fetch_assoc($execQuery);
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Date of Birth<span style="color:red">*</span></label>
-                                        <input type="date" class="form-control" value="<?= $result['sDOB']; ?>" required name="sDOB" oninput="inputFunctionBirth(this)">
+                                        <input type="date" class="form-control" value="<?=date_format(date_create($result['sDOB']), "Y-m-d"); ?>" name="sDOB">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputState">Gender<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required  name="sgender">
-                                            <option selected disabled><?= $result['sGender']; ?></option>
+                                        <select id="inputState" class="form-control" required name="sgender">
+                                            <option selected><?= $result['sGender']; ?></option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="other">Other</option>
@@ -128,7 +101,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                     <div class="form-group col-md-4">
                                         <label for="inputState">Marital Status<span style="color:red">*</span></label>
                                         <select id="inputState" class="form-control" required  name="marstatus">
-                                            <option selected disabled><?= $result['sMaritalStatus']; ?></option>
+                                            <option selected><?= $result['sMaritalStatus']; ?></option>
                                             <option value="Unmarried">Unmarried</option>
                                             <option value="Married">Married</option>
                                             <option value="Divorced">Divorced</option>
@@ -151,25 +124,30 @@ $result = mysqli_fetch_assoc($execQuery);
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputState">State<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required value="<?= $result['sState']; ?>" name="state">
+                                        <input type="text" class="form-control" value="<?= $result['sState']; ?>" id="inputCity"  name="state">
+<!--                                        <select id="inputState" class="form-control" required value="<?= $result['sState']; ?>" name="state">
                                             <option selected disabled>Choose...</option>
                                             <option  value="Goa">Goa</option>
                                             <option value="Kerala">Kerala</option>
                                             <option value="U.P">U.P</option>
                                             <option value="Maharastra">Maharastra</option>
-                                        </select>
+                                        </select>-->
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputZip">Pincode<span style="color:red">*</span></label>
-                                        <input type="number" class="form-control" id="inputZip" value="<?= $result['sPincode']; ?>" required name="pincode">
+                                        <input type="text" class="form-control" id="inputZip" value="<?= $result['sPincode']; ?>" name="pincode">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Joining Date<span style="color:red">*</span></label>
-                                        <input type="date" class="form-control" value="<?= $result['sJoiningDate']; ?>" required name="joindate">
+                                        <label>Joining Date</label>
+                                        <input type="date" class="form-control" value="<?= $result['sJoiningDate']; ?>"  name="joindate">
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Shift Timing<span style="color:red">*</span></label>
-                                        <input type="time" class="form-control" value="<?= $result['sShiftTime']; ?>" required name="shifttime">
+                                    <div class="form-group col-md-2">
+                                        <label>Shift From<span style="color:red">*</span></label>
+                                        <input type="time" class="form-control" value="<?= $result['sShiftFrom']; ?>" required name="shiftfrom">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Shift To<span style="color:red">*</span></label>
+                                        <input type="time" class="form-control" value="<?= $result['sShiftTo']; ?>" required name="shiftto">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Designation<span style="color:red">*</span></label>
@@ -179,7 +157,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label>School/College Marksheet</label>
-                                        <input type="file" class="form-control" value="<?= $result['sSchoolCert']; ?>" name="marksheet">
+                                        <input type="file" class="form-control" value="<?= $result['sSchoolCert']; ?>" id="marksheet" name="marksheet">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Certification<span>  (Optional)</span></label>
@@ -187,7 +165,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Photo ID Proof<span style="color:red">*</span></label>
-                                        <input type="file" class="form-control"value="<?= $result['sPhotoIDProof'];?>" required name="idproof">
+                                        <input type="file" class="form-control"value="<?= $result['sPhotoIDProof'];?>" name="idproof">
                                     </div>
 
                                 </div>
@@ -199,7 +177,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="submit">Update</button>
+                                <button type="submit" class="btn btn-primary" id="update" name="update">Update</button>
                             </form>
                         </div>
                     </div>

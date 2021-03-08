@@ -7,11 +7,8 @@ $searchQuery = "SELECT * from gymstaff WHERE sID=$rowID";
 $execQuery = mysqli_query($connect, $searchQuery);
 $result = mysqli_fetch_assoc($execQuery);
 ?>
-<div id="main-wrapper">
-    <!-- ============================================================== -->
 
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
+<div id="main-wrapper">
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Container fluid  -->
@@ -24,152 +21,162 @@ $result = mysqli_fetch_assoc($execQuery);
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dash.php">Home</a></li>
-                        <li class="breadcrumb-item"><a href="staff.php">Staff</a></li>
+                        <li class="breadcrumb-item ">Staff</li>
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div>
             </div>
-            <div class="row">
-                <!-- Column -->
-                <div class="col-lg-4 col-xlg-3 col-md-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <center class="m-t-30"> <img src="<?='images/'.$result['profilePicture'];?>" class="img-circle"width="150" />
-                                <input class="input-img form-control" form="staff-form" type="file" name="profilePic">
-                                <h4 class="card-title m-t-10" id="input_name"></h4>
-                                <h6 class="card-subtitle" id="input_designation"></h6>
-                                <div class="row text-center justify-content-md-center">
-                                    <div class="col-4"><span class="fa fa-birthday-cake"></span>
-                                        <font class="font-medium" id="input_birth"></font>
-                                    </div>                                      
-                                </div>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    function inputFunctionName(element) {
-                        var name = element.value;
-                        document.getElementById("input_name").innerHTML = name;
-                    }
-                    function inputFunctionDesignation(element) {
-                        var designation = element.value;
-                        document.getElementById("input_designation").innerHTML = designation;
-                    }
-                    function inputFunctionBirth(element) {
-                        var birth = element.value;
-                        document.getElementById("input_birth").innerHTML = birth;
-                    }
-                    
-                </script>
-                <div class="col-lg-8 col-xlg-9 col-md-7">
-                    <div class="card">
-                        <!-- Tab panes -->
-                        <div class="card-body">
+            <div class="card">
+                        <div class="card-body" data-spy="scroll">
                             <form action="process/staffProcess.php" method="POST" id="staff-form" enctype="multipart/form-data">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Fullname<span style="color:red">*</span></label>
-                                        <input type="text" class="form-control" required  name="sfname" value="<?=$result['sName'];?>" oninput="inputFunctionName(this)">
-                                        <input type="text" name="rowID" value="<?php echo $rowID; ?>" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <center class="m-t-10">
+                                            <img src="<?='images/'.$result['profilePicture'];?>" class="img-circle"width="150px" id="profile-img-tag"/>
+                                            <input class="input-img form-control m-t-40" id="profile-img" type="file" name="profilePic" <?='images/'.$result['profilePicture'];?> onchange="imageValidation('profile-img')">
+                                            <script type="text/javascript">
+                                                function readURL(input) {
+                                                    if (input.files && input.files[0]) {
+                                                        var reader = new FileReader();
+                                                        reader.onload = function (e) {
+                                                            $('#profile-img-tag').attr('src', e.target.result);
+                                                        }
+                                                        reader.readAsDataURL(input.files[0]);
+                                                    }
+                                                }
+                                                $("#profile-img").change(function () {
+                                                    readURL(this);
+                                                });
+                                                
+                                                function imageValidation(id){
+                                                    var formData = new FormData();
+                                                    var file = document.getElementById(id).files[0];
+                                                    formData.append("filedata", file);
+                                                    var fileType = file.type.split('/').pop().toLowerCase();
+                                                    if(fileType != "jpeg" && fileType != "jpg" && fileType != "png"){
+                                                        $.bootstrapGrowl("Invalid file type please select jpg, jpeg or png", {
+                                                        ele: 'body', // which element to append to
+                                                        type: 'danger', // (null, 'info', 'danger', 'success')
+                                                        offset: {from: 'top', amount: 650}, // 'top', or 'bottom'
+                                                        align: 'right', // ('left', 'right', or 'center')
+                                                        width: 400, // (integer, or 'auto')
+                                                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                                                        allow_dismiss: true, // If true then will display a cross to close the popup.
+                                                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+                                                      });
+                                                        document.getElementById(id).value = '';
+                                                    }
+                                                    if (file.size > 1048576) {
+                                                        $.bootstrapGrowl("File size cannot be more than  1 MB", {
+                                                        ele: 'body', // which element to append to
+                                                        type: 'danger', // (null, 'info', 'danger', 'success')
+                                                        offset: {from: 'top', amount: 650}, // 'top', or 'bottom'
+                                                        align: 'right', // ('left', 'right', or 'center')
+                                                        width: 400, // (integer, or 'auto')
+                                                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                                                        allow_dismiss: true, // If true then will display a cross to close the popup.
+                                                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+                                                      });
+                                                        document.getElementById(id).value = '';
+                                                        return false;
+                                                    }
+                                                }
+                                            </script>
+                                        </center>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">E-mail<span></span></label>
-                                        <input type="email" class="form-control" value="<?= $result['sEmail']; ?>" id="inputPassword4" name="semail">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Primary Contact Number<span style="color:red">*</span></label>
-                                        <input type="phone" class="form-control" value="<?= $result['sPrimaryContact']; ?>" id="validationDefault03" required name="sprimaryno">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Alternate Contact Number</label>
-                                        <input type="phone" class="form-control" value="<?= $result['sAlternateContact']; ?>" id="validationDefault03" name="salternateno">
-                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label>Fullname<span style="color:red">*</span></label>
+                                            <input type="text" name="sfname" class="form-control" value="<?=$result['sName'];?>" required >
+                                            <input type="text" name="rowID" value="<?php echo $rowID; ?>" style="display:none;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label>Contact Number<span style="color:red">*</span></label>
+                                                <input type="text" name="sprimaryno" class="form-control" value="<?= $result['sPrimaryContact']; ?>" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Alternate Number</label>
+                                                <input type="text" name="salternateno" class="form-control" value="<?= $result['sAlternateContact']; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>E-mail<span style="color:red">*</span></label>
+                                            <input type="email" name="semail" class="form-control" value="<?= $result['sEmail']; ?>" required>
+                                        </div>
+                                    </div>                            
+                                </div>
+                                <div class="form-group">
+                                    <label>Address 1<span style="color:red">*</span></label>
+                                    <input type="text" name="saddr1" class="form-control" value="<?= $result['sAddress1']; ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address 2<span style="color:red">*</span></label>
+                                    <input type="text" name="saddr2" class="form-control" value="<?= $result['sAddress2']; ?>">
+                                </div>
+                                <div class="row ">
                                     <div class="form-group col-md-4">
                                         <label>Date of Birth<span style="color:red">*</span></label>
-                                        <input type="date" class="form-control" value="<?=date_format(date_create($result['sDOB']), "Y-m-d"); ?>" name="sDOB">
+                                        <input type="date" name="sDOB" class="form-control" value="<?=date_format(date_create($result['sDOB']), "Y-m-d"); ?>" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputState">Gender<span style="color:red">*</span></label>
+                                        <label >Gender<span style="color:red">*</span></label>
                                         <select id="inputState" class="form-control" required name="sgender">
-                                            <option selected><?= $result['sGender']; ?></option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="other">Other</option>
+                                            <option value="Male" <?php echo ($result['sGender']== 'Male')?' selected':'';?>>Male</option>
+                                            <option value="Female" <?php echo ($result['sGender']== 'Female')?' selected':'';?>>Female</option>
+                                            <option value="other" <?php echo ($result['sGender']== 'other')?' selected':'';?>>Other</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputState">Marital Status<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required  name="marstatus">
-                                            <option selected><?= $result['sMaritalStatus']; ?></option>
-                                            <option value="Unmarried">Unmarried</option>
-                                            <option value="Married">Married</option>
-                                            <option value="Divorced">Divorced</option>
-                                            <option value="Widowed">Widowed</option>
+                                        <label >Marital Status<span style="color:red">*</span></label>
+                                        <select id="inputState" class="form-control" required name="marstatus">
+                                            <option value="Unmarried" <?php echo ($result['sMaritalStatus']== 'Unmarried')?' selected':'';?>>Unmarried</option>
+                                            <option value="Married" <?php echo ($result['sMaritalStatus']== 'Married')?' selected':'';?>>Married</option>
+                                            <option value="Divorced" <?php echo ($result['sMaritalStatus']== 'Divorced')?' selected':'';?>>Divorced</option>
+                                            <option value="Widowed" <?php echo ($result['sMaritalStatus']== 'Widowed')?' selected':'';?>>Widowed</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputAddress">Address<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" id="inputAddress" value="<?= $result['sAddress1']; ?>" placeholder="1234 Main St" required name="saddr1">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputAddress2">Address 2</label>
-                                    <input type="text" class="form-control" id="inputAddress2" value="<?= $result['sAddress2']; ?>" placeholder="Apartment, studio, or floor" name="saddr2">
-                                </div>
-                                <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="inputCity">City<span style="color:red">*</span></label>
-                                        <input type="text" class="form-control" value="<?= $result['sCity']; ?>" id="inputCity" required name="scity">
+                                        <label >City<span style="color:red">*</span></label>
+                                        <input type="text" name="scity" class="form-control" value="<?= $result['sCity']; ?>" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputState">State<span style="color:red">*</span></label>
-                                        <input type="text" class="form-control" value="<?= $result['sState']; ?>" id="inputCity"  name="state">
-<!--                                        <select id="inputState" class="form-control" required value="<?= $result['sState']; ?>" name="state">
-                                            <option selected disabled>Choose...</option>
-                                            <option  value="Goa">Goa</option>
-                                            <option value="Kerala">Kerala</option>
-                                            <option value="U.P">U.P</option>
-                                            <option value="Maharastra">Maharastra</option>
-                                        </select>-->
+                                        <label >State<span style="color:red">*</span></label>
+                                        <input type="text" name="state" class="form-control" value="<?= $result['sState']; ?>" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputZip">Pincode<span style="color:red">*</span></label>
-                                        <input type="text" class="form-control" id="inputZip" value="<?= $result['sPincode']; ?>" name="pincode">
+                                        <label >Pincode<span style="color:red">*</span></label>
+                                        <input type="text" name="pincode" class="form-control" value="<?= $result['sPincode']; ?>" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Joining Date</label>
-                                        <input type="date" class="form-control" value="<?= $result['sJoiningDate']; ?>"  name="joindate">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label>Shift From<span style="color:red">*</span></label>
-                                        <input type="time" class="form-control" value="<?= $result['sShiftFrom']; ?>" required name="shiftfrom">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label>Shift To<span style="color:red">*</span></label>
-                                        <input type="time" class="form-control" value="<?= $result['sShiftTo']; ?>" required name="shiftto">
+                                        <label >Joining Date<span style="color:red">*</span></label>
+                                        <input type="date" name="joindate" class="form-control" value="<?= $result['sJoiningDate']; ?>" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Designation<span style="color:red">*</span></label>
-                                        <input type="text" class="form-control" value="<?= $result['sDesignation']; ?>" required name="designation" oninput="inputFunctionDesignation(this)">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>School/College Marksheet</label>
-                                        <input type="file" class="form-control" value="<?= $result['sSchoolCert']; ?>" id="marksheet" name="marksheet">
+                                        <label >Shift Timing<span style="color:red">*</span></label>
+                                        <select id="inputState" class="form-control" required name="shifttime">
+                                            <option value="5:30 am - 9:30 am"<?php echo ($result['sShiftTime']== '5:30 am - 9:30 am || 4:00 pm - 8:00 pm')?' selected':'';?>>5:30 am - 9:30 am || 4:00 pm - 8:00 pm</option>
+                                            <option value="6:00 am - 10:00 am"<?php echo ($result['sShiftTime']== '6:00 am - 10:00 am || 4:30 pm - 8:30 pm')?' selected':'';?>>6:00 am - 10:00 am || 4:30 pm - 8:30 pm</option>
+                                            <option value="7:00 am - 11:00 am"<?php echo ($result['sShiftTime']== '7:00 am - 11:00 am || 5:00 pm - 9:00 pm')?' selected':'';?>>7:00 am - 11:00 am || 5:00 pm - 9:00 pm</option>
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Certification<span>  (Optional)</span></label>
-                                        <input type="file" class="form-control" value="<?= $result['sCertification']; ?>" name="certification">
+                                        <label >Designation<span style="color:red">*</span></label>
+                                        <input type="text" name="designation" class="form-control" value="<?= $result['sDesignation']; ?>">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Photo ID Proof<span style="color:red">*</span></label>
-                                        <input type="file" class="form-control"value="<?= $result['sPhotoIDProof'];?>" name="idproof">
+                                        <label >School/College Marksheet</label>
+                                        <input type="file" name="marksheet" class="form-control" id="marksheet" value="<?= $result['sSchoolCert']; ?>" onchange="imageValidation('marksheet')" >
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label >Certification (Optional)</label>
+                                        <input type="file" name="certification" class="form-control" id="cert" value="<?= $result['sCertification']; ?>" onchange="imageValidation('cert')" >
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label > Photo ID Proof<span style="color:red">*</span></label>
+                                        <input type="file" name="idproof" class="form-control" id="idproof" value="<?= $result['sPhotoIDProof'];?>" onchange="imageValidation('idproof')">
                                     </div>
 
-                                </div>
-                                <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="status" name="status" value="YES">
                                         <label class="form-check-label" for="status">
@@ -180,31 +187,22 @@ $result = mysqli_fetch_assoc($execQuery);
                                 <button type="submit" class="btn btn-primary" id="update" name="update">Update</button>
                             </form>
                         </div>
-                    </div>
-                </div>
-                <!-- Column -->
+            </div>
+            <!-- ============================================================== -->
+
+            
+
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- End Page Content -->
+                <!-- ============================================================== -->
             </div>
         </div>
         <!-- ============================================================== -->
-
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer"> Designed & Developed by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
+        <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
-</div>
-
-<?php
-include('includes/include_once/footer.php');
-?>
+    <?php
+    include('includes/include_once/footer.php');
+    ?>

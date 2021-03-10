@@ -1839,6 +1839,9 @@ Buttons
 .btn {
     padding: 7px 12px;
     cursor: pointer; }
+.btn-action {
+    padding: 5px 7px;
+    cursor: pointer; }
 .btn:hover {
     opacity: 0.8; }
 .btn:focus {
@@ -3912,23 +3915,7 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
 .validate .form-control {
     border-color: #24d2b5; }
 
-/*
-Template Name: Admin pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*
-Template Name: Admin Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*Theme Colors*/
-/*bootstrap Color*/
-/*Light colors*/
-/*Normal Color*/
-/*Extra Variable*/
+
 /*******************
 Table Cell
 *******************/
@@ -4416,24 +4403,6 @@ Table-Jsgrid table
 .jsgrid-pager-page.jsgrid-pager-current-page {
     padding: 0.5em 1em !important; }
 
-/*
-Template Name: Admin pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*
-Template Name: Admin Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*Theme Colors*/
-/*bootstrap Color*/
-/*Light colors*/
-/*Normal Color*/
-/*Extra Variable*/
-/* perfect-scrollbar v0.7.1 */
 .ps {
     -ms-touch-action: auto;
     touch-action: auto;

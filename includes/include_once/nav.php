@@ -77,8 +77,11 @@
                 <li> <a class="waves-effect waves-dark" href="enquiry.php" aria-expanded="false"><i
                             class="fa fa-question-circle-o"></i><span class="hide-menu">Enquiry</span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" href="packages" aria-expanded="false"><i
+                <li> <a class="waves-effect waves-dark" href="packages.php" aria-expanded="false"><i
                             class="fa fa-gift"></i><span class="hide-menu">Packages</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="packages.php" aria-expanded="false"><i
+                            class="fa fa-gift"></i><span class="hide-menu">Payment</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test</span></a>
@@ -88,6 +91,9 @@
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test3.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test-3</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="report.php" aria-expanded="false"><i
+                            class="fa fa-gift"></i><span class="hide-menu">Report</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="settings.php" aria-expanded="false"><i
                             class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>

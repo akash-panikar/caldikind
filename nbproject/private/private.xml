@@ -6,11 +6,11 @@
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/footer.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/nav.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/header.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/test2.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/editStaff.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/client.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/enquiry.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/test.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/settings.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/editEnquiry.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/process/enquiryProcess.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/process/staffProcess.php</file>
         </group>
     </open-files>
 </project-private>

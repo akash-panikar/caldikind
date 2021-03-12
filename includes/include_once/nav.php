@@ -21,9 +21,6 @@
                 </span>
             </a>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Logo -->
-        <!-- ============================================================== -->
         <div class="navbar-collapse">
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
@@ -49,11 +46,11 @@
                 <!-- ============================================================== -->
                 <!-- Profile -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown u-pro">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                            src="images/people/5.jpg" alt="user" class="" /> <span
-                            class="hidden-md-down">Mark Sanders &nbsp;</span> </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link waves-effect waves-dark profile-pic">
+                        <img src="images/people/5.jpg"/>
+                        <span class="hidden-md-down"><?php echo $_SESSION['fullName']; ?></span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -80,8 +77,8 @@
                 <li> <a class="waves-effect waves-dark" href="packages.php" aria-expanded="false"><i
                             class="fa fa-gift"></i><span class="hide-menu">Packages</span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" href="packages.php" aria-expanded="false"><i
-                            class="fa fa-gift"></i><span class="hide-menu">Payment</span></a>
+                <li> <a class="waves-effect waves-dark" href="payment.php" aria-expanded="false"><i
+                            class="fa fa-gift"></i><span class="hide-menu">Payments</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test</span></a>
@@ -91,6 +88,9 @@
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test3.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test-3</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="users.php" aria-expanded="false"><i
+                            class="fa fa-gift"></i><span class="hide-menu">Users</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="report.php" aria-expanded="false"><i
                             class="fa fa-gift"></i><span class="hide-menu">Report</span></a>

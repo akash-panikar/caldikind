@@ -17,7 +17,7 @@ $defaultImage = "images/people/6.png";
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dash.php">Home</a></li>
-                        <li class="breadcrumb-item active">Packages</li>
+                        <li class="breadcrumb-item active">Payments</li>
                     </ol>
                 </div>
             </div>
@@ -33,16 +33,16 @@ $defaultImage = "images/people/6.png";
                                             <tr>
                                                 <th>Sr. No.</th>
                                                 <th>Package Name</th>
-                                                <th>Discription</th>
                                                 <th>Regular Price</th>
                                                 <th>Discount</th>
+                                                <th>Discounted Price</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $sr = 0;
-                                            include('includes/include_once/db.php');    //pName, pDescription, pRegularAmount)
-                                            $data = "SELECT pName, pDescription, pRegularAmount FROM gympackage";
+                                            include('includes/include_once/db.php');
+                                            $data = "SELECT cID, profilePicture, cName, cReferredBy, cBatchTime, cMobile, cStartDate, cEndDate, cStatus, cMembershipType FROM gymclients";
                                             $query = mysqli_query($connect, $data);
                                             while ($result = mysqli_fetch_assoc($query)) {
 //                                                print_r($result);
@@ -50,10 +50,10 @@ $defaultImage = "images/people/6.png";
                                                 ?>
                                                 <tr>
                                                     <td><?php echo ++$sr; ?></td>
-                                                    <td><h6><?php echo $result['pName']; ?></h6></td>
-                                                    <td><h6><?php echo $result['pDescription']; ?></h6></td>
-                                                    <td><?php echo $result['pRegularAmount']; ?></td>
-<!--                                                    <td><?php //echo $result['cMobile']; ?></td>-->
+                                                    <td><h6><?php echo $result['cName']; ?></h6></td>
+                                                    <td><h6><?php echo $result['cReferredBy']; ?></h6></td>
+                                                    <td><?php echo $result['cBatchTime']; ?></td>
+                                                    <td><?php echo $result['cMobile']; ?></td>
                                                 </tr>
                                                 <?php
                                             }

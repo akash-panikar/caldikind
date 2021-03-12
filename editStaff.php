@@ -33,7 +33,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                     <div class="col-md-5">
                                         <center class="m-t-10">
                                             <img src="<?='images/'.$result['profilePicture'];?>" class="img-circle"width="150px" id="profile-img-tag"/>
-                                            <input class="input-img form-control m-t-40" id="profile-img" type="file" name="profilePic" <?='images/'.$result['profilePicture'];?> onchange="imageValidation('profile-img')">
+                                            <input class="input-img form-control m-t-40" id="profile-img" type="file" name="profilePic" <?=$result['profilePicture'];?> onchange="imageValidation('profile-img')">
                                             <script type="text/javascript">
                                                 function readURL(input) {
                                                     if (input.files && input.files[0]) {
@@ -162,23 +162,14 @@ $result = mysqli_fetch_assoc($execQuery);
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Designation<span style="color:red">*</span></label>
-                                        <input type="text" name="designation" class="form-control" value="<?= $result['sDesignation']; ?>">
+                                        <select id="inputState" class="form-control" required name="designation">
+                                            <option value="Manager"<?php echo ($result['sDesignation']== 'Manager')?' selected':'';?>>Manager</option>
+                                            <option value="Trainer"<?php echo ($result['sDesignation']== 'Trainer')?' selected':'';?>>Trainer</option>
+                                            <option value="Office Assistant"<?php echo ($result['sDesignation']== 'Office Assistant')?' selected':'';?>>Office Assistant</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label >School/College Marksheet</label>
-                                        <input type="file" name="marksheet" class="form-control" id="marksheet" value="<?= $result['sSchoolCert']; ?>" onchange="imageValidation('marksheet')" >
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Certification (Optional)</label>
-                                        <input type="file" name="certification" class="form-control" id="cert" value="<?= $result['sCertification']; ?>" onchange="imageValidation('cert')" >
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label > Photo ID Proof<span style="color:red">*</span></label>
-                                        <input type="file" name="idproof" class="form-control" id="idproof" value="<?= $result['sPhotoIDProof'];?>" onchange="imageValidation('idproof')">
-                                    </div>
-
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="status" name="status" value="YES">
+                                        <input class="form-check-input" type="checkbox" id="status" name="status" value="YES"<?php echo ($result['sAccountStatus']== 'YES')?' checked':'';?>>
                                         <label class="form-check-label" for="status">
                                             Create Account<span>  (Optional)</span>
                                         </label>

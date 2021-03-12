@@ -6,7 +6,9 @@
             <name>caldikind</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>enddate</word>
             <word>Enquiry</word>
+            <word>fname</word>
             <word>Secrer</word>
         </spellchecker-wordlist>
     </configuration>

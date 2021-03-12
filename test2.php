@@ -1,301 +1,492 @@
-<?php
-include('includes/include_once/header.php');
-include('includes/include_once/nav.php');
-$defaultImage = "images/people/6.png";
-?>
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="main-wrapper">
-    <div class="page-wrapper">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, AdminWrap lite admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, AdminWrap lite design, AdminWrap lite dashboard bootstrap 4 dashboard template">
+    <meta name="description"
+        content="AdminWrap Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>AdminWrap Lite Template by WrapPixel</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/adminwrap-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="css/pages/dashboard1.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Admin Wrap</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
         <!-- ============================================================== -->
-        <!-- Container fluid  -->
+        <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <div class="row page-titles">
-                <div class="col-md-5 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="dash.php">Home</a></li>
-                        <li class="breadcrumb-item active">Staff</li>
-                    </ol>
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                            <!-- dark Logo text -->
+                            <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span>
+                    </a>
                 </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="fa fa-bars"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item hidden-xs-down search-box"> <a
+                                class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
+                                    class="fa fa-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter"> <a
+                                    class="srh-btn"><i class="fa fa-times"></i></a></form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="../assets/images/users/1.jpg" alt="user" class="" /> <span
+                                    class="hidden-md-down">Mark Sanders &nbsp;</span> </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i
+                                    class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i
+                                    class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="icon-fontawesome.html" aria-expanded="false"><i
+                                    class="fa fa-smile-o"></i><span class="hide-menu">Icons</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i
+                                    class="fa fa-globe"></i><span class="hide-menu">Map</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false"><i
+                                    class="fa fa-bookmark-o"></i><span class="hide-menu">Blank</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i
+                                    class="fa fa-question-circle"></i><span class="hide-menu">404</span></a>
+                        </li>
+                    </ul>
+                    <div class="text-center m-t-30">
+                        <a href="https://wrappixel.com/templates/adminwrap/"
+                            class="btn waves-effect waves-light btn-info hidden-md-down"> Upgrade to Pro</a>
+                    </div>
+                </nav>
+                <!-- End Sidebar navigation -->
             </div>
-            <div>
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Add Staff
-                    </button>
-                </p>
-                <div class="collapse" id="collapseExample"  data-spy="scroll">
-                    <!-- Start Page Content -->
-                    <!-- Row -->
-                    <div class="card">
-                        <div class="card-body" data-spy="scroll">
-                            <form action="process/staffProcess.php" method="POST" id="staff-form" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <center class="m-t-10">
-                                            <img src="<?= 'images/' . $result['profilePicture']; ?>" class="img-circle"width="150px" id="profile-img-tag"/>
-                                            <input class="input-img form-control m-t-40" id="profile-img" type="file" name="profilePic" onchange="imageValidation('profile-img')">
-                                            <script type="text/javascript">
-                                                function readURL(input) {
-                                                    if (input.files && input.files[0]) {
-                                                        var reader = new FileReader();
-                                                        reader.onload = function (e) {
-                                                            $('#profile-img-tag').attr('src', e.target.result);
-                                                        }
-                                                        reader.readAsDataURL(input.files[0]);
-                                                    }
-                                                }
-                                                $("#profile-img").change(function () {
-                                                    readURL(this);
-                                                });
-                                                
-                                                function imageValidation(id){
-                                                    var formData = new FormData();
-                                                    var file = document.getElementById(id).files[0];
-                                                    formData.append("filedata", file);
-                                                    var fileType = file.type.split('/').pop().toLowerCase();
-                                                    if(fileType != "jpeg" && fileType != "jpg" && fileType != "png"){
-                                                        $.bootstrapGrowl("Invalid file type please select jpg, jpeg or png", {
-                                                        ele: 'body', // which element to append to
-                                                        type: 'danger', // (null, 'info', 'danger', 'success')
-                                                        offset: {from: 'top', amount: 650}, // 'top', or 'bottom'
-                                                        align: 'right', // ('left', 'right', or 'center')
-                                                        width: 400, // (integer, or 'auto')
-                                                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
-                                                        allow_dismiss: true, // If true then will display a cross to close the popup.
-                                                        stackup_spacing: 10 // spacing between consecutively stacked growls.
-                                                      });
-                                                        document.getElementById(id).value = '';
-                                                    }
-                                                    if (file.size > 1048576) {
-                                                        $.bootstrapGrowl("File size cannot be more than  1 MB", {
-                                                        ele: 'body', // which element to append to
-                                                        type: 'danger', // (null, 'info', 'danger', 'success')
-                                                        offset: {from: 'top', amount: 650}, // 'top', or 'bottom'
-                                                        align: 'right', // ('left', 'right', or 'center')
-                                                        width: 400, // (integer, or 'auto')
-                                                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
-                                                        allow_dismiss: true, // If true then will display a cross to close the popup.
-                                                        stackup_spacing: 10 // spacing between consecutively stacked growls.
-                                                      });
-                                                        document.getElementById(id).value = '';
-                                                        return false;
-                                                    }
-                                                }
-                                            </script>
-                                        </center>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Dashboard</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="https://wrappixel.com/templates/adminwrap/"
+                            class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> Upgrade to
+                            Pro</a>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Sales Chart and browser state-->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex no-block">
+                                    <div>
+                                        <h5 class="card-title m-b-0">Sales Chart</h5>
                                     </div>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label>Fullname<span style="color:red">*</span></label>
-                                            <input type="text" name="sfname" class="form-control" required >
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label>Contact Number<span style="color:red">*</span></label>
-                                                <input type="text" name="sprimaryno" class="form-control" required>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Alternate Number</label>
-                                                <input type="text" name="salternateno" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>E-mail<span style="color:red">*</span></label>
-                                            <input type="text" name="semail" class="form-control" required>
-                                        </div>
-                                    </div>                            
-                                </div>
-                                <div class="form-group">
-                                    <label>Address 1<span style="color:red">*</span></label>
-                                    <input type="text" name="saddr1" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address 2<span style="color:red">*</span></label>
-                                    <input type="text" name="saddr2" class="form-control" required>
-                                </div>
-                                <div class="row ">
-                                    <div class="form-group col-md-4">
-                                        <label>Date of Birth<span style="color:red">*</span></label>
-                                        <input type="date" name="sDOB" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Gender<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="sgender">
-                                            <option selected disabled>Choose...</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Marital Status<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="marstatus">
-                                            <option selected disabled>Choose...</option>
-                                            <option value="Unmarried">Unmarried</option>
-                                            <option value="Married">Married</option>
-                                            <option value="Divorced">Divorced</option>
-                                            <option value="Widowed">Widowed</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >City<span style="color:red">*</span></label>
-                                        <input type="text" name="scity" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >State<span style="color:red">*</span></label>
-                                        <input type="text" name="state" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Pincode<span style="color:red">*</span></label>
-                                        <input type="text" name="pincode" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Joining Date<span style="color:red">*</span></label>
-                                        <input type="date" name="joindate" class="form-control" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Shift Timing<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="shifttime">
-                                            <option selected disabled>Choose...</option>
-                                            <option value="5:30 am - 9:30 am">5:30 am - 9:30 am || 4:00 pm - 8:00 pm</option>
-                                            <option value="6:00 am - 10:00 am">6:00 am - 10:00 am || 4:30 pm - 8:30 pm</option>
-                                            <option value="7:00 am - 11:00 am">7:00 am - 11:00 am || 5:00 pm - 9:00 pm</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Designation<span style="color:red">*</span></label>
-                                        <input type="text" name="designation" class="form-control"  >
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >School/College Marksheet</label>
-                                        <input type="file" name="marksheet" class="form-control" id="marksheet" onchange="imageValidation('marksheet')" >
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label >Certification (Optional)</label>
-                                        <input type="file" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label > Photo ID Proof<span style="color:red">*</span></label>
-                                        <input type="file" name="idproof" class="form-control" required id="idproof" onchange="imageValidation('idproof')">
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="status" name="status" value="YES">
-                                        <label class="form-check-label" for="status">
-                                            Create Account<span>  (Optional)</span>
-                                        </label>
+                                    <div class="ml-auto">
+                                        <ul class="list-inline text-center font-12">
+                                            <li><i class="fa fa-circle text-success"></i> SITE A</li>
+                                            <li><i class="fa fa-circle text-info"></i> SITE B</li>
+                                            <li><i class="fa fa-circle text-primary"></i> SITE C</li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary m-t-10" id="submit" name="submit">Submit</button>
-                            </form>
+                                <div class="" id="sales-chart" style="height: 355px;"></div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Row -->
-                    <!-- End PAge Content -->
+                    <!-- Column -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex m-b-30 no-block">
+                                    <h5 class="card-title m-b-0 align-self-center">Our Visitors</h5>
+                                    <div class="ml-auto">
+                                        <select class="custom-select b-0">
+                                            <option selected="">Today</option>
+                                            <option value="1">Tomorrow</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="visitor" style="height:260px; width:100%;"></div>
+                                <ul class="list-inline m-t-30 text-center font-12">
+                                    <li><i class="fa fa-circle text-purple"></i> Tablet</li>
+                                    <li><i class="fa fa-circle text-success"></i> Desktops</li>
+                                    <li><i class="fa fa-circle text-info"></i> Mobile</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- ============================================================== -->
-
-            <!-- ============================================================== -->
-            <div class="row">
-                <!-- Column -->
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex">
+                <!-- ============================================================== -->
+                <!-- End Sales Chart -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Projects of the Month -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <h5 class="card-title">Projects of the Month</h5>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <select class="custom-select b-0">
+                                            <option selected="">January</option>
+                                            <option value="1">February</option>
+                                            <option value="2">March</option>
+                                            <option value="3">April</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="table-responsive m-t-20 no-wrap">
-                                    <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
+                                    <table class="table vm no-th-brd pro-of-month">
                                         <thead>
                                             <tr>
-                                                <th>Sr. No.</th>
-                                                <th>Profile</th>
+                                                <th colspan="2">Assigned</th>
                                                 <th>Name</th>
-                                                <th>Designation</th>
-                                                <th>Contact No.</th>
-                                                <th>Alternate No.</th>
-                                                <th>Shift Time</th>
-                                                <th>Join date</th>
-                                                <th>Action</th>
+                                                <th>Budget</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $sr = 0;
-                                            include('includes/include_once/db.php');
-                                            $data = "SELECT sID, profilePicture, sName, sPrimaryContact, sAlternateContact, sShiftTime, sEmail, sJoiningDate, sDesignation FROM gymstaff";
-                                            $query = mysqli_query($connect, $data);
-                                            while ($result = mysqli_fetch_assoc($query)) {
-//                                                print_r($result);
-//                                                exit();
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo ++$sr; ?></td>
-                                                    <td style="width:50px;"><img class="round" src="<?php echo 'images/' . $result['profilePicture']; ?>" > </td>
-                                                    <td>
-                                                        <h6><?php echo $result['sName']; ?></h6><small class="text-muted"><?php echo $result['sDesignation']; ?></small>
-                                                    </td>
-                                                    <td><?php echo $result['sDesignation']; ?></td>
-                                                    <td><?php echo $result['sPrimaryContact']; ?></td>
-                                                    <td><?php echo $result['sAlternateContact']; ?></td>
-                                                    <td><?php echo $result['sShiftTime']; ?></td>
-                                                    <td><?php echo $result['sJoiningDate']; ?></td>
-                                                    <td class="table-action">
-                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="test.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID'];?>" onclick="myButton(<?php echo $result['sID'];?>)" type="button" data-toggle="modal" data-target="#exampleModal"></a>  <!--  -->
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <form action="process/staffProcess.php" id="deleteForm" method="POST">
-                                                                        <div class="modal-body">
-                                                                            Are You Sure You Want To Delete ?
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
-                                                                        </div>
-                                                                    </form>
-                                                                    <script>
-                                                                        function myButton(id){
-                                                                            //alert(document.getElementById("deleteForm").action);
-                                                                            document.getElementById("deleteForm").action= "process/staffProcess.php?id="+id;
-                                                                        }
-                                                                    </script>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
+                                            <tr>
+                                                <td style="width:50px;"><span class="round">S</span></td>
+                                                <td>
+                                                    <h6>Sunil Joshi</h6><small class="text-muted">Web Designer</small>
+                                                </td>
+                                                <td>Elite Admin</td>
+                                                <td>$3.9K</td>
+                                            </tr>
+                                            <tr class="active">
+                                                <td><span class="round"><img src="../assets/images/users/2.jpg"
+                                                            alt="user" width="50"></span></td>
+                                                <td>
+                                                    <h6>Andrew</h6><small class="text-muted">Project Manager</small>
+                                                </td>
+                                                <td>Real Homes</td>
+                                                <td>$23.9K</td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="round round-success">B</span></td>
+                                                <td>
+                                                    <h6>Bhavesh patel</h6><small class="text-muted">Developer</small>
+                                                </td>
+                                                <td>MedicalPro Theme</td>
+                                                <td>$12.9K</td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="round round-primary">N</span></td>
+                                                <td>
+                                                    <h6>Nirav Joshi</h6><small class="text-muted">Frontend Eng</small>
+                                                </td>
+                                                <td>Elite Admin</td>
+                                                <td>$10.9K</td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="round round-warning">M</span></td>
+                                                <td>
+                                                    <h6>Micheal Doe</h6><small class="text-muted">Content Writer</small>
+                                                </td>
+                                                <td>Helping Hands</td>
+                                                <td>$12.9K</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="up-img" style="background-image:url(../assets/images/big/img1.jpg)"></div>
+                            <div class="card-body">
+                                <h5 class=" card-title">Business development of rules</h5>
+                                <span class="label label-info label-rounded">Technology</span>
+                                <p class="m-b-0 m-t-20">Titudin venenatis ipsum aciat. Vestibu ullamer quam. nenatis
+                                    ipsum ac feugiat. Ibulum ullamcorper.</p>
+                                <div class="d-flex m-t-20">
+                                    <a class="link" href="javascript:void(0)">Read more</a>
+                                    <div class="ml-auto align-self-center">
+                                        <a href="javascript:void(0)" class="link m-r-10"><i
+                                                class="fa fa-heart-o"></i></a>
+                                        <a href="javascript:void(0)" class="link m-r-10"><i
+                                                class="fa fa-share-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+                <!-- ============================================================== -->
+                <!-- End Projects of the Month -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Notification And Feeds -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Start Notification -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card card-body mailbox">
+                            <h5 class="card-title">Notification</h5>
+                            <div class="message-center ps ps--theme_default ps--active-y"
+                                data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
+                                <!-- Message -->
+                                <a href="#">
+                                    <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
+                                    <div class="mail-contnet">
+                                        <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span>
+                                        <span class="time">9:30 AM</span>
+                                    </div>
+                                </a>
+                                <!-- Message -->
+                                <a href="#">
+                                    <div class="btn btn-success btn-circle"><i class="fa fa-calendar-check-o"></i></div>
+                                    <div class="mail-contnet">
+                                        <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have
+                                            event</span> <span class="time">9:10 AM</span>
+                                    </div>
+                                </a>
+                                <!-- Message -->
+                                <a href="#">
+                                    <div class="btn btn-info btn-circle"><i class="fa fa-cog"></i></div>
+                                    <div class="mail-contnet">
+                                        <h5>Settings</h5> <span class="mail-desc">You can customize this template as you
+                                            want</span> <span class="time">9:08 AM</span>
+                                    </div>
+                                </a>
+                                <!-- Message -->
+                                <a href="#">
+                                    <div class="btn btn-primary btn-circle"><i class="fa fa-user"></i></div>
+                                    <div class="mail-contnet">
+                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span
+                                            class="time">9:02 AM</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Notification -->
+                    <!-- Start Feeds -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Feeds</h5>
+                                <ul class="feeds">
+                                    <li>
+                                        <div class="bg-light-info"><i class="fa fa-bell-o"></i></div> You have 4 pending
+                                        tasks. <span class="text-muted">Just Now</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-success"><i class="fa fa-server"></i></div> Server #1
+                                        overloaded.<span class="text-muted">2 Hours ago</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-warning"><i class="fa fa-shopping-cart"></i></div> New
+                                        order received.<span class="text-muted">31 May</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-danger"><i class="fa fa-user"></i></div> New user
+                                        registered.<span class="text-muted">30 May</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-inverse"><i class="fa fa-bell-o"></i></div> New Version
+                                        just arrived. <span class="text-muted">27 May</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-info"><i class="fa fa-bell-o"></i></div> You have 4 pending
+                                        tasks. <span class="text-muted">Just Now</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-danger"><i class="fa fa-user"></i></div> New user
+                                        registered.<span class="text-muted">30 May</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-inverse"><i class="fa fa-bell-o"></i></div> New Version
+                                        just arrived. <span class="text-muted">27 May</span>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light-primary"><i class="fa fa-cog"></i></div> You have 4 pending
+                                        tasks. <span class="text-muted">27 May</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Feeds -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Notification And Feeds -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- End Page Content -->
                 <!-- ============================================================== -->
             </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer"> © 2020 Adminwrap by <a href="https://www.wrappixel.com/">wrappixel.com</a> </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>
-    <?php
-    include('includes/include_once/footer.php');
-    ?>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!--morris JavaScript -->
+    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="js/dashboard1.js"></script>
+</body>
+
+</html>

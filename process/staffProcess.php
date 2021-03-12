@@ -23,6 +23,9 @@ if (isset($_POST['submit'])) {
     $staffMarksheet = $_FILES['marksheet'];
     $staffCertification = $_FILES['certification'];
     $staffIDProof = $_FILES['idproof'];
+    $marksheetFileLocation = 'null';
+    $certificationFileLocation = 'null';
+    $profileFileLocation = 'null';
     if (empty($_POST['status'])) {
         $staffAccount = 'NO';
     } else {
@@ -91,7 +94,6 @@ if (isset($_POST['submit'])) {
         if (in_array($fileProfileLower, $fileStoreExtension)) {
             if ($fileProfilePicSize < 1048576) {
                 $newProfilePicName = uniqid($staffFullname, false);
-                $profileFileLocation = '0';
                 $profileFileLocation = '../images/people/' . $newProfilePicName . '.' . $fileProfileLower;
                 //move_uploaded_file($fileProfileTmp, $profileFileLocation);
             } else {
@@ -145,7 +147,7 @@ if (isset($_POST['submit'])) {
                 . "'$staffAddr1', '$staffAddr2', '$staffCity', '$staffState', '$staffPincode', '$staffJoining',"
                 . "'$staffShiftTime', '$staffDesignation', '$marksheetFileLocation', '$certificationFileLocation', '$idFileLocation', '$staffAccount')";
         $query = mysqli_query($connect, $staffInsert);
-
+        
         if ($query == true) {
 
             move_uploaded_file($fileProfileTmp, $profileFileLocation);
@@ -206,9 +208,6 @@ if (isset($_POST['update'])) {
     $staffEditJoining = $_POST['joindate'];
     $staffEditShiftTime = $_POST['shifttime'];
     $staffEditDesignation = $_POST['designation'];
-    $staffEditMarksheet = $_FILES['marksheet'];
-    $staffEditCertification = $_FILES['certification'];
-    $staffEditIDProof = $_FILES['idproof'];
     if (empty($_POST['status'])) {
         $staffEditAccountStatus = 'NO';
     } else {
@@ -217,9 +216,6 @@ if (isset($_POST['update'])) {
     //print_r($_FILES);
     // Taking filename 
     $fileProfilePic = $staffEditProfilePic['name'];
-    $fileMarksheet = $staffEditMarksheet['name'];
-    $fileCertification = $staffEditCertification['name'];
-    $fileIdProof = $staffEditIDProof['name'];
     // file type
 //    $fileProfilePicType = $staffProfilePic['type'];
 //    $fileMarksheetType = $staffMarksheet['type'];
@@ -227,33 +223,18 @@ if (isset($_POST['update'])) {
 //    $fileIdProofType = $staffIDProof['type'];
     // file size
     $fileProfilePicSize = $staffEditProfilePic['size'];
-    $fileMarksheetSize = $staffEditMarksheet['size'];
-    $fileCertificationSize = $staffEditCertification['size'];
-    $fileIdProofSize = $staffEditIDProof['size'];
 
     // error holding variable
     $fileProfileError = $staffEditProfilePic['error'];
-    $fileMarksheetError = $staffEditMarksheet['error'];
-    $fileCertificationError = $staffEditCertification['error'];
-    $fileIdProofError = $staffEditIDProof['error'];
 
     // hold files at temperory location
     $fileProfileTmp = $staffEditProfilePic['tmp_name'];
-    $fileMarksheetTmp = $staffEditMarksheet['tmp_name'];
-    $fileCertificationTmp = $staffEditCertification['tmp_name'];
-    $fileIdProofTmp = $staffEditIDProof['tmp_name'];
 
     // explode filename to get extension
     $fileProfileExtension = explode('.', $fileProfilePic);
-    $fileMarksheetExtension = explode('.', $fileMarksheet);
-    $fileCertificationExtension = explode('.', $fileCertification);
-    $fileIdProofExtension = explode('.', $fileIdProof);
 
     //convert extension in lower case
     $fileProfileLower = strtolower(end($fileProfileExtension));
-    $fileMarksheetLower = strtolower(end($fileMarksheetExtension));
-    $fileCertificationLower = strtolower(end($fileCertificationExtension));
-    $fileIdProofLower = strtolower(end($fileIdProofExtension));
 
     // allowing to store only below extensions
     $fileStoreExtension = array('png', 'jpg', 'jpeg');
@@ -269,42 +250,6 @@ if (isset($_POST['update'])) {
             $newProfilePicName = uniqid($staffEditFullname, false);
             $profileFileLocation = '../images/people/' . $newProfilePicName . '.' . $fileProfileLower;
             //move_uploaded_file($fileProfileTmp, $profileFileLocation);
-        } else {
-            echo 'file is too big';
-            //header('Location:../staff.php');
-        }
-    }
-
-    // saving document (Marksheet)
-    if (in_array($fileMarksheetLower, $fileStoreExtension)) {
-        if ($fileMarksheetSize < 1048576) {
-            $newMarksheetName = uniqid($staffEditFullname, false);
-            $marksheetFileLocation = '../documents/staff_Doc/' . $newMarksheetName . '.' . $fileMarksheetLower;
-            //move_uploaded_file($fileMarksheetTmp, $marksheetFileLocation);
-        } else {
-            echo 'file is too big';
-            //header('Location:../staff.php');
-        }
-    }
-
-    // saving document (Certification)
-    if (in_array($fileCertificationLower, $fileStoreExtension)) {
-        if ($fileCertificationSize < 1048576) {
-            $newCertificateName = uniqid($staffEditFullname, false);
-            $certificationFileLocation = '../documents/staff_Doc/' . $newCertificateName . '.' . $fileCertificationLower;
-            //move_uploaded_file($fileCertificationTmp, $certificationFileLocation);
-        } else {
-            echo 'file is too big';
-            //header('Location:../staff.php');
-        }
-    }
-
-    // saving document (ID Proof)
-    if (in_array($fileIdProofLower, $fileStoreExtension)) {
-        if ($fileIdProofSize < 1048576) {
-            $newIdProofName = uniqid($staffEditFullname, false);
-            $idFileLocation = '../documents/staff_Doc/' . $newIdProofName . '.' . $fileIdProofLower;
-            //move_uploaded_file($fileIdProofTmp, $idFileLocation);
         } else {
             echo 'file is too big';
             //header('Location:../staff.php');
@@ -328,17 +273,11 @@ if (isset($_POST['update'])) {
             . ", sShiftTime='$staffEditShiftTime'"
             . ", sDesignation='$staffEditDesignation'"
             . ", profilePicture='$profileFileLocation'"
-            . ", sSchoolCert='$marksheetFileLocation'"
-            . ", sCertification='$certificationFileLocation'"
-            . ", sPhotoIDProof='$idFileLocation'"
             . ", sAccountStatus='$staffEditAccountStatus' WHERE sID=$rowID";
     $execUpdate = mysqli_query($connect, $updateQuery);
     if ($execUpdate == TRUE) {
         move_uploaded_file($fileProfileTmp, $profileFileLocation);
-        move_uploaded_file($fileMarksheetTmp, $marksheetFileLocation);
-        move_uploaded_file($fileCertificationTmp, $certificationFileLocation);
-        move_uploaded_file($fileIdProofTmp, $idFileLocation);
-        header('Location:../test2.php');
+        header('Location:../staff.php');
         echo '<div class = "alert alert-success" role = "alert">
             Changes Updated.
         </div>';

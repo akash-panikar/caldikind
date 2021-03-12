@@ -12,15 +12,12 @@
 <script src="js/sidebarmenu.js"></script>
 <!--Custom JavaScript -->
 <script src="js/custom.min.js"></script>
-<!-- ============================================================== -->
-<!-- This page plugins -->
-<!-- ============================================================== -->
 <!--morris JavaScript -->
-<!--<script src="../assets/node_modules/raphael/raphael-min.js"></script>-->
+<script src="includes/raphael/raphael-min.js"></script>
 <script src="includes/morrisjs/morris.min.js"></script>
 <!--c3 JavaScript -->
-<!--<script src="../assets/node_modules/d3/d3.min.js"></script>
-<script src="includes/c3-master/c3.min.js"></script>-->
+<script src="includes/d3/d3.min.js"></script>
+<script src="includes/c3-master/c3.min.js"></script>
 <!-- Chart JS -->
 <script src="js/dashboard1.js"></script>
 <!----------------- Data Table ------------------------------->

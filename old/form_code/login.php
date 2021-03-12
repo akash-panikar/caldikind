@@ -61,6 +61,7 @@
                         </ul>
                     </div>
                     <div class="login-middle">
+                        <span class="text-uppercase" style="background-color: #F5F7FB;">OR</span>
                         <p>Log in with Mobile Number</p>
                         <form>
                             <input type="text" placeholder="10 Digit Mobile Number">

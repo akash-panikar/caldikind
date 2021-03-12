@@ -32,34 +32,7 @@ include('includes/include_once/nav.php');
                             display: none;
                         }
                     </style>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $('#next1').click(function () {
-                                $('#second').show();
-                                $('#first').hide();
-                            });
-                            $('#next2').click(function () {
-                                $('#third').show();
-                                $('#second').hide();
-                            });
-                            $('#next3').click(function () {
-                                $('#fourth').show();
-                                $('#third').hide();
-                            });
-                            $('#prev1').click(function () {
-                                $('#first').show();
-                                $('#second').hide();
-                            });
-                            $('#prev2').click(function () {
-                                $('#second').show();
-                                $('#third').hide();
-                            });
-                            $('#prev3').click(function () {
-                                $('#third').show();
-                                $('#fourth').hide();
-                            });
-                        });
-                    </script>
+
                     <div >
                         <div class="card" id="first">
                             <ul class="nav nav-tabs">
@@ -89,40 +62,40 @@ include('includes/include_once/nav.php');
                                         <div class="col-md-7">
                                             <div class="form-group">
                                                 <label>Fullname<span style="color:red">*</span></label>
-                                                <input type="text" name="sfname" class="form-control" >
+                                                <input type="text" name="fname" class="form-control" >
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label>Contact Number<span style="color:red">*</span></label>
-                                                    <input type="text" name="sprimaryno" class="form-control">
+                                                    <input type="text" name="primaryno" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>Alternate Number</label>
-                                                    <input type="text" name="salternateno" class="form-control">
+                                                    <input type="text" name="alternateno" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>E-mail<span style="color:red">*</span></label>
-                                                <input type="text" name="semail" class="form-control">
+                                                <input type="text" name="email" class="form-control">
                                             </div>
                                         </div>                            
                                     </div>
                                     <div class="form-group">
                                         <label>Address 1<span style="color:red">*</span></label>
-                                        <input type="text" name="saddr1" class="form-control">
+                                        <input type="text" name="addr1" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Address 2</label>
-                                        <input type="text" name="saddr2" class="form-control">
+                                        <input type="text" name="addr2" class="form-control">
                                     </div>
                                     <div class="row ">
                                         <div class="form-group col-md-4">
-                                            <label >City<span style="color:red">*</span></label>
-                                            <input type="text" name="scity" class="form-control">
+                                            <label >Location<span style="color:red">*</span></label>
+                                            <input type="text" name="location" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label >District<span style="color:red">*</span></label>
-                                            <input type="text" name="pincode" class="form-control">
+                                            <input type="text" name="district" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label >Pincode<span style="color:red">*</span></label>
@@ -130,11 +103,11 @@ include('includes/include_once/nav.php');
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Date of Birth<span style="color:red">*</span></label>
-                                            <input type="date" name="sDOB" class="form-control">
+                                            <input type="date" name="dob" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label >Gender<span style="color:red">*</span></label>
-                                            <select id="inputState" class="form-control" name="sgender">
+                                            <select id="inputState" class="form-control" name="gender">
                                                 <option selected disabled>Choose...</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -177,48 +150,48 @@ include('includes/include_once/nav.php');
                                         <div class="row ">
                                             <div class="form-group col-md-6">
                                                 <label >Membership Type<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="sgender">
+                                                <select id="inputState" class="form-control" required name="membership">
                                                     <option selected disabled>Choose...</option>
-                                                    <option value="Male">General Membership</option>
-                                                    <option value="Female">Personal Training</option>
-                                                    <option value="other">Premium Membership</option>
+                                                    <option value="General Membership">General Membership</option>
+                                                    <option value="Personal Training">Personal Training</option>
+                                                    <option value="Premium Membership">Premium Membership</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label >Trainer Name<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="sgender">
+                                                <select id="inputState" class="form-control" required name="trainer">
                                                     <option selected disabled>Choose...</option>
-                                                    <option value="Male">Reuben</option>
-                                                    <option value="Female">Vaibhav</option>
-                                                    <option value="other">Shriraj</option>
-                                                    <option value="Male">Neeke</option>
-                                                    <option value="Female">Scully</option>
-                                                    <option value="other">Astaha</option>
+                                                    <option value="Reuben">Reuben</option>
+                                                    <option value="Vaibhav">Vaibhav</option>
+                                                    <option value="Shriraj">Shriraj</option>
+                                                    <option value="Neeke">Neeke</option>
+                                                    <option value="Scully">Scully</option>
+                                                    <option value="Astaha">Astaha</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label >Package Type<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="marstatus">
+                                                <select id="inputState" class="form-control" required name="packtype">
                                                     <option selected disabled>Choose...</option>
-                                                    <option value="Widowed">1 Month</option>
-                                                    <option value="Unmarried">3 Month</option>
-                                                    <option value="Married">6 Month</option>
-                                                    <option value="Divorced">1 Year</option>
+                                                    <option value="1 Month">1 Month</option>
+                                                    <option value="3 Month">3 Month</option>
+                                                    <option value="6 Month">6 Month</option>
+                                                    <option value="1 Year">1 Year</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label >Package Name<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="marstatus">
+                                                <select id="inputState" class="form-control" required name="packname">
                                                     <option selected disabled>Choose...</option>
-                                                    <option value="Widowed">1 Month</option>
-                                                    <option value="Unmarried">3 Month</option>
-                                                    <option value="Married">6 Month</option>
-                                                    <option value="Divorced">1 Year</option>
+                                                    <option value="1 Month">1 Month</option>
+                                                    <option value="3 Month">3 Month</option>
+                                                    <option value="6 Month">6 Month</option>
+                                                    <option value="1 Year">1 Year</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >Batch Timing<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="designation">
+                                                <select id="inputState" class="form-control" required name="batch">
                                                     <option selected disabled>Choose...</option>
                                                     <option disabled>Morning</option>
                                                     <option value="6:30 am - 7:30 am">6:30 am - 7:30 am</option>
@@ -240,7 +213,7 @@ include('includes/include_once/nav.php');
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >End Date<span style="color:red">*</span></label>
-                                                <input type="date" name="startdate" class="form-control" required>
+                                                <input type="date" name="enddate" class="form-control" required>
                                             </div>
                                             <div class="col-md-12">
                                                 <label>Incase of Emergency Contact:</label>
@@ -249,20 +222,20 @@ include('includes/include_once/nav.php');
 
                                             <div class="form-group col-md-4">
                                                 <label >Contact Person</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" name="emgname" class="form-control">
                                             </div>
 
                                             <div class="form-group col-md-4">
                                                 <label >Contact Number</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" name="emgnum" class="form-control">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >Medical Report (Optional)</label>
-                                                <input type="file" name="marksheet" class="form-control" id="marksheet" onchange="imageValidation('marksheet')" >
+                                                <input type="file" name="medicalrpt" class="form-control">
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label >Medical Problem (Optional)</label>
-                                                <textarea type="text" name="marksheet" class="form-control" id="marksheet" ></textarea>
+                                                <textarea type="text" name="medicalprblm" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <a type="button" class="btn btn-primary m-t-10" id="prev1">Back</a>
@@ -304,7 +277,7 @@ include('includes/include_once/nav.php');
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >Package Selected<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="sgender">
+                                                <select id="inputPack" class="form-control" required name="sgender">
                                                     <option>Monthly</option>
                                                     <option>03 Months</option>
                                                     <option>06 Months</option>
@@ -316,7 +289,7 @@ include('includes/include_once/nav.php');
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >Payment Mode<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="sgender">
+                                                <select id="inputState" class="form-control" required name="mode">
                                                     <option>Cash</option>
                                                     <option>Credit Card</option>
                                                     <option>UPI</option>
@@ -324,27 +297,27 @@ include('includes/include_once/nav.php');
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Total Amount</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" name="certification" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Amount Paid</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" name="amtpaid" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Amount Due</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" name="amtdue" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Due Date</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" name="duedate" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Start Date</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>End Date</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert">
                                             </div>
                                         </div>
                                         <a class="btn btn-primary m-t-10" id="prev2">Back</a>
@@ -374,59 +347,47 @@ include('includes/include_once/nav.php');
                                         <div class="row ">
                                             <div class="form-group col-md-6">
                                                 <label >Fullname<span style="color:red">*</span></label>
-                                                <input type="text" name="scity" class="form-control" required>
+                                                <input type="text" class="form-control" disabled>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label >Email<span style="color:red">*</span></label>
-                                                <input type="text" name="pincode" class="form-control" required>
+                                                <input type="text" class="form-control" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Contact No.<span style="color:red">*</span></label>
-                                                <input type="text" name="pincode" class="form-control" required>
+                                                <input type="text" class="form-control" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >Package Selected<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="sgender">
-                                                    <option>Monthly</option>
-                                                    <option>03 Months</option>
-                                                    <option>06 Months</option>
-                                                    <option>09 Months</option>
-                                                    <option>Yearly</option>
-                                                    <option>Couple</option>
-                                                    <option>Festival</option>
-                                                </select>
+                                                <input type="text" name="pincode" class="form-control" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label >Payment Mode<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="sgender">
-                                                    <option>Cash</option>
-                                                    <option>Credit Card</option>
-                                                    <option>UPI</option>
-                                                </select>
+                                                <input type="text" class="form-control" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Total Amount</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Amount Paid</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Amount Due</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Due Date</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Start Date</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert" disabled>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>End Date</label>
-                                                <input type="text" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                                <input type="text" class="form-control" id="cert" disabled>
                                             </div>
                                         </div>
                                         <a class="btn btn-primary m-t-10" id="prev3">Back</a>
@@ -436,8 +397,34 @@ include('includes/include_once/nav.php');
                             </div>
                         </div>
                     </div>
-                    <!-- Row -->
-                    <!-- End PAge Content -->
+                    <<script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#next1').click(function () {
+                                $('#second').show();
+                                $('#first').hide();
+                            });
+                            $('#next2').click(function () {
+                                $('#third').show();
+                                $('#second').hide();
+                            });
+                            $('#next3').click(function () {
+                                $('#fourth').show();
+                                $('#third').hide();
+                            });
+                            $('#prev1').click(function () {
+                                $('#first').show();
+                                $('#second').hide();
+                            });
+                            $('#prev2').click(function () {
+                                $('#second').show();
+                                $('#third').hide();
+                            });
+                            $('#prev3').click(function () {
+                                $('#third').show();
+                                $('#fourth').hide();
+                            });
+                        });
+                    </script>
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -485,7 +472,7 @@ include('includes/include_once/nav.php');
                                                     <td><?php echo $result['cMobile']; ?></td>
                                                     <td><?php echo $result['cStartDate']; ?></td>
                                                     <td><?php echo $result['cStatus']; ?></td>
-                                                    <!--<td><?php //echo $result[''];  ?></td>-->
+                                                    <!--<td><?php //echo $result[''];   ?></td>-->
                                                     <td class="table-action">
                                                         <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
                                                         <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Edit"  data-target="#exampleModal"></a>  <!--  -->

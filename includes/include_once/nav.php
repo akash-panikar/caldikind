@@ -4,11 +4,11 @@
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="dash.php">
                 <!-- Logo icon -->
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                 <!-- Dark Logo icon -->
-                <img src="images/logo/logo-5 COPY.png" class="my-logo" /> <!--dark-logo-->
+                <img src="images/logo/logo-2.png" class="my-logo" /> <!--dark-logo-->
                 <!-- Light Logo icon -->
                 <!--<img src="images/logo/tryonlogo-4.png" alt="homepage" class="light-logo" />-->
                 <!--End Logo icon -->
@@ -69,7 +69,7 @@
                             class="fa fa-user-circle-o"></i><span class="hide-menu">Staff</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="client.php" aria-expanded="false"><i
-                            class="fa fa-users"></i><span class="hide-menu">Client</span></a>
+                            class="fa fa-user"></i><span class="hide-menu">Client</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="enquiry.php" aria-expanded="false"><i
                             class="fa fa-question-circle-o"></i><span class="hide-menu">Enquiry</span></a>
@@ -78,7 +78,19 @@
                             class="fa fa-gift"></i><span class="hide-menu">Packages</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="payment.php" aria-expanded="false"><i
-                            class="fa fa-gift"></i><span class="hide-menu">Payments</span></a>
+                            class="fa fa-rupee"></i><span class="hide-menu">Payments</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="staffAttendance.php" aria-expanded="false"><i
+                            class="fa fa-calendar"></i><span class="hide-menu">Attendance</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="users.php" aria-expanded="false"><i
+                            class="fa fa-users"></i><span class="hide-menu">Users</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="report.php" aria-expanded="false"><i
+                            class="fa fa-file-text-o"></i><span class="hide-menu">Report</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="settings.php" aria-expanded="false"><i
+                            class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test</span></a>
@@ -88,15 +100,6 @@
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test3.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test-3</span></a>
-                </li>
-                <li> <a class="waves-effect waves-dark" href="users.php" aria-expanded="false"><i
-                            class="fa fa-gift"></i><span class="hide-menu">Users</span></a>
-                </li>
-                <li> <a class="waves-effect waves-dark" href="report.php" aria-expanded="false"><i
-                            class="fa fa-gift"></i><span class="hide-menu">Report</span></a>
-                </li>
-                <li> <a class="waves-effect waves-dark" href="settings.php" aria-expanded="false"><i
-                            class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>
                 </li>
             </ul>
         </nav>

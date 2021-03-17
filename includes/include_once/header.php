@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TRYON</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logo/logo-5 COPY.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo/logo-2.png">
     <!-- Bootstrap Core CSS -->
     <link href="includes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- This page CSS -->

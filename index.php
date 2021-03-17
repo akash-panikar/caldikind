@@ -55,15 +55,15 @@
                         </span>
 
                         <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                            <input class="input100" type="text" name="email" placeholder="email">
+                            <input class="input100" onfocus="this.value=''" id="cap" type="text" name="email" placeholder="email">
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
-                            <input class="input100" type="password" name="pass" placeholder="Password">
+                            <input class="input100" onfocus="this.value=''" id="cap" type="password" name="pass" placeholder="Password">
                             <span class="focus-input100" data-placeholder="&#xf191;"></span>
                         </div>
-
+                        <p id="text" style="color:white;">WARNING! Caps lock is ON.</p>
                         <div class="contact100-form-checkbox">
                             <input class="input-checkbox100" id="ckb1" type="checkbox">
                             <label class="label-checkbox100" for="ckb1">
@@ -82,9 +82,21 @@
                                 Forgot Password?
                             </a>
                         </div>
-                    
+                    <script>
+                        var input = document.getElementById("cap");
+                        var text = document.getElementById("text");
+                        input.addEventListener("keyup", function(event) {
+
+                        if (event.getModifierState("CapsLock")) {
+                            text.style.display = "block";
+                          } else {
+                            text.style.display = "none"
+                          }
+                        });
+                    </script>
                 </div>
             </div>
         </div>
+        
 </body>
 </html>

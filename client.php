@@ -1,4 +1,9 @@
 <?php
+session_start(); 
+if(!isset($_SESSION['fullName']))
+{
+    header('Location:index.php');
+}
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 ?>
@@ -474,8 +479,9 @@ include('includes/include_once/nav.php');
                                                     <td><?php echo $result['cStatus']; ?></td>
                                                     <!--<td><?php //echo $result[''];   ?></td>-->
                                                     <td class="table-action">
-                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Edit"  data-target="#exampleModal"></a>  <!--  -->
+                                                        <a class="fa fa-refresh btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Renew" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
+                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
+                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Delete"  data-target="#exampleModal"></a>  <!--  -->
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">

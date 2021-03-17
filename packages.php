@@ -1,4 +1,9 @@
 <?php
+session_start(); 
+if(!isset($_SESSION['fullName']))
+{
+    header('Location:index.php');
+}
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 $defaultImage = "images/people/6.png";
@@ -35,7 +40,7 @@ $defaultImage = "images/people/6.png";
                                                 <th>Package Name</th>
                                                 <th>Discription</th>
                                                 <th>Regular Price</th>
-                                                <th>Discount</th>
+<!--                                                <th>Discount</th>-->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,7 +57,7 @@ $defaultImage = "images/people/6.png";
                                                     <td><?php echo ++$sr; ?></td>
                                                     <td><h6><?php echo $result['pName']; ?></h6></td>
                                                     <td><h6><?php echo $result['pDescription']; ?></h6></td>
-                                                    <td><?php echo $result['pRegularAmount']; ?></td>
+                                                    <td><?php echo '₹'. $result['pRegularAmount']; ?></td>
 <!--                                                    <td><?php //echo $result['cMobile']; ?></td>-->
                                                 </tr>
                                                 <?php

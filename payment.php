@@ -1,4 +1,9 @@
 <?php
+session_start(); 
+if(!isset($_SESSION['fullName']))
+{
+    header('Location:index.php');
+}
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 $defaultImage = "images/people/6.png";
@@ -32,10 +37,12 @@ $defaultImage = "images/people/6.png";
                                         <thead>
                                             <tr>
                                                 <th>Sr. No.</th>
+                                                <th>Name</th>
                                                 <th>Package Name</th>
-                                                <th>Regular Price</th>
-                                                <th>Discount</th>
-                                                <th>Discounted Price</th>
+                                                <th>Package Price</th>
+                                                <th>Amount Paid</th>
+                                                <th>Balance Amount</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -54,6 +61,10 @@ $defaultImage = "images/people/6.png";
                                                     <td><h6><?php echo $result['cReferredBy']; ?></h6></td>
                                                     <td><?php echo $result['cBatchTime']; ?></td>
                                                     <td><?php echo $result['cMobile']; ?></td>
+                                                    <td><?php echo $result['cMobile']; ?></td>
+                                                    <td class="table-action">
+                                                            <a class="fa fa-refresh btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Renew" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
+                                                        </td>
                                                 </tr>
                                                 <?php
                                             }

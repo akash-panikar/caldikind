@@ -376,8 +376,25 @@ button:hover {
   }
 }
 
-
-
+@media only screen  and (min-width : 1224px) {
+    .wrap-login100 {
+        width: 450px;
+        padding: 40px 55px 40px 55px;
+    }
+/*    .p-t-90 {
+        padding-top: 45px;
+    }
+    .p-b-34 {
+        padding-bottom: 20px;               need to work on this please do after exam
+    }
+    .contact100-form-checkbox {
+        padding-bottom: 25px;
+    }
+    .p-t-27 {
+        padding-top: 15px;
+    }*/
+}
+	
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 

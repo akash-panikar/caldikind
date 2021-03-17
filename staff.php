@@ -1,4 +1,9 @@
 <?php
+session_start(); 
+if(!isset($_SESSION['fullName']))
+{
+    header('Location:index.php');
+}
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 $defaultImage = "images/people/6.png";

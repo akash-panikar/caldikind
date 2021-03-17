@@ -2,7 +2,11 @@
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 include('includes/include_once/db.php');
-
+session_start(); 
+if(!isset($_SESSION['fullName']))
+{
+    header('Location:index.php');
+}
 $rowID = $_GET['id'];
 $searchQuery = "SELECT * from gymenquiry WHERE vID=$rowID";
 $execQuery = mysqli_query($connect, $searchQuery);

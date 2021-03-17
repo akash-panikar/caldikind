@@ -1837,7 +1837,7 @@ File: scss
 Buttons
 ******************/
 .btn {
-    padding: 7px 12px;
+    padding: 5px 8px;
     cursor: pointer; }
 .btn-action {
     padding: 5px 7px;
@@ -3749,7 +3749,10 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
     -webkit-animation: ripple 0.2s linear forwards;
     animation: ripple 0.2s linear forwards; }
 
-.switch label {
+/*---------------------------------------------------*/
+
+/*--------------------------------------------------*/
+/*.switch label {
     font-weight: normal;
     font-size: 13px; }
 .switch label .lever {
@@ -3900,7 +3903,7 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
 .switch label input[type=checkbox]:checked + .lever.switch-col-white {
     background-color: rgba(255, 255, 255, 0.5); }
 .switch label input[type=checkbox]:checked + .lever.switch-col-white:after {
-    background-color: #ffffff; }
+    background-color: #ffffff; }*/
 
 /*Form Validation*/
 .help-block ul {
@@ -5787,7 +5790,7 @@ widget-chart-page product review
         margin-top: 10px;
         overflow: hidden; } }
 .table-action{
-    font-size: 24px;
+    font-size: 20px; /*font-size: 24px;*/
 }
 .my-logo{
     width: 40px;

@@ -46,15 +46,17 @@ include('includes/include_once/nav.php');
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+                                <!--<h5 style="float:right">Date:  <?=date('Y-m-d');?></h5>-->
                                 <div class="d-flex">
-                                    <div class="table-responsive m-t-20 no-wrap">
+                                    <div class="table-responsive m-t-10 no-wrap">
                                         <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No.</th>
-                                                    <th>Profile</th>
+                                                    <!--<th>Profile</th>-->
+                                                    <th>Staff UID</th>
                                                     <th>Name</th>
-                                                    <th>Unique ID</th>
+                                                    
                                                     <th>Entry Time</th>
                                                     <th>Exit Time</th>
                                                     <th>Status</th>
@@ -64,7 +66,8 @@ include('includes/include_once/nav.php');
                                                 <?php
                                                 $sr = 0;
                                                 include('includes/include_once/db.php');
-                                                $data = "SELECT aID, staffCode, inTime, outTime, status FROM gymattendance";
+                                                $data = "SELECT gymattendance.staffCode, gymstaff.sName, inTime, outTime, status FROM gymattendance"
+                                                        . " JOIN gymstaff ON gymattendance.staffCode=gymstaff.staffCode AND DATE(date) = DATE(NOW()) ";
                                                 $query = mysqli_query($connect, $data);
                                                 while ($result = mysqli_fetch_assoc($query)) {
 //                                                print_r($result);
@@ -72,11 +75,10 @@ include('includes/include_once/nav.php');
                                                     ?>
                                                     <tr>
                                                         <td><?php echo ++$sr; ?></td>
-                                                        <td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profilePicture']; ?>" > </td>
-                                                        <td>
-                                                            <h6><?php echo $result['']; ?></h6>
-                                                        </td>
+<!--                                                        <td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profilePicture']; ?>" > </td>-->
                                                         <td><h6><?php echo $result['staffCode']; ?></h6></td>
+                                                        <td><h6><?php echo $result['sName']; ?></h6></td>
+                                                        
                                                         <td><?php echo $result['inTime']; ?></td>
                                                         <td><?php echo $result['outTime']; ?></td>
                                                         <td><?php echo $result['status']; ?></td>

@@ -1,6 +1,6 @@
+<?php date_default_timezone_set("Asia/Kolkata"); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <!-- responsive to screen width -->

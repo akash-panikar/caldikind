@@ -54,19 +54,17 @@ include('includes/include_once/nav.php');
                                                 <th>Sr. No.</th>
                                                 <th>Profile</th>
                                                 <th>Name</th>
-                                                <th>Username</th>
-                                                <th>Batch Time</th>
+                                                <th>Email</th>
                                                 <th>Contact No.</th>
-                                                <th>Joining Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Role</th>
+                                                <th>Account Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $sr = 0;
                                             include('includes/include_once/db.php');
-                                            $data = "SELECT cID, profilePicture, cName, cReferredBy, cBatchTime, cMobile, cStartDate, cEndDate, cStatus, cMembershipType FROM gymclients";
+                                            $data = "SELECT mID, profile_image, fullName, dob, email, mobileNo, role, accountStatus FROM gymusers";
                                             $query = mysqli_query($connect, $data);
                                             while ($result = mysqli_fetch_assoc($query)) {
 //                                                print_r($result);
@@ -74,16 +72,14 @@ include('includes/include_once/nav.php');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo ++$sr; ?></td>
-                                                    <td style="width:50px;"><img class="round" src="<?php echo 'images/' . $result['profilePicture']; ?>" > </td>
+                                                    <td style="width:50px;"><img class="round" src="<?php echo 'images/' . $result['profile_image']; ?>" > </td>
                                                     <td>
-                                                        <h6><?php echo $result['cName']; ?></h6><small class="text-muted"><?php echo $result['cEndDate']; ?></small>
+                                                        <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php echo $result['dob']; ?></small>
                                                     </td>
-                                                    <td><h6><?php echo $result['cReferredBy']; ?></h6><small class="text-muted"><?php echo $result['cEndDate']; ?></small></td>
-                                                    <td><?php echo $result['cBatchTime']; ?></td>
-                                                    <td><?php echo $result['cMobile']; ?></td>
-                                                    <td><?php echo $result['cStartDate']; ?></td>
-                                                    <td><?php echo $result['cStatus']; ?></td>
-                                                    <!--<td><?php //echo $result[''];   ?></td>-->
+                                                    <td><h6><?php echo $result['email']; ?></h6></td>
+                                                    <td><?php echo $result['mobileNo']; ?></td>
+                                                    <td><?php echo $result['role']; ?></td>
+                                                    <td><?php echo $result['accountStatus']; ?></td>
                                                     <td class="table-action">
                                                         <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
                                                         <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Edit"  data-target="#exampleModal"></a>  <!--  -->

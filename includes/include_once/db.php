@@ -4,7 +4,8 @@ Date: 13/11/2020             |
 Last Modified on:            |  
 ////////////////////////////// -->
 <?php
-
+date_default_timezone_set("Asia/Kolkata");
+$currentDateTime = date('H:i:s');
 $server = "localhost";
 $user = "root";
 $password = "";

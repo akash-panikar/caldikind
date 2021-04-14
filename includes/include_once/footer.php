@@ -18,7 +18,7 @@
 <!--c3 JavaScript -->
 <script src="includes/d3/d3.min.js"></script>
 <script src="includes/c3-master/c3.min.js"></script>
-<!-- Chart JS -->
+                <!-- Chart JS -->
 <script src="js/dashboard1.js"></script>
 <!----------------- Data Table ------------------------------->
 <!--<script src="includes/jquery/jquery-datatable.js"></script>

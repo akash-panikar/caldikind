@@ -1,133 +1,96 @@
 <?php
+session_start();
+if (!isset($_SESSION['fullName'])) {
+    header('Location:index.php');
+}
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
-$defaultImage = "images/people/6.png";
+include('includes/include_once/db.php');
 ?>
 
 <div id="main-wrapper">
     <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dash.php">Home</a></li>
-                        <li class="breadcrumb-item active">Client</li>
+                        <li class="breadcrumb-item active">Profile</li>
                     </ol>
                 </div>
             </div>
-            <div>
-                <p>
-                    <a class="btn btn-primary" type="button" href="addCleintTest.php">
-                        Add Client
-                    </a>
-                </p>
-                
-            </div>
-            <!-- ============================================================== -->
 
-            <!-- ============================================================== -->
             <div class="row">
                 <!-- Column -->
-                <div class="col-lg-12">
+                <div class="col-lg-4 col-xlg-3 col-md-5">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex">
-                                <div class="table-responsive m-t-20 no-wrap">
-                                    <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Sr. No.</th>
-                                                <th>Profile</th>
-                                                <th>Name</th>
-                                                <th>Package Type</th>
-                                                <th>Batch Time</th>
-                                                <th>Contact No.</th>
-                                                <th>Joining Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $sr = 0;
-                                            include('includes/include_once/db.php');
-                                            $data = "SELECT cID, profilePicture, cName, cReferredBy, cBatchTime, cMobile, cStartDate, cEndDate, cStatus, cMembershipType FROM gymclients";
-                                            $query = mysqli_query($connect, $data);
-                                            while ($result = mysqli_fetch_assoc($query)) {
-//                                                print_r($result);
-//                                                exit();
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo ++$sr; ?></td>
-                                                    <td style="width:50px;"><img class="round" src="<?php echo 'images/' . $result['profilePicture']; ?>" > </td>
-                                                    <td>
-                                                        <h6><?php echo $result['cName']; ?></h6><small class="text-muted"><?php echo $result['cEndDate']; ?></small>
-                                                    </td>
-                                                    <td><h6><?php echo $result['cReferredBy']; ?></h6><small class="text-muted"><?php echo $result['cEndDate']; ?></small></td>
-                                                    <td><?php echo $result['cBatchTime']; ?></td>
-                                                    <td><?php echo $result['cMobile']; ?></td>
-                                                    <td><?php echo $result['cStartDate']; ?></td>
-                                                    <td><?php echo $result['cStatus']; ?></td>
-                                                    <!--<td><?php //echo $result['']; ?></td>-->
-                                                    <td class="table-action">
-                                                        <a class="fa fa-pencil-square-o btn-action btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn-action btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Edit"  data-target="#exampleModal"></a>  <!--  -->
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <form action="process/staffProcess.php" id="deleteForm" method="POST">
-                                                                        <div class="modal-body">
-                                                                            Are You Sure You Want To Delete ?
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
-                                                                        </div>
-                                                                    </form>
-                                                                    <script>
-                                                                        function myButton(id) {
-                                                                            //alert(document.getElementById("deleteForm").action);
-                                                                            document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
-                                                                        }
-                                                                    </script>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
+                            <center class="m-t-30"> <img src="../assets/images/users/5.jpg" class="img-circle"
+                                                         width="150" />
+                                <h4 class="card-title m-t-10"><?php echo $_SESSION['fullName']; ?></h4>
+                                <h6 class="card-subtitle"><?php // echo $_SESSION['role'];     ?></h6>
+                                <div class="row text-center justify-content-md-center">
+                                    <div class="col-4">
+                                        <button class="btn btn-success">Change</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </center>
                         </div>
                     </div>
                 </div>
-
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- End Page Content -->
-                <!-- ============================================================== -->
+                <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="card">
+                        <!-- Tab panes -->
+                        <div class="card-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationDefault01">Fullname</label>
+                                        <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault02">E-Mail</label>
+                                        <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault03">Contact No</label>
+                                        <input type="text" class="form-control" id="validationDefault03" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationDefault04">State</label>
+                                        <select class="custom-select" id="validationDefault04" required>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationDefault05">Zip</label>
+                                        <input type="text" class="form-control" id="validationDefault05" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                        <label class="form-check-label" for="invalidCheck2">
+                                            Agree to terms and conditions
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
             </div>
+
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
         <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>
-    <?php
-    include('includes/include_once/footer.php');
-    ?>
+</div>
+<?php
+include('includes/include_once/footer.php');
+?>

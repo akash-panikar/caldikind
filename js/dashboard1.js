@@ -1,11 +1,47 @@
 $(function() {
     "use strict";
     // ============================================================== 
+    // Our member
+    // ============================================================== 
+    
+    var chart = c3.generate({
+        bindto: '#members',
+        data: {
+            columns: [
+                ['Desktop', 4],
+                ['Tablet', 6],
+                ['Mobile', 90],
+            ],
+
+            type: 'pie',
+            onclick: function(d, i) { console.log("onclick", d, i); },
+            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function(d, i) { console.log("onmouseout", d, i); }
+        },
+        pie: {
+            label: {
+                show: false
+            },
+            title: "Visits",
+            width: 20,
+
+        },
+
+        legend: {
+            hide: true
+            //or hide: 'data1'
+            //or hide: ['data1', 'data2']
+        },
+        color: {
+            pattern: ['#24d2b5', '#6772e5', '#20aee3']
+        }
+    });
+    // ============================================================== 
     // Our Visitor
     // ============================================================== 
 
     var chart = c3.generate({
-        bindto: '#visitor',
+        bindto: '#attendance',
         data: {
             columns: [
                 ['Desktop', 4],
@@ -76,7 +112,7 @@ $(function() {
             }
         },
         size: {
-            height: 290
+            height: 339
         },
         color: {
             pattern: ['#24d2b5', '#20aee3']

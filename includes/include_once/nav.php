@@ -39,18 +39,22 @@
                             class="srh-btn"><i class="fa fa-times"></i></a></form>
                 </li>
             </ul>
+        </div>       
             <!-- ============================================================== -->
             <!-- User profile and search -->
             <!-- ============================================================== -->
-            <ul class="navbar-nav my-lg-0">
-                <!-- ============================================================== -->
-                <!-- Profile -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
+        <div class="nav-toggler dropdown">
+            <ul class="navbar-nav">
+                <li  data-toggle="dropdown">
                     <a class="nav-link waves-effect waves-dark profile-pic">
                         <img src="images/people/5.jpg"/>
                         <span class="hidden-md-down"><?php echo $_SESSION['fullName']; ?></span>
                     </a>
+                </li>
+                <li class="dropdown-menu">
+                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="#">Another action</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -77,8 +81,14 @@
                 <li> <a class="waves-effect waves-dark" href="packages.php" aria-expanded="false"><i
                             class="fa fa-gift"></i><span class="hide-menu">Packages</span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" href="payment.php" aria-expanded="false"><i
-                            class="fa fa-rupee"></i><span class="hide-menu">Payments</span></a>
+                <li> <a class="waves-effect waves-dark" href="diet.php" aria-expanded="false"><i
+                            class="fa fa-cutlery"></i><span class="hide-menu">Diet Plans</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="receipt.php" aria-expanded="false"><i
+                            class="fa fa-money"></i><span class="hide-menu">Receipt</span></a>
+                </li>
+                <li> <a class="waves-effect waves-dark" href="expense.php" aria-expanded="false"><i
+                            class="fa fa-bolt"></i><span class="hide-menu">Expense</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="staffAttendance.php" aria-expanded="false"><i
                             class="fa fa-calendar"></i><span class="hide-menu">Attendance</span></a>

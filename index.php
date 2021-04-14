@@ -36,7 +36,7 @@
         <title>TRYON | LOGIN</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="images/logo/logo-5 COPY.png"/>
+        <link rel="icon" type="image/png" href="images/logo/logo-2.png"/>
         <link rel="stylesheet" type="text/css" href="includes/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="includes/fonts/material-design-iconic-font.css">
         <link rel="stylesheet" type="text/css" href="css/login.css">
@@ -47,7 +47,7 @@
                 <div class="wrap-login100">
                     <form class="login100-form validate-form" method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
                         <span class="login100-form-logo">
-                            <img src="images/logo/logo-5 COPY.png" height="80">
+                            <img src="images/logo/logo-2.png" height="80">
                         </span>
 
                         <span class="login100-form-title p-b-34 p-t-27">

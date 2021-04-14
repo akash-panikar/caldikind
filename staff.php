@@ -11,13 +11,7 @@ $defaultImage = "images/people/6.png";
 
 <div id="main-wrapper">
     <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
@@ -204,15 +198,9 @@ $defaultImage = "images/people/6.png";
                             </form>
                         </div>
                     </div>
-                    <!-- Row -->
-                    <!-- End PAge Content -->
                 </div>
             </div>
-            <!-- ============================================================== -->
-
-            <!-- ============================================================== -->
             <div class="row">
-                <!-- Column -->
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
@@ -254,8 +242,9 @@ $defaultImage = "images/people/6.png";
                                                     <td><?php echo $result['sShiftTime']; ?></td>
                                                     <td><?php echo $result['sJoiningDate']; ?></td>
                                                     <td class="table-action">
+                                                        <a class="fa fa-eye  btn btn-outline-info" name="edit" href="staffProfile.php?id=<?= $result['sID']; ?>"></a>
                                                         <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" href="delete.php?<?php $deleteRowID = $result['sID']; ?>" data-toggle="modal" data-target="#exampleModal"></a>  <!--  -->
+                                                        <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" href="delete.php?<?php $deleteRowID = $result['sID']; ?>" data-toggle="modal" data-target="#exampleModal"></a>  <!--  -->
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
@@ -294,16 +283,8 @@ $defaultImage = "images/people/6.png";
                         </div>
                     </div>
                 </div>
-
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- End Page Content -->
-                <!-- ============================================================== -->
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
         <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>
     <?php

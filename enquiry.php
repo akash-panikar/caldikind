@@ -1,9 +1,5 @@
 <?php
-session_start(); 
-if(!isset($_SESSION['fullName']))
-{
-    header('Location:index.php');
-}
+include ('includes/include_once/session.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 include('includes/include_once/db.php');
@@ -105,7 +101,7 @@ include('includes/include_once/db.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $data = "SELECT * FROM gymenquiry";
+                                            $data = "SELECT * FROM gymenquiry WHERE status='Active'";
                                             $query = mysqli_query($connect, $data);
                                             while ($result = mysqli_fetch_assoc($query)) {
                                                 ?>
@@ -120,7 +116,33 @@ include('includes/include_once/db.php');
                                                     <td class="table-action">
                                                         <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editEnquiry.php?id=<?= $result['vID']; ?>"></a>
                                                         <a class="fa fa-plus btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="join" name="join"></a>
-                                                        <a class="fa fa-flag btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Not Interested" name="notinterested"></a>
+                                                        <a class="fa fa-flag btn btn-outline-danger" value="<?php echo $result['vID']; ?>" onclick="myButton(<?php echo $result['vID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Not Interested"  data-target="#exampleModal"></a>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Not Interested</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <form action="process/enquiryProcess.php" id="notInterested" method="POST">
+                                                                        <div class="modal-body">
+                                                                            Do You Want To Mark Not Interested ?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-primary" name="ni">Yes !</button>
+                                                                        </div>
+                                                                    </form>
+                                                                    <script>
+                                                                        function myButton(id) {
+                                                                            //alert(document.getElementById("deleteForm").action);
+                                                                            document.getElementById("notInterested").action = "process/enquiryProcess.php?id=" + id;
+                                                                        }
+                                                                    </script>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php

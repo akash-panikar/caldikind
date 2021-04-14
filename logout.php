@@ -3,6 +3,7 @@ session_start();
 mysqli_close($connect);
 unset($_SESSION["mID"]);
 unset($_SESSION["fullName"]);
+session_unset();
 session_destroy();
 header("Location:index.php");
 ?>

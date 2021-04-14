@@ -5,7 +5,8 @@ Last Modified on:            |
 ////////////////////////////// -->
 <?php
 date_default_timezone_set("Asia/Kolkata");
-$currentDateTime = date('H:i:s');
+$currentDate= date('Y-m-d');
+$currentTime = date('h:i:s A');
 $server = "localhost";
 $user = "root";
 $password = "";

@@ -1,22 +1,12 @@
 <?php
-session_start(); 
-if(!isset($_SESSION['fullName']))
-{
-    header('Location:index.php');
-}
+include ('includes/include_once/session.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div id="main-wrapper">
     <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <ol class="breadcrumb">
@@ -57,22 +47,16 @@ include('includes/include_once/nav.php');
                             <div class="card-body" >
                                 <form action="" method="POST" id="staff-form" enctype="multipart/form-data">
                                     <div class="row">
-                                        <div class="col-md-5">
-                                            <center class="m-t-10">
-                                                <img src="<?= 'images/' . $result['profilePicture']; ?>" class="img-circle"width="150px" id="profile-img-tag"/>
-                                                <input class="input-img form-control m-t-40" id="profile-img" type="file" name="profilePic" onchange="imageValidation('profile-img')">
-
-                                            </center>
-                                        </div>
+                                        
                                         <div class="col-md-7">
                                             <div class="form-group">
                                                 <label>Fullname<span style="color:red">*</span></label>
-                                                <input type="text" name="fname" class="form-control" >
+                                                <input type="text" name="fname" class="form-control" id="fullname">
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label>Contact Number<span style="color:red">*</span></label>
-                                                    <input type="text" name="primaryno" class="form-control">
+                                                    <input type="text" name="primaryno" class="form-control" id="contact"">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>Alternate Number</label>
@@ -81,17 +65,24 @@ include('includes/include_once/nav.php');
                                             </div>
                                             <div class="form-group">
                                                 <label>E-mail<span style="color:red">*</span></label>
-                                                <input type="text" name="email" class="form-control">
+                                                <input type="text" name="email" class="form-control" id="email">
                                             </div>
-                                        </div>                            
+                                        </div> 
+                                        <div class="col-md-5">
+                                            <center class="m-t-10">
+                                                <img src="<?= 'images/' . $result['profilePicture']; ?>" class="img-circle"width="150px" id="profile-img-tag"/>
+                                                <input class="input-img form-control m-t-40" id="profile-img" type="file" name="profilePic" onchange="imageValidation('profile-img')">
+
+                                            </center>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Address 1<span style="color:red">*</span></label>
-                                        <input type="text" name="addr1" class="form-control">
+                                        <input type="text" name="addr1" class="form-control" id="pfullname">
                                     </div>
                                     <div class="form-group">
                                         <label>Address 2</label>
-                                        <input type="text" name="addr2" class="form-control">
+                                        <input type="text" name="addr2" class="form-control" id="pcontact">
                                     </div>
                                     <div class="row ">
                                         <div class="form-group col-md-4">
@@ -130,7 +121,7 @@ include('includes/include_once/nav.php');
                                             </label>
                                         </div>
                                     </div>
-                                    <a type="button"class="btn btn-primary m-t-10" id="next1" >Next</a>
+                                    <a type="button"class="btn btn-primary m-t-10" id="next1" onclick="printFunction()">Next</a>
                                 </form>
                             </div>
                         </div>
@@ -151,11 +142,20 @@ include('includes/include_once/nav.php');
                                     </li>
                                 </ul>
                                 <div class="card-body" data-spy="scroll">
+                                    <script type="text/javascript">
+                                                function changeTrainerStatus(){
+                                                    if(document.getElementById('membertype').value == 'General Membership'){
+                                                        document.getElementById('trianername').disabled='true';
+                                                    } else {
+                                                        document.getElementById('trianername').disabled='';
+                                                    }
+                                                }
+                                    </script>
                                     <form action="" method="POST" id="staff-form">
                                         <div class="row ">
                                             <div class="form-group col-md-6">
                                                 <label >Membership Type<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="membership">
+                                                <select id="membertype" class="form-control" required name="membership" onchange="changeTrainerStatus();">
                                                     <option selected disabled>Choose...</option>
                                                     <option value="General Membership">General Membership</option>
                                                     <option value="Personal Training">Personal Training</option>
@@ -164,7 +164,7 @@ include('includes/include_once/nav.php');
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label >Trainer Name<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="trainer">
+                                                <select id="trianername" class="form-control" required name="trainer">
                                                     <option selected disabled>Choose...</option>
                                                     <option value="Reuben">Reuben</option>
                                                     <option value="Vaibhav">Vaibhav</option>
@@ -175,25 +175,26 @@ include('includes/include_once/nav.php');
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label >Package Type<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="packtype">
-                                                    <option selected disabled>Choose...</option>
-                                                    <option value="1 Month">1 Month</option>
-                                                    <option value="3 Month">3 Month</option>
-                                                    <option value="6 Month">6 Month</option>
-                                                    <option value="1 Year">1 Year</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
                                                 <label >Package Name<span style="color:red">*</span></label>
                                                 <select id="inputState" class="form-control" required name="packname">
                                                     <option selected disabled>Choose...</option>
+                                                    <option value="Muscels Build-up Silver">Muscles Build-up Silver</option>
+                                                    <option value="Muscles Build-up Gold">Muscles Build-up Gold</option>
+                                                    <option value="Weight Loss Baby Steps">Weight Loss Baby Steps</option>
+                                                    <option value="Weight Loss Power">Weight Loss Power</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label >Package Duration<span style="color:red">*</span></label>
+                                                <select id="inputState" class="form-control" required name="duration">
+                                                    <option selected disabled>Choose...</option>
                                                     <option value="1 Month">1 Month</option>
                                                     <option value="3 Month">3 Month</option>
                                                     <option value="6 Month">6 Month</option>
                                                     <option value="1 Year">1 Year</option>
                                                 </select>
                                             </div>
+                                            
                                             <div class="form-group col-md-4">
                                                 <label >Batch Timing<span style="color:red">*</span></label>
                                                 <select id="inputState" class="form-control" required name="batch">
@@ -221,7 +222,7 @@ include('includes/include_once/nav.php');
                                                 <input type="date" name="enddate" class="form-control" required>
                                             </div>
                                             <div class="col-md-12">
-                                                <label>Incase of Emergency Contact:</label>
+                                                <label style="color:red;">Incase of Emergency Contact:</label>
                                                 <br>
                                             </div>
 
@@ -266,47 +267,33 @@ include('includes/include_once/nav.php');
                                     </li>
                                 </ul>
                                 <div class="card-body" data-spy="scroll">
+                                    <script type="text/javascript">
+                                                function changeTextBox(){
+                                                    if(document.getElementById('paymode').value == 'cash'){
+                                                        document.getElementById('transno').disabled='true';
+                                                    } else {
+                                                        document.getElementById('transno').disabled='';
+                                                    }
+                                                }
+                                    </script>
                                     <form action="" method="POST" id="staff-form" enctype="multipart/form-data">
                                         <div class="row ">
-                                            <div class="form-group col-md-6">
-                                                <label >Fullname<span style="color:red">*</span></label>
-                                                <input type="text" name="scity" class="form-control" required>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label >Email<span style="color:red">*</span></label>
-                                                <input type="text" name="pincode" class="form-control" required>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label>Contact No.<span style="color:red">*</span></label>
-                                                <input type="text" name="pincode" class="form-control" required>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label >Package Selected<span style="color:red">*</span></label>
-                                                <select id="inputPack" class="form-control" required name="sgender">
-                                                    <option>Monthly</option>
-                                                    <option>03 Months</option>
-                                                    <option>06 Months</option>
-                                                    <option>09 Months</option>
-                                                    <option>Yearly</option>
-                                                    <option>Couple</option>
-                                                    <option>Festival</option>
-                                                </select>
-                                            </div>
                                             <div class="form-group col-md-4">
                                                 <label >Payment Mode<span style="color:red">*</span></label>
-                                                <select id="inputState" class="form-control" required name="mode">
-                                                    <option>Cash</option>
-                                                    <option>Credit Card</option>
-                                                    <option>UPI</option>
+                                                <select id="paymode" class="form-control" required name="mode" onclick="changeTextBox();">
+                                                    <option selected disabled>Select...</option>
+                                                    <option value="cash" >Cash</option>
+                                                    <option value="credit card">Credit Card</option>
+                                                    <option value="upi">UPI</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Total Amount</label>
-                                                <input type="text" name="certification" class="form-control" id="cert">
+                                                <input type="text" name="totalamount" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Amount Paid</label>
-                                                <input type="text" name="amtpaid" class="form-control" id="cert">
+                                                <input type="text" name="amountpaid" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Amount Due</label>
@@ -317,12 +304,11 @@ include('includes/include_once/nav.php');
                                                 <input type="text" name="duedate" class="form-control" id="cert">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label>Start Date</label>
-                                                <input type="text" class="form-control" id="cert">
+                                                <label>Transaction Number</label>
+                                                <input type="text" class="form-control" name="transno" id="transno">
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <label>End Date</label>
-                                                <input type="text" class="form-control" id="cert">
+                                            <div class="form-group col-md-12">
+                                                <h5 style="color:red;">Incase of Card/UPI payment first make successful transaction and enter transaction number </h5>
                                             </div>
                                         </div>
                                         <a class="btn btn-primary m-t-10" id="prev2">Back</a>
@@ -402,7 +388,7 @@ include('includes/include_once/nav.php');
                             </div>
                         </div>
                     </div>
-                    <<script type="text/javascript">
+                    <script type="text/javascript">
                         $(document).ready(function () {
                             $('#next1').click(function () {
                                 $('#second').show();
@@ -429,6 +415,17 @@ include('includes/include_once/nav.php');
                                 $('#fourth').hide();
                             });
                         });
+                        
+                        function printFunction() {
+                            var fullnameVar = document.getElementById("fullname").value;
+                            document.getElementById("pfullname").value = fullnameVar;
+
+                            var contactVar = document.getElementById("contact").value;
+                            document.getElementById("pcontact").value = contactVar;
+
+                            var emailVar = document.getElementById("email").value;
+                            document.getElementById("pemail").value = emailVar;
+                        }
                     </script>
                 </div>
             </div>
@@ -479,9 +476,9 @@ include('includes/include_once/nav.php');
                                                     <td><?php echo $result['cStatus']; ?></td>
                                                     <!--<td><?php //echo $result[''];   ?></td>-->
                                                     <td class="table-action">
-                                                        <a class="fa fa-refresh btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Renew" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Delete"  data-target="#exampleModal"></a>  <!--  -->
+                                                        <a class="fa fa-refresh btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Renew" name="edit" href="editClient.php?id=<?= $result['cID']; ?>"></a>
+                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit" name="edit" href="editClient.php?id=<?= $result['cID']; ?>"></a>
+                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['cID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Delete"  data-target="#exampleModal"></a>  <!--  -->
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">

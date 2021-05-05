@@ -40,9 +40,7 @@
                 </li>
             </ul>
         </div>       
-            <!-- ============================================================== -->
-            <!-- User profile and search -->
-            <!-- ============================================================== -->
+            
         <div class="nav-toggler dropdown">
             <ul class="navbar-nav">
                 <li  data-toggle="dropdown">

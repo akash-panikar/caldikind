@@ -47,7 +47,6 @@ include('includes/include_once/nav.php');
                             <div class="card-body" >
                                 <form action="" method="POST" id="staff-form" enctype="multipart/form-data">
                                     <div class="row">
-                                        
                                         <div class="col-md-7">
                                             <div class="form-group">
                                                 <label>Fullname<span style="color:red">*</span></label>

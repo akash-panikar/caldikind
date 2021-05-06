@@ -22,12 +22,10 @@ include('includes/include_once/nav.php');
                     </button>
                 </p>
                 <div class="collapse" id="collapseExample"  data-spy="scroll">
-                    
-
                     <div class="card">
                         <div class="card-body">
                             <?php //echo $message; ?>
-                            <form method="POST" id="register_form" action="/process/clientProcess.php" enctype="multipart/form-data">
+                            <form method="POST" id="register_form" action="process/clientProcess.php" enctype="multipart/form-data">
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item">
                                         <a class="nav-link" id="list_personal_details" style="background-color: #fff;border-color: #dee2e6 #dee2e6 #fff;">Personal Details</a>
@@ -110,12 +108,12 @@ include('includes/include_once/nav.php');
                                                         <label > Photo ID Proof<span style="color:red">*</span></label>
                                                         <input type="file" name="idproof" class="form-control" id="idproof" onchange="imageValidation('idproof')">
                                                     </div>
-                                                    <div class="form-check">
+                                                  <!--  <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" id="status" name="status" value="YES">
                                                         <label class="form-check-label" for="status">
                                                             Create Account<span>  (Optional)</span>
                                                         </label>
-                                                    </div>
+                                                    </div>-->
                                                 </div>
                                                 <a type="button"class="btn btn-primary m-t-10" id="btn_login_details">Next</a>
                                             </div>
@@ -137,7 +135,7 @@ include('includes/include_once/nav.php');
                                                     <div class="form-group col-md-6">
                                                         <label >Trainer Name<span style="color:red">*</span></label>
                                                         <select id="trianername" class="form-control" required name="trainer">
-                                                            <option selected disabled>Choose...</option>
+                                                            <option selected disabled value="NA">Choose...</option>
                                                             <option value="Reuben">Reuben</option>
                                                             <option value="Vaibhav">Vaibhav</option>
                                                             <option value="Shriraj">Shriraj</option>
@@ -209,13 +207,22 @@ include('includes/include_once/nav.php');
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label >Medical Report (Optional)</label>
-                                                        <input type="file" name="medicalrpt" class="form-control">
+                                                        <input type="file" name="medicalrpt" value="NA" class="form-control">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label >Medical Problem (Optional)</label>
                                                         <textarea type="text" name="medicalprblm" class="form-control"></textarea>
                                                     </div>
                                                 </div>
+                                                <script type="text/javascript">
+                                                    function changeTrainerStatus(){
+                                                        if(document.getElementById('membertype').value == 'General Membership'){
+                                                            document.getElementById('trianername').disabled='true';
+                                                        } else {
+                                                            document.getElementById('trianername').disabled='';
+                                                        }
+                                                    }
+                                                </script>
                                                 <a type="button" class="btn btn-primary m-t-10" id="previous_btn_personal_details">Back</a>
                                                 <a type="button" class="btn btn-primary m-t-10" id="btn_personal_details">Next</a>
                                             </div>
@@ -236,29 +243,49 @@ include('includes/include_once/nav.php');
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Total Amount</label>
-                                                        <input type="text" name="totalamount" class="form-control" id="cert">
+                                                        <input type="text" name="totalamount" class="form-control" id="totalamt" oninput="calculateAmountDue()">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Paid</label>
-                                                        <input type="text" name="amountpaid" class="form-control" id="cert">
+                                                        <input type="text" name="amountpaid" class="form-control" id="amtpaid" oninput="calculateAmountDue()">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Due</label>
-                                                        <input type="text" name="amtdue" class="form-control" id="cert">
+                                                        <input type="text" name="amtdue" class="form-control" id="amtdue">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Due Date</label>
-                                                        <input type="text" name="duedate" class="form-control" id="cert">
+                                                        <input type="date" name="duedate" class="form-control" id="duedate">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Transaction Number</label>
-                                                        <input type="text" class="form-control" name="transno" id="transno">
+                                                        <input type="text" class="form-control" value="0" name="transno" id="transno">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <h5 style="color:red;">Incase of Card/UPI payment, first make successful transaction then enter transaction number </h5>
                                                     </div>
                                                 </div>
-                                                
+                                                <script type="text/javascript">
+                                                     
+                                                    function Calculate(){
+                                                        var totalamt = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*/()";
+                                                        var amtpaid = Math.floor(Math.random() * (max - min + 1)) + min;
+                                                        var randPassword = Array(randPwLen).fill(passwordChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+                                                        return randPassword;
+                                                    }
+                                                    document.getElementById("generatePassword").addEventListener("click", function(){
+                                                        random_password = random_password_generate(16,8);
+                                                        document.getElementById("password").value = random_password;
+                                                    });
+                                                    
+                                                    function changeTextBox(){
+                                                        if(document.getElementById('paymode').value == 'cash'){
+                                                            document.getElementById('transno').disabled='true';
+                                                        } else {
+                                                            document.getElementById('transno').disabled='';
+                                                        }
+                                                    }
+                                                </script>
                                                 <a type="button" class="btn btn-primary m-t-10" id="previous_btn_contact_details">Back</a>
                                                 <button type="submit" class="btn btn-primary m-t-10" name="submit">Submit</button>
                                             </div>
@@ -280,6 +307,7 @@ include('includes/include_once/nav.php');
     include('includes/include_once/footer.php');
     ?>
 <script>
+                   
     $(document).ready(function () {
 
         $('#btn_login_details').click(function () {

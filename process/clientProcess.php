@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../includes/include_once/db.php';
 if(isset($_POST['submit']))
 {    
 //    $clientFullName = $_POST['cfname'];
@@ -29,6 +29,7 @@ if(isset($_POST['submit']))
     $clientPincode = $_POST['pincode'];
     $clientDOB = $_POST['dob'];
     $clientGender = $_POST['gender'];
+    $clientPhotoId = $_FILES['idproof'];
 //    ----------------Form 1 end-------------------------
     $membershipType = $_POST['membership'];
     $trainerName = $_POST['trainer'];
@@ -39,7 +40,8 @@ if(isset($_POST['submit']))
     $endDate = $_POST['enddate'];
     $clientEmergConatctName = $_POST['emgname'];
     $clientEmergContactNo = $_POST['emgnum'];
-    $medicalReport = $_POST['medicalrpt'];
+    $medicalReport = $_FILES['medicalrpt'];
+    $medicalProblem = $_POST['medicalprblm'];
 //    ----------------------- Form 2 end-----------------
     $paymentMode = $_POST['mode'];
     $totalAmount = $_POST['totalamount'];
@@ -48,16 +50,20 @@ if(isset($_POST['submit']))
     $dueDate = $_POST['duedate'];
     $transactionNo = $_POST['transno'];
 
-    $userquery = "SELECT cMobile FROM gymclients WHERE cMobile = '$clientContactNumber'";        
+    $userquery = "SELECT cMobile FROM gymclients WHERE cMobile = '$clientPrimaryNumber'";        
     $Result =  mysqli_query ($connect, $userquery);
     $checkUser = mysqli_num_rows($Result);
     if(!$checkUser)
     {
         $insertClient = "INSERT INTO gymclients (fullName, contactNo, altContactNo, email, add1"
-                . ", add2, location, district, pincode, dob, gender, photoID, createAcc)"
-                ." VALUES ('$clientFullName','$clientGender','$clientEmail','$clientContactNumber','$clientAddress',"
-                . "'$clientDOB','$clientEmergConatctName','$clientEmergContactNo','$ReferredBy','$MembershipType',"
-                . "'$StartDate','$EndDate','$MedicalHistory')";
+                . ", add2, location, district, pincode, dob, gender, photoID, memberType, trainerName, packageName,"
+                . "packageDuration, batchTime, startDate, endDate, EmgContactName, EmgContactNo, medicalReport, medicalProblem,"
+                . "paymentMode, dtoc)"
+                ." VALUES ('$clientFullName','$clientPrimaryNumber','$clientAlternateNumber','$clientEmail','$clientAddress1',"
+                . "'$clientAddress2','$clientLocation','$clientDistrict','$clientPincode','$clientDOB','$clientGender',"
+                . "'$clientPhotoId','$membershipType','$trainerName','$packageName','$packageDescription','$batchSelected',"
+                . "'$startDate','$endDate','$clientEmergConatctName','$clientEmergContactNo','$medicalReport','$medicalProblem',"
+                . "'$paymentMode','$totalAmount','$amountPaid','$amountDue','$dueDate','$transactionNo')";
         $insertQuery = mysqli_query ($connect, $insertClient);
 
         if($insertQuery == true)

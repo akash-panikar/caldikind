@@ -7,13 +7,14 @@
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/nav.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/test4.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/header.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/process/staffAttendanceProcess.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/test3.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/staffProfile.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/process/userProcess.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/test2.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/users.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/client.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/process/clientProcess.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/process/absent.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/staffAttendance.php</file>
         </group>
     </open-files>
 </project-private>

@@ -165,7 +165,7 @@ if (isset($_POST['submit'])) {
                 . " the interviews. I am sure that going forward, this impression will only grow stronger."
                 . "\nAs a <strong>$staffDesignation</strong>, your role is critical in fulfilling the mission of the Gym."
                 . "\nWe expect you to set an example of diligence, dedication and commitment and contribute your"
-                . " best efforts in making a gym leading the market."
+                . " best efforts in making a gym leading the market. Your joining is $staffJoining and shift hours $staffShiftTime."
                 . "\nI hope the induction session you went through was informative, and has helped you understand and identify"
                 . " collegoues better. Please feel free to get in touch with us for any further information / clarifications you may need."
                 . "\n"
@@ -184,7 +184,7 @@ if (isset($_POST['submit'])) {
             echo "failed";
 //                 echo $staffInsert;
         }
-        //mysqli_close($connect);
+        mysqli_close($connect);
     }
 //    exit();
 }
@@ -285,6 +285,7 @@ if (isset($_POST['update'])) {
     } else {
         echo "error occured";
     }
+    mysqli_close($connect);
 }
 
 // Delete Staff Process
@@ -294,6 +295,7 @@ if (isset($_POST['delete'])) {
     $deleteRecord = "DELETE FROM gymstaff WHERE sID='$deleteRowID'";
     $execQuery = mysqli_query($connect, $deleteRecord);
     if ($execQuery == TRUE) {
+        mysqli_close($connect);
         header('Location:../staff.php');
         exit();
     }

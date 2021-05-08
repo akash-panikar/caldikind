@@ -25,9 +25,9 @@ if (isset($_POST['submit'])) {
 //            $execInsertQuery = mysqli_query($connect, $insertQuery);
                     
                     $subject = "Verification Email";
-                    $body = "Hi $fullname, Thank you for signing up with <strong>TRYON</strong> An Online Gym Management System.\n "
+                    $body = "Hello $fullname, Thank you for signing up with <strong>TRYON</strong> An Online Gym Management System.\n "
                             . "Click below link to activate your account.\n "
-                            . "http://localhost/ty/activateAccount.php?token=$token";
+                            . "http://localhost/caldikind/activateAccount.php?token=$token";
                     $headers = "From: no-reply@caldikind.xyz";
 
                     if (mail($email, $subject, $body, $headers)) {

@@ -3,10 +3,6 @@
   font-family: "Montserrat", sans-serif;
   src: url('@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");'); 
 }
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -176,7 +172,7 @@ button:hover {
   width: 100%;
   position: relative;
   border-bottom: 2px solid rgba(255,255,255,0.24);
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .input100 {
@@ -379,7 +375,16 @@ button:hover {
 @media only screen  and (min-width : 1224px) {
     .wrap-login100 {
         width: 450px;
-        padding: 40px 55px 40px 55px;
+        padding: 40px 55px 40px 55px
+    }
+    .p-b-20 {
+        padding-bottom: 20px;
+    }
+    .p-t-20 {
+        padding-top: 20px;
+    }
+    .p-t-30 {
+        padding-top: 31px;
     }
 /*    .p-t-90 {
         padding-top: 45px;

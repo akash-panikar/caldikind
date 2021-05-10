@@ -1,8 +1,12 @@
 <?php
 $to_email = "akashpanikar1995@gmail.com";
 $subject = "Simple Email Test via PHP";
-$body = "Hi, This is test email send by PHP Script";
-$headers = "Akash";
+$body = "Greetings Akash.\nThis is to remind you that the payment of your gym membership is due on 25/5/21. "
+        . "The total amount owed is <b>₹2000</b> only and can be paid at gym reception desk.\n"
+        . "Please contact us if you have any query concerning the same.\n\n"
+        ."Sincerely\n\n"
+        ."Team Tryon";
+$headers = "From: tryongymsoftware@gmail.com";
 
 if (mail($to_email, $subject, $body, $headers)) {
     echo "Email successfully sent to $to_email...";

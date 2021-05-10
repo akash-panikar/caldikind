@@ -1,36 +1,17 @@
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
-        <!-- ============================================================== -->
-        <!-- Logo -->
-        <!-- ============================================================== -->
         <div class="navbar-header">
             <a class="navbar-brand" href="dash.php">
-                <!-- Logo icon -->
-                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                <!-- Dark Logo icon -->
-                <img src="images/logo/logo-2.png" class="my-logo" /> <!--dark-logo-->
-                <!-- Light Logo icon -->
-                <!--<img src="images/logo/tryonlogo-4.png" alt="homepage" class="light-logo" />-->
-                <!--End Logo icon -->
-                <!-- Logo text -->
+                <img src="images/logo/logo-2.png" class="my-logo" />
                 <span>
-                    <!-- dark Logo text -->
                     <img src="images/logo/tryonlogo-4.png" class="dark-logo" />
-                    <!--Light Logo text -->
-                <!-- <img src="../assets/images/.png" class="light-logo" alt="homepage" />  -->
                 </span>
             </a>
         </div>
         <div class="navbar-collapse">
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark"
                                          href="javascript:void(0)"><i class="fa fa-bars"></i></a> </li>
-                <!-- ============================================================== -->
-                <!-- Search -->
-                <!-- ============================================================== -->
                 <li class="nav-item hidden-xs-down search-box"> <a
                         class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
                             class="fa fa-search"></i></a>
@@ -111,7 +92,5 @@
                 </li>
             </ul>
         </nav>
-        <!-- End Sidebar navigation -->
     </div>
-    <!-- End Sidebar scroll-->
 </aside>

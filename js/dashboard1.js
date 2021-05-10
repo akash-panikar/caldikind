@@ -1,16 +1,28 @@
+//alert("Hello Richard");
 $(function() {
+    
     "use strict";
     // ============================================================== 
     // Our member
     // ============================================================== 
-    
+    var graph_data=$('#graphData').text();
+//    alert(graph_data);
+    var gdata=JSON.parse(graph_data);
+    console.log(gdata);
+    var a = '';
+    for(var graph in gdata){
+        if(gdata[graph].memberType==''General Membership")
+        {
+            lkgkldsfhgkjdshfkgdhskghdskljfghdkjghdkfjghfdkjghkdjfghfdkjghdfkjhgkdfjhgkdfjhgkdfjhgfkdjghdk;        
+        }
+    }
     var chart = c3.generate({
         bindto: '#members',
         data: {
             columns: [
-                ['Desktop', 4],
-                ['Tablet', 6],
-                ['Mobile', 90],
+                ['General Membership', a],
+                ['Personal Training', 25],
+                ['Premium Membership', 10],
             ],
 
             type: 'pie',

@@ -54,13 +54,29 @@ $chartData = json_encode($data);
                                     </ul>
                                 </div>
                             </div>
+                            
                             <!--<div class="" id="sales-chart" style="height: 339px;"></div>-->
                             <?php
-                            echo "<pre>";print_r($data);
-                            echo $chartData;
-                            ?>
+//                            echo "<pre>";print_r($data);
+//                            echo $chartData;
+//                            ?>
                             <div id="graphData"><?php echo $chartData; ?></div>
                             <!--<input type="hidden" value="<?php //echo $chartData; ?>" id="graphData"/>-->
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex m-b-30 no-block">
+                                <h5 class="card-title m-b-0 align-self-center">New Membership</h5>
+                            </div>
+                            <div id="members" style="height:260px; width:100%;"></div>
+                            <ul class="list-inline m-t-30 text-center font-12">
+                                <li><i class="fa fa-circle text-info"></i> General</li>
+                                <li><i class="fa fa-circle text-purple"></i> Personal</li>
+                                <li><i class="fa fa-circle text-success"></i> Premium </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

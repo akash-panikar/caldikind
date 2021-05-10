@@ -3,7 +3,24 @@ include ('includes/include_once/session.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 include('includes/include_once/db.php');
+
+$displayQuery = "SELECT COUNT(tID) AS totalNums, memberType, dtoc FROM temp_client WHERE MONTH(dtoc) = MONTH(NOW()) GROUP BY memberType";
+$execDisplayQuery = mysqli_query($connect, $displayQuery);
+$chartData = '';
+$i=0;
+$data = array();
+
+while($row = mysqli_fetch_array($execDisplayQuery))
+{
+    $chartData .= "{ Member:'".$row["memberType"].",}";
+    $data[$i]['memberType']=$row["memberType"];
+    $data[$i]['totalNums']=$row["totalNums"];
+    $i++;
+}
+
+$chartData = json_encode($data);
 ?>
+
 <div id="main-wrapper">
     <div class="page-wrapper">
         <div class="container-fluid">
@@ -56,6 +73,7 @@ include('includes/include_once/db.php');
                     </div>
                 </div>
             </div>
+            <div id="graphData"><?php echo $chartData; ?></div>
             <div class="row">
                     <!-- Start Notification -->
                     <div class="col-lg-6 col-md-12">

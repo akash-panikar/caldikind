@@ -6,16 +6,6 @@ if (!isset($_SESSION['fullName'])) {
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 ?>
-<style>
-    .progress {
-        height: 4px;
-    }
-
-    .progress-bar {
-        background-color: green;
-    }
-</style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div id="main-wrapper">
     <div class="page-wrapper">
         <div class="container-fluid">
@@ -27,16 +17,34 @@ include('includes/include_once/nav.php');
                     </ol>
                 </div>
             </div>
-            <div>
-                <!-- ============================================================== -->
-                <div class="card border-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body text-primary">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card border-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Amount Due</h5>
+                            <p class="card-text">₹25000</p>                            
+                        </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card border-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Membership Expired</h5>
+                            <p class="card-text">25 People</p>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card border-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
                     <p>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#paymentDetails">
                             Payment Due
@@ -84,9 +92,9 @@ include('includes/include_once/nav.php');
                                                             ?>
                                                             <tr>
                                                                 <td><?php echo ++$sr; ?></td>
-                                                                <!--<td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profile_image'];   ?>" > </td>-->
+                                                                <!--<td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profile_image'];     ?>" > </td>-->
                                                                 <td>
-                                                                    <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php //echo $result['endDate'];   ?></small>
+                                                                    <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php //echo $result['endDate'];     ?></small>
                                                                 </td>
                                                                 <td><h6><?php echo $result['email']; ?></h6></td>
                                                                 <td><?php echo $result['contactNo']; ?></td>
@@ -111,7 +119,7 @@ include('includes/include_once/nav.php');
                 </div>
 
                 <div>
-                    <?php                    
+                    <?php
                     include('includes/include_once/db.php');
                     $data = "SELECT fullName, email, memberType, amountDue, dueDate FROM temp_client WHERE amountDue != '0' AND dueDate = DATE(NOW())";
                     $query = mysqli_query($connect, $data);
@@ -127,7 +135,7 @@ include('includes/include_once/nav.php');
                                 . "Sincerely\n\n"
                                 . "Team Tryon";
                         $headers = "From: tryongymsoftware@gmail.com";
-                        mail($clientEmail, $subject, $body, $headers);
+                        //mail($clientEmail, $subject, $body, $headers);
                     }
                     ?>
                 </div>

@@ -6,23 +6,32 @@ $(function() {
     // Our member
     // ============================================================== 
     var graph_data=$('#graphData').text();
-//    alert(graph_data);
     var gdata=JSON.parse(graph_data);
-    console.log(gdata);
-    var a = '';
+    var a = '0';
+    var b = '0';
+    var c = '0';
     for(var graph in gdata){
-        if(gdata[graph].memberType==''General Membership")
+        if(gdata[graph].memberType=='General Membership')
         {
-            lkgkldsfhgkjdshfkgdhskghdskljfghdkjghdkfjghfdkjghkdjfghfdkjghdfkjhgkdfjhgkdfjhgkdfjhgfkdjghdk;        
+            a=gdata[graph].totalNums;
         }
+        if(gdata[graph].memberType=='Personal Training')
+        {
+            b=gdata[graph].totalNums;
+        }
+        if(gdata[graph].memberType=='Premium Membership')
+        {
+            c=gdata[graph].totalNums;
+        }
+        
     }
     var chart = c3.generate({
         bindto: '#members',
         data: {
             columns: [
                 ['General Membership', a],
-                ['Personal Training', 25],
-                ['Premium Membership', 10],
+                ['Personal Training', b],
+                ['Premium Membership', c],
             ],
 
             type: 'pie',

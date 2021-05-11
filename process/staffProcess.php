@@ -171,7 +171,7 @@ if (isset($_POST['submit'])) {
                 . "\n"
                 . "\nWishing you luck for all your assignments and a long and rewarding career at";
 
-            $headers = "From: newopenlearningschool@gmail.com";
+            $headers = "From: tryongymsoftware@gmail.com";
 
             if (mail($staffEmail, $subject, $body, $headers)) {
                 echo "Email successfully sent to $staffEmail.";

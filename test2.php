@@ -96,38 +96,37 @@ include('includes/include_once/nav.php');
                                                 <?php
                                                 $sr = 0;
                                                 include('includes/include_once/db.php');
-//                                                $data = "SELECT gymstaff.staffCode, gymstaff.sName, gymattendance.inTime, gymattendance.outTime, gymattendance.status"
-//                                                        . " FROM gymstaff LEFT INNER JOIN gymattendance "
-//                                                        . "ON gymstaff.staffCode = gymattendance.staffCode AND DATE(date) = DATE(NOW())";
-
-//                                                $data = "SELECT gymattendance.staffCode, gymstaff.sName, inTime, outTime, status FROM gymattendance"
-//                                                        . " JOIN gymstaff ON gymattendance.staffCode=gymstaff.staffCode AND DATE(date) = DATE(NOW()) ";
-                                                $data = "SELECT gymattendance.staffCode, status FROM gymattendance"
-                                                        . " JOIN gymstaff ON gymattendance.staffCode=gymstaff.staffCode AND DATE(date) = DATE(NOW())";
+                                                $data = "SELECT gymstaff.staffCode AS gymstaffcode, gymattendance.staffcode AS gymattendancecode FROM gymstaff"
+                                                        . " JOIN gymattendance ON gymattendance.staffCode!=gymstaff.staffCode AND date(date) = date(now())";
                                                 $query = mysqli_query($connect, $data);
                                                 while ($result = mysqli_fetch_assoc($query)) {
-//                                                print_r($result);
-//                                                exit();
-                                                    if ($result['status']) {
-                                                        $insertAbsentees = "INSERT INTO gymattendance (date, inTime, outTime, status)"
-                                                                . "VALUES ('$currentDate', '00:00:00', '00:00:00', 'Absent')";
-                                                        print_r($insertAbsentees);
+                                                    if ($result['gymstaffcode'] != 'gymattendancecode') {
+                                                        $staffcode = $result['gymstaffcode'];
+                                                        $insertAbsentees = "INSERT INTO gymattendance (staffCode, date, inTime, outTime, status)"
+                                                                . "VALUES ('$staffcode','$currentDate', '00:00:00', '00:00:00', 'Absent')";
+                                                        //print_r($insertAbsentees);
                                                         $execAbesenteesQuery = mysqli_query($connect, $insertAbsentees);
-                                                        print_r([$execAbesenteesQuery]);
+                                                        //print_r([$execAbesenteesQuery]);
                                                         if ($execAbesenteesQuery == 1) {
-                                                            echo 'working';
+                                                            //echo 'working';
+                                                            $subject = "Welcome to TRYON";
+                                                            $body = "Dear Admin,\nThere is some problem with attendance absent marking file.\n"
+                                                                    . "Please check\nThank You";
+                                                            $headers = "From: tryongymsoftware@gmail.com";
+                                                            $adminEmail = "akashpanikar1995@gmail.com";
+                                                            mail($adminEmail, $subject, $body, $headers);
                                                         }
                                                     }
                                                     ?>
                                                     <tr>
                                                         <td><?php echo ++$sr; ?></td>
     <!--                                                        <td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profilePicture'];  ?>" > </td>-->
-                                                        <td><h6><?php echo $result['staffCode']; ?></h6></td>
+                                                        <td><h6><?php echo $result['gymstaffcode']; ?></h6></td>
 <!--                                                        <td><h6><?php //echo $result['sName']; ?></h6></td>
 
                                                         <td><?php //echo $result['inTime']; ?></td>
                                                         <td><?php //echo $result['outTime']; ?></td>-->
-                                                        <td><?php echo $result['status']; ?></td>
+                                                        <td><?php echo $result['gymattendancecode']; ?></td>
                                                         <!--<td><?php //echo $result[''];      ?></td>-->
                                                         <?php
                                                     }
@@ -146,3 +145,38 @@ include('includes/include_once/nav.php');
         <?php
         include('includes/include_once/footer.php');
         ?>
+
+        
+        <?php
+error_reporting(1);
+include '../includes/include_once/db.php';
+if (isset($_POST['submit'])) {
+    $uniqueID = $_POST['uid'];
+    $mydate = getdate(date("U"));
+    $date = "$mydate[mday]/$mydate[mon]/$mydate[year]";
+    $checkAttendance = "SELECT * from gymattendance WHERE staffCode = '$uniqueID' AND DATE(date) = DATE(NOW()) ORDER BY aID DESC LIMIT 1";
+    $execCheckQuery = mysqli_query($connect, $checkAttendance);
+    $result = mysqli_fetch_assoc($execCheckQuery);
+    $isInsert = 0;
+    if (empty($result)) {
+        $isInsert = 1;
+    } else {
+        if (!is_null($result['outTime'])) {
+            $isInsert = 1;
+            echo '1';
+        }
+    }
+    if ($isInsert == 1) {
+        $query = "INSERT INTO gymattendance(staffCode, date, inTime, status) VALUES"
+                . " ('$uniqueID', '$currentDate', '$currentTime', 'Present' )";
+    } else {
+        $query = "UPDATE gymattendance SET outTime ='$currentTime'"
+                . " WHERE `staffCode`='$uniqueID' AND DATE(date) = DATE(NOW())";
+    }
+    $execQuery = mysqli_query($connect, $query);
+    header('Location:../staffAttendance.php');
+
+}
+?>
+
+        

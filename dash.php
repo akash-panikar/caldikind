@@ -9,7 +9,6 @@ $execDisplayQuery = mysqli_query($connect, $displayQuery);
 $chartData = '';
 $i=0;
 $data = array();
-
 while($row = mysqli_fetch_array($execDisplayQuery))
 {
     $chartData .= "{ Member:'".$row["memberType"].",}";
@@ -17,7 +16,6 @@ while($row = mysqli_fetch_array($execDisplayQuery))
     $data[$i]['totalNums']=$row["totalNums"];
     $i++;
 }
-
 $chartData = json_encode($data);
 ?>
 
@@ -73,7 +71,7 @@ $chartData = json_encode($data);
                     </div>
                 </div>
             </div>
-            <div id="graphData"><?php echo $chartData; ?></div>
+            <div id="graphData" style="visibility: hidden;"><?php echo $chartData; ?></div>
             <div class="row">
                     <!-- Start Notification -->
                     <div class="col-lg-6 col-md-12">
@@ -117,36 +115,39 @@ $chartData = json_encode($data);
                         </div>
                     </div>
                     <!-- End Notification -->
-                    <!-- Start Feeds -->
+                    <?php
+                    $attendanceQuery = "SELECT gymstaff.sName, gymattendance.inTime, gymattendance.status FROM gymattendance JOIN gymstaff WHERE DATE(date) = DATE(NOW()) ";
+                    $execAttendanceQuery = mysqli_query($connect, $attendanceQuery);                    
+                    ?><!-- Start Feeds -->
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Feeds</h5>
+                                <h5 class="card-title">Attendance</h5>
                                 <ul class="feeds">
+                                    <?php
+                                    while ($row = mysqli_fetch_assoc($execAttendanceQuery))
+                                    {  
+                                        if($row['status'] != 'Present'){
+                                            $status = 'Present';
+                                        }
+                                        else{
+                                            $status = 'Absent';
+                                        }
+                                    ?>
                                     <li>
-                                        <div class="bg-light-info"><i class="fa fa-bell-o"></i></div> You have 4 pending
-                                        tasks. <span class="text-muted">Just Now</span>
+                                        <div class="bg-light-danger"><i class="fa fa-user"></i></div><?=$row['sName'];?><span class="text-muted"><?=$status;?></span>
                                     </li>
-                                    <li>
-                                        <div class="bg-light-success"><i class="fa fa-server"></i></div> Server #1
-                                        overloaded.<span class="text-muted">2 Hours ago</span>
-                                    </li>
-                                    <li>
-                                        <div class="bg-light-warning"><i class="fa fa-shopping-cart"></i></div> New
-                                        order received.<span class="text-muted">31 May</span>
-                                    </li>
-                                    <li>
-                                        <div class="bg-light-danger"><i class="fa fa-user"></i></div> New user
-                                        registered.<span class="text-muted">30 May</span>
-                                    </li>
-                                    <li>
+                                    <?php
+                                    }
+                                    ?>
+<!--                                    <li>
                                         <div class="bg-light-inverse"><i class="fa fa-bell-o"></i></div> New Version
                                         just arrived. <span class="text-muted">27 May</span>
                                     </li>  
                                     <li>
                                         <div class="bg-light-inverse"><i class="fa fa-bell-o"></i></div> New Version
                                         just arrived. <span class="text-muted">27 May</span>
-                                    </li>  
+                                    </li>  -->
                                 </ul>
                             </div>
                         </div>

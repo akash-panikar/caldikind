@@ -150,3 +150,24 @@
 
     });
 </script>
+
+
+<li>
+<div class="bg-light-info"><i class="fa fa-bell-o"></i></div> You have 4 pending
+tasks. <span class="text-muted">Just Now</span>
+</li>
+<li>
+<div class="bg-light-success"><i class="fa fa-server"></i></div> Server #1
+overloaded.<span class="text-muted">2 Hours ago</span>
+</li>
+<li>
+<div class="bg-light-warning"><i class="fa fa-shopping-cart"></i></div> New
+order received.<span class="text-muted">31 May</span>
+</li>
+
+
+SELECT gymstaff.staffCode, gymattendance.status FROM gymstaff JOIN gymattendance WHERE date(date) = date(NOW()) AND gymattendance.status != '' 
+        
+        SELECT * from gymattendance WHERE DATE(date) = DATE(NOW()) ORDER BY aID DESC LIMIT 1 
+        
+        SELECT * from gymattendance WHERE staffCode = '' AND DATE(date) = DATE(NOW()) ORDER BY aID DESC 

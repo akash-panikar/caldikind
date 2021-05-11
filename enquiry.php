@@ -101,7 +101,7 @@ include('includes/include_once/db.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $data = "SELECT * FROM gymenquiry WHERE status='Active'";
+                                            $data = "SELECT * FROM gymenquiry WHERE status='Active' ORDER BY vID DESC";
                                             $query = mysqli_query($connect, $data);
                                             while ($result = mysqli_fetch_assoc($query)) {
                                                 ?>

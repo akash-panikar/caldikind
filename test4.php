@@ -60,8 +60,8 @@ $chartData = json_encode($data);
 //                            echo "<pre>";print_r($data);
 //                            echo $chartData;
 //                            ?>
-                            <div id="graphData"><?php echo $chartData; ?></div>
-                            <!--<input type="hidden" value="<?php //echo $chartData; ?>" id="graphData"/>-->
+                            
+                            <!--<input type="text" value="<?//=$chartData; ?>" id="graphData"/>-->
                         </div>
                     </div>
                 </div>
@@ -80,6 +80,7 @@ $chartData = json_encode($data);
                         </div>
                     </div>
                 </div>
+                 <div id="graphData"><?php echo $chartData; ?></div>
             <footer class="footer"> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
             
         </div>

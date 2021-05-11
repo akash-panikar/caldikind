@@ -7,16 +7,6 @@ if(!isset($_SESSION['fullName']))
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 ?>
-<style>
-    .progress {
-        height: 4px;
-    }
-      
-    .progress-bar {
-        background-color: green;
-    }
-</style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div id="main-wrapper">
     <div class="page-wrapper">
         <div class="container-fluid">

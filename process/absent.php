@@ -1,6 +1,5 @@
 <?php
 include '../includes/include_once/db.php';
-include('includes/include_once/db.php');
 $data = "SELECT gymstaff.staffCode AS gymstaffcode, gymattendance.staffcode AS gymattendancecode FROM gymstaff"
         . " JOIN gymattendance ON gymattendance.staffCode!=gymstaff.staffCode AND date(date) = date(now())";
 $query = mysqli_query($connect, $data);

@@ -58,6 +58,9 @@ include('includes/include_once/nav.php');
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
                             Expense Report
                         </button>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
+                            Monthly Attendance
+                        </button>
                     </p>
                     <div class="collapse" id="paymentDetails"  data-spy="scroll">
                         <div class="row">

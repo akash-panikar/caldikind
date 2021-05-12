@@ -18,9 +18,16 @@ if (isset($_POST['submit'])) {
     $query = mysqli_query($connect, $insertEnquiry);
 
     if ($query == true) {
-                echo "Data inserted";
-                echo $insertEnquiry;
-                mysqli_close($connect);
+        $subject = "Welcome to TRYON";
+        $body = "Greetings $enquiryPersonName,\n\nThanks for your interest in our service.\nWe hope the given information addresses your needs."
+                . " If you require further clarifications, please do not hesitate to contact us.\nWe look forward to hear from you soon.\n"
+                . "Sincerly\n\n[Team Tryon]";
+        $headers = "From: tryongymsoftware@gmail.com";
+        mail($enquiryPersonEmail, $subject, $body, $headers);
+//                echo $insertEnquiry;
+        mysqli_close($connect);
+        header("Location:../enquiry.php");
+                
     } else {
         echo "failed";
         echo $insertEnquiry;
@@ -45,9 +52,7 @@ if (isset($_POST['update'])) {
     $execUpdate = mysqli_query($connect, $updateQuery);
     if ($execUpdate == TRUE) {
         header('Location:../enquiry.php');
-        echo '<div class = "alert alert-success" role = "alert">
-            Changes Updated.
-        </div>';
+        echo '<div class = "alert alert-success" role = "alert">Changes Updated.</div>';
         mysqli_close($connect);
     } else {
         echo $updateQuery;

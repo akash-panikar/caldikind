@@ -241,44 +241,44 @@ $(function() {
     Morris.Area({
         element: 'sales-chart',
         data: [{
-                period: '01',
+                month: 'January',
                 Income: 50,
                 Expense: 80,
                 Profit: 20
             }, {
-                period: '02',
+                month: 'February',
                 Income: 130,
                 Expense: 100,
                 Profit: 80
             }, {
-                period: '03',
+                month: 'March',
                 Sales: 80,
                 Expense: 60,
                 Profit: 70
             }, {
-                period: '04',
+                month: 'April',
                 Income: 70,
                 Expense: 200,
                 Profit: 140
             }, {
-                period: '05',
+                month: 'May',
                 Income: 180,
                 Expense: 150,
                 Profit: 140
             }, {
-                period: '06',
+                month: 'June',
                 Income: 105,
                 Expense: 250,
                 Profit: 80
             },
             {
-                period: '07',
+                month: 'July',
                 Income: 250,
                 Expense: 150,
                 Profit: 200
             }
         ],
-        xkey: 'period',
+        xkey: 'month',
         ykeys: ['Income', 'Expense', 'Profit'],
         labels: ['Income', 'Expense', 'Profit'],
         pointSize: 0,

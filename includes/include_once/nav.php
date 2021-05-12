@@ -31,8 +31,8 @@
                     </a>
                 </li>
                 <li class="dropdown-menu">
-                    <a class="nav-link" href="#">Profile</a>
-                    <a class="nav-link" href="#">Another action</a>
+                    <a class="nav-link" href="profile.php">Profile</a>
+                    <a class="nav-link" href="manage.php">Manage Account</a>
                     <a class="nav-link" href="logout.php">Logout</a>
                 </li>
             </ul>

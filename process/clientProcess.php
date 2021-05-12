@@ -116,7 +116,7 @@ if(isset($_POST['submit']))
                 ."Kind regards\n\n"
                 ."[Team TRYON]";
     
-            $headers = "From: newopenlearningschool@gmail.com";
+            $headers = "From: tryongymsoftware@gmail.com";
     
             if (mail($clientEmail, $subject, $body, $headers)) {
                 $insertClient = "INSERT INTO temp_client (fullName, contactNo, altContactNo, email, add1,"

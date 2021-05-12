@@ -26,11 +26,6 @@ include('includes/include_once/nav.php');
                     <button type="submit" name="submit" class="btn btn-primary mb-2">submit</button>
                 </form>
                 <div class="collapse" id="collapseExample"  data-spy="scroll">
-                    <style>
-                        #second, #third, #fourth{
-                            display: none;
-                        }
-                    </style>
                 </div>
                 <div class="row">
                     <!-- Column -->

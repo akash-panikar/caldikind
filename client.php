@@ -71,6 +71,7 @@ include 'includes/include_once/db.php';
                                                         </center>
                                                     </div>
                                                 </div>
+                                                <div id='result'></div>
                                                 <div class="form-group">
                                                     <label>Address 1<span style="color:red">*</span></label>
                                                     <input type="text" name="addr1" class="form-control" id="pfullname">
@@ -372,8 +373,10 @@ include 'includes/include_once/db.php';
 
 
 
-                    });
+                    });    
                 </script>
+                 
+      
             <!-- ============================================================== -->
             <div class="row">
                 <!-- Column -->

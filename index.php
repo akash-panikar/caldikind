@@ -57,14 +57,15 @@ if (isset($_POST['submit'])) {
                         </span>
 
                         <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                            <input class="input100" onfocus="this.value = ''" id="cap" type="text" name="email" placeholder="email">
+                            <input class="input100" id="email" type="text" name="email" placeholder="email" oninput="checkEmail()">
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
-                            <input class="input100" onfocus="this.value = ''" id="cap" type="password" name="pass" placeholder="Password">
+                            <input class="input100"  type="password" name="pass" placeholder="Password">
                             <span class="focus-input100" data-placeholder="&#xf191;"></span>
                         </div>
+                        <div id="result"></div>
                         <div class="contact100-form-checkbox">
                             <input class="input-checkbox100" id="ckb1" type="checkbox">
                             <label class="label-checkbox100" for="ckb1">
@@ -73,13 +74,13 @@ if (isset($_POST['submit'])) {
                         </div>
 
                         <div class="container-login100-form-btn">
-                            <button class="login100-form-btn" type="submit" name="submit">
+                            <button class="login100-form-btn" id="validate" type="submit" name="submit">
                                 Login
                             </button>
                         </div>
                     </form>
                     <div class="text-center p-t-30">
-                        <a class="txt1" href="#">
+                        <a class="txt1" href="forgot.php">
                             Forgot Password?
                         </a>
                     </div>
@@ -109,5 +110,6 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </div>
+        <script src="js/validation.js"></script>
     </body>
 </html>

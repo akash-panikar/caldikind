@@ -160,10 +160,18 @@ button:hover {
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
-
   display: block;
 }
 
+.forgot-pass-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: capitalize;
+  display: block;
+}
 
 /*------------------------------------------------------------------
 [ Input ]*/

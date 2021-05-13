@@ -2,7 +2,10 @@
 include ('includes/include_once/session.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
-$defaultImage = "images/people/6.png";
+include('includes/include_once/db.php');
+$searchQuery = "SELECT * FROM temp_client WHERE amountDue > 0";
+$execSearchQuery = mysqli_query($connect, $searchQuery);
+
 ?>
 
 <div id="main-wrapper">
@@ -18,7 +21,7 @@ $defaultImage = "images/people/6.png";
             </div>
             <div>
                 <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">
                         Add Receipt
                     </button>
                 </p>
@@ -26,33 +29,45 @@ $defaultImage = "images/people/6.png";
                     <div class="card card-body">
                         <form action="process/expenseProcess.php" method="POST">
                             <div class="form-row">
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label>Date<span style="color:red">*</span></label>
                                     <input type="date" class="form-control" name="date" id="inputEmail4">
-                                </div>                               
-                                <div class="form-group col-md-3">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">Client Name<span style="color:red">*</span></label>
+                                    <select id="inputState" class="form-control" name="categories">
+                                        <?php
+                                        echo "<option selected disabled>Choose...</option>";
+                                        while ($result = mysqli_fetch_assoc($execSearchQuery)) {
+                                            echo "<option value='" . $result['fullName'] . "'>" . $result['fullName'] . "</option>";
+                                        }
+                                        ?>  
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Mobile Number<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" name="mobile" value="<?=$result['contactNo'];?>">
+                                </div>
+                                <div class="form-group col-md-4">
                                     <label>Amount<span style="color:red">*</span></label>
                                     <input type="text" class="form-control" name="amount">
                                 </div>
                                 
-                                <div class="form-group col-md-3">
-                                    <label>Paid By<span style="color:red">*</span></label>
+                                <div class="form-group col-md-4">
+                                    <label>Balance Amount<span style="color:red">*</span></label>
                                     <input type="text" class="form-control" name="paidby" >
                                 </div>
 <!--                                <div class="form-group col-md-2">
                                     <label>categories</label>
                                     <input type="phone" class="form-control" name="alternatecontact" >
                                 </div>-->
-                                <div class="form-group col-md-3">
-                                    <label for="inputState">categories<span style="color:red">*</span></label>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">Payment Mode<span style="color:red">*</span></label>
                                     <select id="inputState" class="form-control" name="categories">
                                         <option selected disabled>Choose...</option>
-                                        <option value="Salary">Salary</option>
-                                        <option value="Electricity">Electricity</option>
-                                        <option value="Maintenance">Maintenance</option>
-                                        <option value="Cleaning">Cleaning</option>
-                                        <option value="Miscellaneous">Miscellaneous</option>
-                                        <option value="Others">Others</option>
+                                        <option value="Salary">Cash</option>
+                                        <option value="Electricity">Card</option>
+                                        <option value="Maintenance">UPI</option>
                                     </select>
                                 </div>
                             </div>

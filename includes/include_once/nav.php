@@ -32,7 +32,7 @@
                 </li>
                 <li class="dropdown-menu">
                     <a class="nav-link" href="profile.php">Profile</a>
-                    <a class="nav-link" href="manage.php">Manage Account</a>
+                    <a class="nav-link" href="manage.php" data-toggle="modal" data-target="#staticBackdrop">Change Password</a>
                     <a class="nav-link" href="logout.php">Logout</a>
                 </li>
             </ul>
@@ -94,3 +94,29 @@
         </nav>
     </div>
 </aside>
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form method="POST" action="../../process/changePassword.php">
+              <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" class="form-control" placeholder="New Password" autocomplete="new-password">
+              </div>
+              <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" class="form-control" placeholder="Repeat New Password" autocomplete="new-password">
+              </div>
+              <button type="submit" class="btn btn-primary">Change</button>
+          </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

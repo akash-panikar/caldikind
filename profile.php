@@ -3,8 +3,8 @@ include ('includes/include_once/session.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 include('includes/include_once/db.php');
-$rowID = $_GET['id'];
-$searchQuery = "SELECT * from gymstaff WHERE sID=$rowID";
+$name = $_SESSION['fullName'];
+$searchQuery = "SELECT * from gymstaff WHERE fullName=$name";
 $execQuery = mysqli_query($connect, $searchQuery);
 $result = mysqli_fetch_assoc($execQuery);
 ?>

@@ -390,8 +390,8 @@ include 'includes/include_once/db.php';
                                             <tr>
                                                 <th>Sr. No.</th>
                                                 <th>Profile</th>
-                                                <th>Name</th>
-                                                <th>Package Type</th>
+                                                <th>Member Name</th>
+                                                <th>Package Selected</th>
                                                 <th>Batch Time</th>
                                                 <th>Contact No.</th>
 <!--                                                <th>Joining Date</th>-->
@@ -413,18 +413,18 @@ include 'includes/include_once/db.php';
                                                     <td><?php echo ++$sr; ?></td>
                                                     <td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result[''];  ?>" > </td>
                                                     <td>
-                                                        <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php echo $result['startDate']; ?></small>
+                                                        <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php echo 'start: '.$result['startDate']; ?></small>
                                                     </td>
-                                                    <td><h6><?php echo $result['packageName']; ?></h6><small class="text-muted"><?php echo $result['endDate']; ?></small></td>
+                                                    <td><h6><?php echo $result['packageName']; ?></h6><small class="text-muted"><?php echo 'end: '.$result['endDate']; ?></small></td>
                                                     <td><?php echo $result['batchTime']; ?></td>
                                                     <td><?php echo $result['contactNo']; ?></td>
     <!--                                                    <td><?php //echo $result['startDate'];  ?></td>-->
                                                     <td><?php echo $result['trainerName']; ?></td>
                                                     <!--<td><?php //echo $result[''];    ?></td>-->
                                                     <td class="table-action">
-                                                        <a class="fa fa-refresh btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Renew" name="edit" href="editClient.php?id=<?= $result['cID']; ?>"></a>
-                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit" name="edit" href="editClient.php?id=<?= $result['cID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['cID']; ?>)" type="button" data-toggle="'tooltip','modal'" data-placement="left" title="Delete"  data-target="#exampleModal"></a>  <!--  -->
+                                                        <a class="fa fa-money btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Pay" name="edit" href="editClient.php?id=<?= $result['tID']; ?>"></a>
+                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit" name="edit" href="editClient.php?id=<?= $result['tID']; ?>"></a>
+                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Delete"  data-target="#exampleModal"></a>  <!--  -->
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">

@@ -69,6 +69,9 @@
                 <li> <a class="waves-effect waves-dark" href="expense.php" aria-expanded="false"><i
                             class="fa fa-bolt"></i><span class="hide-menu">Expense</span></a>
                 </li>
+                <li> <a class="waves-effect waves-dark" href="renew.php" aria-expanded="false"><i
+                            class="fa fa-refresh"></i><span class="hide-menu">Renew</span></a>
+                </li>
                 <li> <a class="waves-effect waves-dark" href="staffAttendance.php" aria-expanded="false"><i
                             class="fa fa-calendar"></i><span class="hide-menu">Attendance</span></a>
                 </li>

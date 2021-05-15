@@ -18,11 +18,11 @@ include 'includes/include_once/db.php';
             </div>
             <div>
                 <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#clientform" aria-expanded="false">
                         Add Client
                     </button>
                 </p>
-                <div class="collapse" id="collapseExample"  data-spy="scroll">
+                <div class="collapse" id="clientform"  data-spy="scroll">
                     <div class="card">
                         <div class="card-body">
                             <?php //echo $message; ?>
@@ -46,12 +46,12 @@ include 'includes/include_once/db.php';
                                                     <div class="col-md-7">
                                                         <div class="form-group">
                                                             <label>Fullname<span style="color:red">*</span></label>
-                                                            <input type="text" name="fname" class="form-control" id="fullname">
+                                                            <input type="text" name="fname" class="form-control" id="fullname" required>
                                                         </div>
                                                         <div class="row">
                                                             <div class="form-group col-md-6">
                                                                 <label>Contact Number<span style="color:red">*</span></label>
-                                                                <input type="text" name="primaryno" class="form-control" id="contact"">
+                                                                <input type="text" name="primaryno" class="form-control" id="contact" required>
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label>Alternate Number</label>
@@ -60,7 +60,7 @@ include 'includes/include_once/db.php';
                                                         </div>
                                                         <div class="form-group">
                                                             <label>E-mail<span style="color:red">*</span></label>
-                                                            <input type="email" name="email" class="form-control" id="email" required>
+                                                            <input type="email" name="email" class="form-control" id="email"oninput="checkEmail()" required>
                                                         </div>
                                                     </div> 
                                                     <div class="col-md-5">
@@ -71,10 +71,10 @@ include 'includes/include_once/db.php';
                                                         </center>
                                                     </div>
                                                 </div>
-                                                <div id='result'></div>
+                                                <p id='result'></p>
                                                 <div class="form-group">
                                                     <label>Address 1<span style="color:red">*</span></label>
-                                                    <input type="text" name="addr1" class="form-control" id="pfullname">
+                                                    <input type="text" name="addr1" class="form-control" id="pfullname" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Address 2</label>
@@ -83,23 +83,23 @@ include 'includes/include_once/db.php';
                                                 <div class="row ">
                                                     <div class="form-group col-md-4">
                                                         <label >Location<span style="color:red">*</span></label>
-                                                        <input type="text" name="location" class="form-control">
+                                                        <input type="text" name="location" class="form-control" required>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label >District<span style="color:red">*</span></label>
-                                                        <input type="text" name="district" class="form-control">
+                                                        <input type="text" name="district" class="form-control" required>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label >Pincode<span style="color:red">*</span></label>
-                                                        <input type="text" name="pincode" class="form-control">
+                                                        <input type="text" name="pincode" class="form-control" required>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Date of Birth<span style="color:red">*</span></label>
-                                                        <input type="date" name="dob" class="form-control">
+                                                        <input type="date" name="dob" class="form-control" required>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label >Gender<span style="color:red">*</span></label>
-                                                        <select id="inputState" class="form-control" name="gender">
+                                                        <select id="inputState" class="form-control" name="gender" required>
                                                             <option selected disabled>Choose...</option>
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
@@ -165,11 +165,11 @@ include 'includes/include_once/db.php';
                                                                 echo "<option value='" . $dropdownPackage['pName'] . "'>" . $dropdownPackage['pName'] . "</option>";
                                                             }
                                                             ?>
-                                                         <!--   <option selected disabled>Choose...</option>
-                                                            <option value="Muscels Build-up Silver">Muscles Build-up Silver</option>
-                                                            <option value="Muscles Build-up Gold">Muscles Build-up Gold</option>
-                                                            <option value="Weight Loss Baby Steps">Weight Loss Baby Steps</option>
-                                                            <option value="Weight Loss Power">Weight Loss Power</option>-->
+                                                            <!--   <option selected disabled>Choose...</option>
+                                                               <option value="Muscels Build-up Silver">Muscles Build-up Silver</option>
+                                                               <option value="Muscles Build-up Gold">Muscles Build-up Gold</option>
+                                                               <option value="Weight Loss Baby Steps">Weight Loss Baby Steps</option>
+                                                               <option value="Weight Loss Power">Weight Loss Power</option>-->
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-md-6">
@@ -316,148 +316,63 @@ include 'includes/include_once/db.php';
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- ============================================================== -->
-                <script>
-
-                    $(document).ready(function () {
-
-                        $('#btn_login_details').click(function () {
-                            $('#list_personal_details').removeClass('active active_tab1');
-                            $('#list_personal_details').removeAttr('href data-toggle');
-                            $('#login_details').removeClass('active');
-                            $('#list_personal_details').addClass('inactive_tab1');
-                            $('#list_GymDetails').removeClass('inactive_tab1');
-                            $('#list_GymDetails').addClass('active_tab1 active');
-                            $('#list_GymDetails').attr('href', '#personal_details');
-                            $('#list_GymDetails').attr('data-toggle', 'tab');
-                            $('#personal_details').addClass('active in');
-
-                        });
-
-                        $('#previous_btn_personal_details').click(function () {
-                            $('#list_GymDetails').removeClass('active active_tab1');
-                            $('#list_GymDetails').removeAttr('href data-toggle');
-                            $('#personal_details').removeClass('active in');
-                            $('#list_GymDetails').addClass('inactive_tab1');
-                            $('#list_personal_details').removeClass('inactive_tab1');
-                            $('#list_personal_details').addClass('active_tab1 active');
-                            $('#list_personal_details').attr('href', '#login_details');
-                            $('#list_personal_details').attr('data-toggle', 'tab');
-                            $('#login_details').addClass('active in');
-                        });
-
-                        $('#btn_personal_details').click(function () {
-                            $('#list_GymDetails').removeClass('active active_tab1');
-                            $('#list_GymDetails').removeAttr('href data-toggle');
-                            $('#personal_details').removeClass('active');
-                            $('#list_GymDetails').addClass('inactive_tab1');
-                            $('#list_payment_details').removeClass('inactive_tab1');
-                            $('#list_payment_details').addClass('active_tab1 active');
-                            $('#list_payment_details').attr('href', '#contact_details');
-                            $('#list_payment_details').attr('data-toggle', 'tab');
-                            $('#contact_details').addClass('active in');
-                        });
-
-                        $('#previous_btn_contact_details').click(function () {
-                            $('#list_payment_details').removeClass('active active_tab1');
-                            $('#list_payment_details').removeAttr('href data-toggle');
-                            $('#contact_details').removeClass('active in');
-                            $('#list_payment_details').addClass('inactive_tab1');
-                            $('#list_GymDetails').removeClass('inactive_tab1');
-                            $('#list_GymDetails').addClass('active_tab1 active');
-                            $('#list_GymDetails').attr('href', '#personal_details');
-                            $('#list_GymDetails').attr('data-toggle', 'tab');
-                            $('#personal_details').addClass('active in');
-                        });
-
-
-
-                    });    
-                </script>
-                 
-      
-            <!-- ============================================================== -->
-            <div class="row">
-                <!-- Column -->
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <div class="table-responsive m-t-20 no-wrap">
-                                    <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Sr. No.</th>
-                                                <th>Profile</th>
-                                                <th>Member Name</th>
-                                                <th>Package Selected</th>
-                                                <th>Batch Time</th>
-                                                <th>Contact No.</th>
-<!--                                                <th>Joining Date</th>-->
-                                                <th>Trainer Name</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $sr = 0;
-                                            include('includes/include_once/db.php');
-                                            $data = "SELECT tID, fullName, memberType, batchTime, packageName, contactNo, trainerName, startDate, endDate FROM temp_client";
-                                            $query = mysqli_query($connect, $data);
-                                            while ($result = mysqli_fetch_assoc($query)) {
+                <!--</div>-->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="table-responsive m-t-20 no-wrap">
+                                        <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <!--<th>Sr. No.</th>-->
+                                                    <th>Profile</th>
+                                                    <th>Member Name</th>
+                                                    <th>Package Selected</th>
+                                                    <th>Batch Time</th>
+                                                    <th>Contact No.</th>
+                                                    <!--<th>Joining Date</th>-->
+                                                    <th>Trainer Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sr = 0;
+                                                $data = "SELECT tID, fullName, memberType, batchTime, packageName, contactNo, trainerName, startDate, endDate FROM temp_client";
+                                                $query = mysqli_query($connect, $data);
+                                                while ($result = mysqli_fetch_assoc($query)) {
 //                                                print_r($result);
 //                                                exit();
+                                                    ?>
+                                                    <tr>
+                                                        <!--<td><?php //echo ++$sr;    ?></td>-->
+                                                        <td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result[''];     ?>" > </td>
+                                                        <td>
+                                                            <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php echo 'start: ' . $result['startDate']; ?></small>
+                                                        </td>
+                                                        <td><h6><?php echo $result['packageName']; ?></h6><small class="text-muted"><?php echo 'end: ' . $result['endDate']; ?></small></td>
+                                                        <td><?php echo $result['batchTime']; ?></td>
+                                                        <td><?php echo $result['contactNo']; ?></td>
+                                                            <!--<td><?php //echo $result['startDate'];     ?></td>-->
+                                                        <td><?php echo $result['trainerName']; ?></td>
+                                                        <!--<td><?php //echo $result[''];        ?></td>-->
+                                                        <td class="table-action">
+                                                            <a class="fa fa-money btn btn-outline-success pay_data" name="pay" data-toggle="modal" id="<?php echo $result['tID']; ?>"></a>
+                                                            <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editClient.php?id=<?=$result['tID']; ?>"></a>
+                                                            <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['tID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal"  data-target="#deleteModal"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
                                                 ?>
-                                                <tr>
-                                                    <td><?php echo ++$sr; ?></td>
-                                                    <td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result[''];  ?>" > </td>
-                                                    <td>
-                                                        <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php echo 'start: '.$result['startDate']; ?></small>
-                                                    </td>
-                                                    <td><h6><?php echo $result['packageName']; ?></h6><small class="text-muted"><?php echo 'end: '.$result['endDate']; ?></small></td>
-                                                    <td><?php echo $result['batchTime']; ?></td>
-                                                    <td><?php echo $result['contactNo']; ?></td>
-    <!--                                                    <td><?php //echo $result['startDate'];  ?></td>-->
-                                                    <td><?php echo $result['trainerName']; ?></td>
-                                                    <!--<td><?php //echo $result[''];    ?></td>-->
-                                                    <td class="table-action">
-                                                        <a class="fa fa-money btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Pay" name="edit" href="editClient.php?id=<?= $result['tID']; ?>"></a>
-                                                        <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit" name="edit" href="editClient.php?id=<?= $result['tID']; ?>"></a>
-                                                        <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Delete"  data-target="#exampleModal"></a>  <!--  -->
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <form action="process/staffProcess.php" id="deleteForm" method="POST">
-                                                                        <div class="modal-body">
-                                                                            Are You Sure You Want To Delete ?
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
-                                                                        </div>
-                                                                    </form>
-                                                                    <script>
-                                                                        function myButton(id) {
-                                                                            //alert(document.getElementById("deleteForm").action);
-                                                                            document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
-                                                                        }
-                                                                    </script>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -465,6 +380,174 @@ include 'includes/include_once/db.php';
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <!---------------- Payment------------->
+        <div class="modal fade" id="makepayment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Make Payment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="pay_update">
+                        <form method="POST" action="process/userProcess.php">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Client Name</label>
+                                    <input type="text" class="form-control" id="fname" name="fname" value="<?=$result['fullName'];?>">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Contact Number</label>
+                                    <input type="text" class="form-control" id="cntno" name="cntno">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>Balance Amount</label>
+                                    <input type="text" class="form-control" name="balamount" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Amount</label>
+                                    <input type="text" class="form-control" name="amount" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Payment Mode</label>
+                                    <select class="form-control" name="usertype">
+                                        <option selected disabled>Choose...</option>
+                                        <option>Cash</option>
+                                        <option>Card</option>
+                                        <option>UPI</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <textarea class="form-control" name="remark"></textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" name="submit">Add Payment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-----------------Delete--------->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="process/staffProcess.php" id="deleteForm" method="POST">
+                        <div class="modal-body">
+                            Are You Sure You Want To Delete ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
+                        </div>
+                    </form>
+                    <script>
+                        function myButton(id) {
+                            //alert(document.getElementById("deleteForm").action);
+                            document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
+                        }
+                        
+                        $('.addAttr').click(function() {
+                        var id = $(this).data('id');   
+                        var name = $(this).data('name'); 
+                        var duration = $(this).data('duration');   
+                        var date = $(this).data('date');   
+
+                        $('#id').val(id); 
+                        $('#name').val(name); 
+                        $('#duration').val(duration); 
+                        $('#date').val(date); 
+                        } );
+                        
+                        //============ payment=======//
+                        $(document).on('click', '.pay_data', function(){
+                           var pay_id = $(this).attr('id');
+                           $.ajax({
+                               url:process/paymentProcess.php,
+                               type:POST,
+                               data:{pay_id:pay_id},
+                               success:function(data){
+                                   $("#pay_update").html(data);
+                                   $("#makepayment").modal('show'); 
+                               }
+                           })
+                        });
+                        //=========== payment end ======//
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!------------------------->
+        <script>
+
+            $(document).ready(function () {
+
+                $('#btn_login_details').click(function () {
+                    $('#list_personal_details').removeClass('active active_tab1');
+                    $('#list_personal_details').removeAttr('href data-toggle');
+                    $('#login_details').removeClass('active');
+                    $('#list_personal_details').addClass('inactive_tab1');
+                    $('#list_GymDetails').removeClass('inactive_tab1');
+                    $('#list_GymDetails').addClass('active_tab1 active');
+                    $('#list_GymDetails').attr('href', '#personal_details');
+                    $('#list_GymDetails').attr('data-toggle', 'tab');
+                    $('#personal_details').addClass('active in');
+
+                });
+
+                $('#previous_btn_personal_details').click(function () {
+                    $('#list_GymDetails').removeClass('active active_tab1');
+                    $('#list_GymDetails').removeAttr('href data-toggle');
+                    $('#personal_details').removeClass('active in');
+                    $('#list_GymDetails').addClass('inactive_tab1');
+                    $('#list_personal_details').removeClass('inactive_tab1');
+                    $('#list_personal_details').addClass('active_tab1 active');
+                    $('#list_personal_details').attr('href', '#login_details');
+                    $('#list_personal_details').attr('data-toggle', 'tab');
+                    $('#login_details').addClass('active in');
+                });
+
+                $('#btn_personal_details').click(function () {
+                    $('#list_GymDetails').removeClass('active active_tab1');
+                    $('#list_GymDetails').removeAttr('href data-toggle');
+                    $('#personal_details').removeClass('active');
+                    $('#list_GymDetails').addClass('inactive_tab1');
+                    $('#list_payment_details').removeClass('inactive_tab1');
+                    $('#list_payment_details').addClass('active_tab1 active');
+                    $('#list_payment_details').attr('href', '#contact_details');
+                    $('#list_payment_details').attr('data-toggle', 'tab');
+                    $('#contact_details').addClass('active in');
+                });
+
+                $('#previous_btn_contact_details').click(function () {
+                    $('#list_payment_details').removeClass('active active_tab1');
+                    $('#list_payment_details').removeAttr('href data-toggle');
+                    $('#contact_details').removeClass('active in');
+                    $('#list_payment_details').addClass('inactive_tab1');
+                    $('#list_GymDetails').removeClass('inactive_tab1');
+                    $('#list_GymDetails').addClass('active_tab1 active');
+                    $('#list_GymDetails').attr('href', '#personal_details');
+                    $('#list_GymDetails').attr('data-toggle', 'tab');
+                    $('#personal_details').addClass('active in');
+                });
+
+
+
+            });
+        </script>
+        <script src="js/validation.js"></script>
         <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>
     <?php

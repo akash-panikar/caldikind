@@ -244,7 +244,7 @@ $defaultImage = "images/people/6.png";
                                                     <td class="table-action">
                                                         <a class="fa fa-eye  btn btn-outline-info" name="edit" href="staffProfile.php?id=<?= $result['sID']; ?>"></a>
                                                         <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
-                                                        <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" href="delete.php?<?php $deleteRowID = $result['sID']; ?>" data-toggle="modal" data-target="#exampleModal"></a>  <!--  -->
+                                                        <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['sID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" href="delete.php?<?php $deleteRowID = $result['sID']; ?>" data-toggle="modal" data-target="#exampleModal"></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">

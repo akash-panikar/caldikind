@@ -6,6 +6,7 @@
 <!-- slimscrollbar scrollbar JavaScript -->
 <script src="js/perfect-scrollbar.jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
+<!--<script src="js/jquery_bootstrap-growl"></script>-->
 <!--Wave Effects -->
 <script src="js/waves.js"></script>
 <!--Menu sidebar -->
@@ -27,5 +28,8 @@ $(document).ready(function() {
 } );
 </script>
 <script src="includes/jquery/jquery-datatable.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="js/jquery_dataTables.js"></script>
+<script src="js/dataTables_bootstrap4.js"></script>
+<!---------------same but cdn link-------------->
+<!--<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>-->

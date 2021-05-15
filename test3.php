@@ -316,9 +316,162 @@ include 'includes/include_once/db.php';
                     </div>
                 </div>
             </div>
+            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="table-responsive m-t-20 no-wrap">
+                                        <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr. No.</th>
+                                                    <!--<th>Profile</th>-->
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Contact No.</th>
+                                                    <th>Role</th>
+                                                    <th>Account Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sr = 0;
+                                                $data = "SELECT * FROM users";
+                                                $query = mysqli_query($connect, $data);
+                                                while ($result = mysqli_fetch_assoc($query)) {
+//                                                print_r($result);
+//                                                exit();
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo ++$sr; ?></td>
+                                                        <!--<td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profile_image'];   ?>" > </td>-->
+                                                        <td>
+                                                            <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php //echo $result['dob'];   ?></small>
+                                                        </td>
+                                                        <td><h6><?php echo $result['email']; ?></h6></td>
+                                                        <td><?php echo $result['contactNo']; ?></td>
+                                                        <td><?php echo $result['role']; ?></td>
+                                                        <td><?php echo $result['status']; ?></td>
+                                                        <td class="table-action">
+                                                            <a class="fa fa-money btn btn-outline-success" name="edit" data-toggle="modal" data-target="#makepayment""></a>
+                                                            <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
+                                                            <span data-toggle="modal" data-target="#deleteModel"><a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['uID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="tooltip" data-placement="right" title="suspend"></a></span>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <form action="process/staffProcess.php" id="deleteForm" method="POST">
+                                                                            <div class="modal-body">
+                                                                                Are You Sure You Want To Delete ?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
+                                                                            </div>
+                                                                        </form>
+                                                                        <script>
+                                                                            function myButton(id) {
+                                                                                document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
+                                                                            }
+                                                                        </script>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
+        <div class="modal fade" id="makepayment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form method="POST" action="process/userProcess.php">
+                                                                            <div class="form-row">
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label>Fullname</label>
+                                                                                    <input type="text" class="form-control" name="fname">
+                                                                                </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label>Contact Number</label>
+                                                                                    <input type="text" class="form-control" name="cntno">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>email</label>
+                                                                                <input type="email" class="form-control" name="email">
+                                                                            </div>
+                                                                            <div class="form-row">
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label>Password</label>
+                                                                                    <input type="text" class="form-control" name="password" id="password">
+                                                                                </div>
+                                                                                <div class="form-group col-md-5">
+                                                                                    <label>Want System To Generate Password ?</label>
+                                                                                    <a class="btn btn-outline-danger" id="generatePassword">Generate</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-row">
+                                                                                <div class="form-group col-md-6 progress">
+                                                                                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-row">
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label>Confirm Password</label>
+                                                                                    <input type="password" class="form-control" name="cnfpass" id="cnfpass" oninput="matchPassword();">
+                                                                                    <span id = "message" style="color:red"> </span>
+                                                                                </div>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <label>User Type</label>
+                                                                                    <select class="form-control" name="usertype">
+                                                                                        <option selected disabled>Choose...</option>
+                                                                                        <option>Admin</option>
+                                                                                        <option>Manager</option>
+                                                                                        <option>Staff</option>
+                                                                                        <option>User</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group col-md-3">
+                                                                                    <label>Status</label>
+                                                                                    <select class="form-control" name="status">
+                                                                                        <option selected disabled>Choose...</option>
+                                                                                        <option>Active</option>
+                                                                                        <option>Inactive</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary" name="submit">Add User</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
         <!-- ============================================================== -->
         <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>

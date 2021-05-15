@@ -3,8 +3,8 @@ include ('includes/include_once/session.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
 include('includes/include_once/db.php');
-$searchQuery = "SELECT * FROM temp_client WHERE amountDue > 0";
-$execSearchQuery = mysqli_query($connect, $searchQuery);
+//$searchQuery = "SELECT * FROM temp_client WHERE amountDue > 0";
+//$execSearchQuery = mysqli_query($connect, $searchQuery);
 
 ?>
 
@@ -34,15 +34,8 @@ $execSearchQuery = mysqli_query($connect, $searchQuery);
                                     <input type="date" class="form-control" name="date" id="inputEmail4">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputState">Client Name<span style="color:red">*</span></label>
-                                    <select id="inputState" class="form-control" name="categories">
-                                        <?php
-                                        echo "<option selected disabled>Choose...</option>";
-                                        while ($result = mysqli_fetch_assoc($execSearchQuery)) {
-                                            echo "<option value='" . $result['fullName'] . "'>" . $result['fullName'] . "</option>";
-                                        }
-                                        ?>  
-                                    </select>
+                                    <label>Client Name<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" name="name" value="">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Mobile Number<span style="color:red">*</span></label>

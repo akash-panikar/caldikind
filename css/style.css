@@ -5631,7 +5631,7 @@ widget-chart-page product review
  ============================================================== */
 @media (min-width: 768px) {
     .navbar-header {
-        width: 260px;
+        width: 240px;
         -ms-flex-negative: 0;
         flex-shrink: 0; }
     .navbar-header .navbar-brand {
@@ -5652,7 +5652,14 @@ widget-chart-page product review
     .flex-wrap {
         -ms-flex-wrap: nowrap !important;
         flex-wrap: nowrap !important;
-        -webkit-flex-wrap: nowrap !important; } }
+        -webkit-flex-wrap: nowrap !important; }
+    .page-wrapper{
+        margin-left: 240px;
+    }
+    .left-sidebar{
+        width: 240px;
+    }
+}
 
 /*-- ============================================================== 
  Phone and below ipad(767px) 

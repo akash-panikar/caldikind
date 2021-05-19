@@ -362,7 +362,7 @@ include 'includes/include_once/db.php';
                                                         <td><?php echo $result['trainerName']; ?></td>
                                                         <!--<td><?php //echo $result[''];        ?></td>-->
                                                         <td class="table-action">
-                                                            <a class="fa fa-money btn btn-outline-success pay_data" name="pay" data-toggle="modal" id="<?php echo $result['tID']; ?>"></a>
+                                                            <a class="fa fa-money btn btn-outline-success pay_data_<?php echo $result['tID']; ?>" name="pay" data-toggle="modal" onclick="showModal(this)" id="<?php echo $result['tID']; ?>"></a>
                                                             <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editClient.php?id=<?=$result['tID']; ?>"></a>
                                                             <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['tID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal"  data-target="#deleteModal"></a>
                                                         </td>
@@ -392,44 +392,44 @@ include 'includes/include_once/db.php';
                         </button>
                     </div>
                     <div class="modal-body" id="pay_update">
-                        <form method="POST" action="process/userProcess.php">
+                        <form method="POST" action="process/paymentProcess.php" id="pay_form">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Client Name</label>
-                                    <input type="text" class="form-control" id="fname" name="fname" value="<?=$result['fullName'];?>">
+                                    <input type="text" class="form-control" id="fname" name="fname" readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Contact Number</label>
-                                    <input type="text" class="form-control" id="cntno" name="cntno">
+                                    <input type="text" class="form-control" id="cntno" name="cntno" readonly>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label>Balance Amount</label>
-                                    <input type="text" class="form-control" name="balamount" id="">
+                                    <input type="text" class="form-control" name="balamount" id="balamount" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Amount</label>
-                                    <input type="text" class="form-control" name="amount" id="">
+                                    <input type="text" class="form-control" name="amount" id="amount">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Payment Mode</label>
-                                    <select class="form-control" name="usertype">
+                                    <select class="form-control" name="paymentmode" id="paymenttype">
                                         <option selected disabled>Choose...</option>
-                                        <option>Cash</option>
-                                        <option>Card</option>
-                                        <option>UPI</option>
+                                        <option name="paymentmode" value="Cash">Cash</option>
+                                        <option name="paymentmode" value="Card">Card</option>
+                                        <option name="paymentmode" value="UPI">UPI</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Remark</label>
-                                <textarea class="form-control" name="remark"></textarea>
+                                <textarea class="form-control" name="remark" id="remark"></textarea>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" name="submit">Add Payment</button>
+                                <button type="submit" class="btn btn-primary" name="updatePayment">Add Payment</button>
                             </div>
                         </form>
                     </div>
@@ -471,19 +471,31 @@ include 'includes/include_once/db.php';
                         $('#date').val(date); 
                         } );
                         
-                        //============ payment=======//
-                        $(document).on('click', '.pay_data', function(){
-                           var pay_id = $(this).attr('id');
+                        //============ payment======= $(document).on('click', '.pay_data_',//
+                         function showModal(e){
+                            //alert('hello');
+                            //e.preventDefault();
+                           var pay_id = $(e).attr('id');
+                           document.getElementById("pay_form").action = "process/paymentProcess.php?id=" + pay_id;
+                           //alert(pay_id);
                            $.ajax({
-                               url:process/paymentProcess.php,
-                               type:POST,
+                               url:'https://localhost/caldikind/process/paymentProcess.php',
+                               type:'POST',
                                data:{pay_id:pay_id},
                                success:function(data){
-                                   $("#pay_update").html(data);
+                                   //alert(data);
+                                    var output = JSON.parse(data);
+                                   //alert(output.name);
+                                   $('#id').val(output.id);
+                                   $('#fname').val(output.name);
+                                   $('#cntno').val(output.contactNo);
+                                   $('#balamount').val(output.balAmount);                               
+                                  jQuery.noConflict(); 
                                    $("#makepayment").modal('show'); 
                                }
-                           })
-                        });
+                           })}
+                           
+                       // });
                         //=========== payment end ======//
                     </script>
                 </div>

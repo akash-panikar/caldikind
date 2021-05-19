@@ -116,7 +116,8 @@ $chartData = json_encode($data);
                     </div>
                     <!-- End Notification -->
                     <?php
-                    $attendanceQuery = "SELECT gymstaff.sName, gymattendance.inTime, gymattendance.status FROM gymattendance JOIN gymstaff WHERE DATE(date) = DATE(NOW()) ";
+                    $attendanceQuery = "SELECT gymattendance.staffCode, gymstaff.sName, status FROM gymattendance JOIN gymstaff WHERE"
+                            . " gymattendance.staffCode=gymstaff.staffCode AND DATE(date) = DATE(NOW()) ORDER BY staffCode LIMIT 1 ";
                     $execAttendanceQuery = mysqli_query($connect, $attendanceQuery);                    
                     ?><!-- Start Feeds -->
                     <div class="col-lg-6">
@@ -127,7 +128,7 @@ $chartData = json_encode($data);
                                     <?php
                                     while ($row = mysqli_fetch_assoc($execAttendanceQuery))
                                     {  
-                                        if($row['status'] != 'Present'){
+                                        if($row['status'] === 'Present'){
                                             $status = 'Present';
                                         }
                                         else{

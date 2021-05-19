@@ -67,10 +67,10 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div id="result"></div>
                         <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox">
+<!--                            <input class="input-checkbox100" id="ckb1" type="checkbox">
                             <label class="label-checkbox100" for="ckb1">
                                 Remember me
-                            </label>
+                            </label>-->
                         </div>
 
                         <div class="container-login100-form-btn">
@@ -94,6 +94,7 @@ if (isset($_POST['submit'])) {
                             //    $('#2').toast('show');
                             //})
                         </script>
+                        <?php if($message != ''){?>
                         <!-- Then put toasts within -->                        
                             <div class="toast" role="alert" data-delay="5000">
                                 <div class="toast-header" style="background-color:#ce0e58;">
@@ -105,7 +106,7 @@ if (isset($_POST['submit'])) {
                                 <div class="toast-body">
                                     <?=$message; ?>
                                 </div>
-                            </div>     
+                        </div> <?php } ?>     
                     </div>
                 </div>
             </div>

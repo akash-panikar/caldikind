@@ -1,9 +1,11 @@
-<!-- /////////////////////////
+<?php
+
+/* /////////////////////////
 Create By: Akash Panikar     |
 Date: 13/11/2020             |
 Last Modified on:            |  
-////////////////////////////// -->
-<?php
+////////////////////////////// */
+
 date_default_timezone_set("Asia/Kolkata");
 $currentDate= date('Y-m-d');
 $currentTime = date('h:i:s A');

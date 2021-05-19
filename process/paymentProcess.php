@@ -43,13 +43,16 @@ if(isset($_POST['updatePayment'])){
             if(mail($managerRemarkEmail, $emailRemarkSubject, $emailRemarkBody, $emailSender)){
                 $emailInsert = "INSERT INTO email_list (emailReceipent, emailSubject, emailBody, status) VALUES "
                     . "('$managerRemarkEmail','$emailRemarkSubject', '$emailRemarkBody', '1' )";
+                echo $emailInsert;
             } else {
                 $emailInsert = "INSERT INTO email_list (emailReceipent, emailSubject, emailBody, status) VALUES "
                     . "('$managerRemarkEmail','$emailRemarkSubject', '$emailRemarkBody', '0' )";
+                echo $emailInsert;
             }
             mysqli_query($connect, $emailInsert);
         }
-        
+        echo '1111111111111111111111111111111111111111111111111';
+        exit();
         $emailReceiptSubject = "Payment Receipt";
         $emailReceiptBody = "Dear $clientName,\nThank you for making \n\nAbove message is from $clientName";
         if(mail($clientReceiptEmail, $emailReceiptSubject, $emailReceiptBody, $emailSender)){
@@ -60,6 +63,7 @@ if(isset($_POST['updatePayment'])){
                 . "('$clientReceiptEmail','$emailReceiptSubject', '$emailReceiptBody', '0' )";
         }
         mysqli_query($connect, $emailReceiptInsert);
+        echo '222222222222222222222222222222222222222222222222222';
         exit();
         header('Location:../client.php');
         exit();

@@ -52,7 +52,7 @@ include('includes/include_once/db.php');
                                                         <td><?php echo $result['memberType']; ?></td>
                                                         <td><?php echo $result['packageName']; ?></td>
                                                         <td class="table-action">
-                                                            <a class="fa fa-refresh btn btn-outline-primary" data-toggle="modal" name="edit" data-target="#renewform" value="<?= $result['vID']; ?>"></a>
+                                                            <a class="fa fa-refresh btn btn-outline-success renew<?php echo $result['tID']; ?>" name="pay" data-toggle="modal" onclick="showModal(this)" id="<?php echo $result['tID']; ?>"></a>
                                                             <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['vID']; ?>" onclick="myButton(<?php echo $result['vID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Not Interested"  data-target="#exampleModal"></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,7 +93,7 @@ include('includes/include_once/db.php');
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="renewform" tabindex="-1">
+                <div class="modal fade" id="renew_modal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -102,29 +102,29 @@ include('includes/include_once/db.php');
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body" onmouseenter="checkAmountDue()">
-                                <form method="POST" action="process/userProcess.php">
+                            <div class="modal-body" id="renew_data" onmouseenter="checkAmountDue()">
+                                <form method="POST" action="process/userProcess.php" id="renew_form">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Fullname</label>
-                                            <input type="text" class="form-control" name="fname" disabled>
+                                            <input type="text" class="form-control" name="fname" id="fname" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Contact Number</label>
-                                            <input type="text" class="form-control" name="cntno" disabled>
+                                            <input type="text" class="form-control" name="cntno" id="cntno" readonly>
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label>Expired on</label>
-                                            <input type="date" class="form-control" name="preexp" disabled>
+                                            <input type="date" class="form-control" name="expired" id="expired" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Amount Due</label>
-                                            <input type="text" class="form-control" name="amtdue" id="amtdue" disabled value="0">
+                                            <input type="text" class="form-control" name="balamount" id="amtdue" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Package</label>
-                                            <select class="form-control" name="period" id="period">
+                                            <select class="form-control" name="period" id="package">
                                                 <?php
                                                 $selectPackages = 'SELECT * FROM gympackage';
                                                 $execPackQuery = mysqli_query($connect, $selectPackages);
@@ -187,6 +187,7 @@ include('includes/include_once/db.php');
                             document.getElementById('period').disabled = 'true';
                             document.getElementById('totalamt').disabled = 'true';
                             document.getElementById('amtpaid').disabled = 'true';
+                            document.getElementById('package').disabled = 'true';
                             document.getElementById('balamt').disabled = 'true';
                             document.getElementById('startdate').disabled = 'true';
                             document.getElementById('enddate').disabled = 'true';
@@ -194,11 +195,38 @@ include('includes/include_once/db.php');
                             document.getElementById('period').disabled = '';
                             document.getElementById('totalamt').disabled = '';
                             document.getElementById('amtpaid').disabled = '';
+                            document.getElementById('package').disabled = '';
                             document.getElementById('balamt').disabled = '';
                             document.getElementById('startdate').disabled = '';
                             document.getElementById('enddate').disabled = '';
                         }
                     }
+                    
+                    //==================== renew ================
+                    function showModal(e){
+                    //alert('hello');
+                    //e.preventDefault();
+                   var renew_id = $(e).attr('id');
+                   document.getElementById("renew_form").action = "process/paymentProcess.php?id=" + renew_id;
+                   //alert(pay_id);
+                   $.ajax({
+                       url:'https://localhost/caldikind/process/renewProcess.php',
+                       type:'POST',
+                       data:{renew_id:renew_id},
+                       success:function(data){
+                           //alert(data);
+                            var output = JSON.parse(data);
+                           //alert(output.name);
+                           $('#id').val(output.id);
+                           $('#fname').val(output.name);
+                           $('#cntno').val(output.contactNo);
+                           $('#amtdue').val(output.amtdue);
+                           $('#expired').val(output.expired);
+                           $('#package').val(output.package);
+                          jQuery.noConflict(); 
+                           $("#renew_modal").modal('show'); 
+                       }
+                   })}
                 </script>
                 <!-- ============================================================== -->
                 <footer class="footer"> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>

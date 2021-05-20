@@ -494,8 +494,6 @@ include 'includes/include_once/db.php';
                                    $("#makepayment").modal('show'); 
                                }
                            })}
-                           
-                       // });
                         //=========== payment end ======//
                     </script>
                 </div>

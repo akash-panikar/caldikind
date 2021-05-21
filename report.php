@@ -3,8 +3,18 @@ session_start();
 if (!isset($_SESSION['fullName'])) {
     header('Location:index.php');
 }
+include('includes/include_once/db.php');
 include('includes/include_once/header.php');
 include('includes/include_once/nav.php');
+
+//$totalCount = mysqli_query($connect,"select count(1) FROM gymclients");
+//    $row = mysqli_fetch_array($totalCount);
+//    $total = $row[0];
+
+$CountQuery = "SELECT COUNT(enddate) from temp_client WHERE enddate < NOW()";
+$execQueryResult = mysqli_query($connect, $CountQuery);
+$result = mysqli_fetch_array($execQueryResult);
+
 ?>
 <div id="main-wrapper">
     <div class="page-wrapper">
@@ -30,7 +40,7 @@ include('includes/include_once/nav.php');
                     <div class="card border-primary mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Membership Expired</h5>
-                            <p class="card-text">25 People</p>                            
+                            <p class="card-text"><?=$total = $result['0'];?></p>                            
                         </div>
                     </div>
                 </div>
@@ -50,7 +60,7 @@ include('includes/include_once/nav.php');
                             Payment Due
                         </button>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
-                            Notification Send
+                            Notification List
                         </button>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
                             Income Report
@@ -103,6 +113,61 @@ include('includes/include_once/nav.php');
                                                                 <td><?php echo $result['contactNo']; ?></td>
                                                                 <td><h6><?php echo $result['memberType']; ?></h6><small class="text-muted"><?php echo $result['endDate']; ?></small></td>
                                                                 <td><?php echo '₹' . $result['amountDue']; ?></td>
+                                                                <td class="table-action">
+                                                                    <a class="fa fa-bell btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Notify" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="collapse" id="notificationList"  data-spy="scroll">
+                        <div class="row">
+                            <!-- Column -->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="table-responsive m-t-20 no-wrap">
+                                                <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <!--<th>Profile</th>-->
+                                                            <th>Recipient</th>
+                                                            <th>Subject</th>
+                                                            <th>Status</th>
+<!--                                                            <th>Membership</th>
+                                                            <th>Balance Amount</th>
+                                                            <th>Action</th>-->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $sr = 0;
+                                                        include('includes/include_once/db.php');
+                                                        $data = "SELECT * FROM email_list";
+                                                        $query = mysqli_query($connect, $data);
+                                                        while ($result = mysqli_fetch_assoc($query)) {
+                                                        //print_r($result);
+                                                        //exit();
+                                                            ?>
+                                                            <tr>
+                                                                <td><?php echo ++$sr; ?></td>
+                                                                <td><h6><?php echo $result['emailReceipent']; ?></h6></td>
+                                                                <td><h6><?php echo $result['emailSubject']; ?></h6></td>
+                                                                <td><?php echo $result['status']; ?></td>
+<!--                                                                <td><h6><?php //echo $result['memberType']; ?></h6><small class="text-muted"><?php //echo $result['endDate']; ?></small></td>
+                                                                <td><?php //echo '₹' . $result['amountDue']; ?></td>-->
                                                                 <td class="table-action">
                                                                     <a class="fa fa-bell btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Notify" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
                                                                 </td>

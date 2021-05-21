@@ -108,6 +108,7 @@ include('includes/include_once/db.php');
                                         <div class="form-group col-md-6">
                                             <label>Fullname</label>
                                             <input type="text" class="form-control" name="fname" id="fname" readonly>
+                                            <input type="hidden" class="form-control" name="email" id="email">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Contact Number</label>
@@ -124,7 +125,7 @@ include('includes/include_once/db.php');
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Package</label>
-                                            <select class="form-control" name="period" id="package">
+                                            <select class="form-control" name="package" id="package">
                                                 <?php
                                                 $selectPackages = 'SELECT * FROM gympackage';
                                                 $execPackQuery = mysqli_query($connect, $selectPackages);
@@ -163,16 +164,16 @@ include('includes/include_once/db.php');
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Amount Paid</label>
-                                            <input type="text" class="form-control" name="amtpaid" id="amtpaid">
+                                            <input type="text" class="form-control" name="amtpaid" id="amtpaid" oninput="calculateAmount()">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Balance Amount</label>
-                                            <input type="text" class="form-control" name="balamt" id="balamt">
+                                            <input type="text" class="form-control" name="balamt" id="balamt" value="">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="submit">Renew</button>
+                                        <button type="submit" class="btn btn-primary" name="renewSubmit">Renew</button>
                                     </div>
                                 </form>
                             </div>
@@ -207,7 +208,7 @@ include('includes/include_once/db.php');
                     //alert('hello');
                     //e.preventDefault();
                    var renew_id = $(e).attr('id');
-                   document.getElementById("renew_form").action = "process/paymentProcess.php?id=" + renew_id;
+                   document.getElementById("renew_form").action = "process/renewProcess.php?id=" + renew_id;
                    //alert(pay_id);
                    $.ajax({
                        url:'https://localhost/caldikind/process/renewProcess.php',
@@ -223,10 +224,18 @@ include('includes/include_once/db.php');
                            $('#amtdue').val(output.amtdue);
                            $('#expired').val(output.expired);
                            $('#package').val(output.package);
+                           $('#email').val(output.email);
                           jQuery.noConflict(); 
                            $("#renew_modal").modal('show'); 
                        }
                    })}
+               function calculateAmount(){
+                   var totalAmount = document.getElementById("totalamt").value;
+                   var paidAmount = document.getElementById("amtpaid").value;
+                   var balanceAmount = totalAmount - paidAmount;
+                   //alert(balanceAmount);
+                   document.getElementById("balamt").value = balanceAmount;
+               }
                 </script>
                 <!-- ============================================================== -->
                 <footer class="footer"> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>

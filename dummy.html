@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 <head>
 <script type="text/javascript">
 function validate()
@@ -57,4 +57,26 @@ return( true );
 </tr>
 </table>
 </form>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+	<label>Start</label>
+	<input type="date" id="start" onchange="changeDate()">
+	<br>
+	<br>
+	<label>End</label>
+	<input type="date" id="end">
+
+<script>
+  function changeDate(){
+  	var today = document.getElementById('start').val;
+  	alert(today);
+  }
+</script>
+</body>
 </html>

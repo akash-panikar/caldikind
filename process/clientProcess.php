@@ -1,58 +1,43 @@
 <?php
+
 include '../includes/include_once/db.php';
-if(isset($_POST['submit']))
-{    
-//    $clientFullName = $_POST['cfname'];
-//    $clientPrimaryNumber = $_POST['pcontact'];
-//    $clientAlternateNumber = $_POST['acontact'];
-//    $clientEmail = $_POST['cemail'];
-//    $clientAddress1 = $_POST['caddress'];
-//    $clientAddress2 = $_POST['caddress'];
-//    $clientDOB = $_POST['cdob'];
-//    $clientGender = $_POST['cgender'];
-//    $clientPackage = $_POST['package'];
-//    $clientEmergConatctName = $_POST['emecntnm'];
-//    $clientEmergContactNo = $_POST['emecntno'];
-//    $ReferredBy = $_POST['referred'];
-//    $MembershipType = $_POST['ctype'];
-//    $StartDate = $_POST['csd'];
-//    $EndDate = $_POST['ced'];
-//    $MedicalHistory = $_POST['cremark'];
-    $clientFullName = mysqli_real_escape_string($connect,$_POST['fname']);
-    $clientPrimaryNumber = mysqli_real_escape_string($connect,$_POST['primaryno']);
-    $clientAlternateNumber = mysqli_real_escape_string($connect,$_POST['alternateno']);
-    $clientEmail = mysqli_real_escape_string($connect,$_POST['email']);
-    $clientAddress1 = mysqli_real_escape_string($connect,$_POST['addr1']);
-    $clientAddress2 = mysqli_real_escape_string($connect,$_POST['addr2']);
-    $clientLocation = mysqli_real_escape_string($connect,$_POST['location']);
-    $clientDistrict = mysqli_real_escape_string($connect,$_POST['district']);
-    $clientPincode = mysqli_real_escape_string($connect,$_POST['pincode']);
-    $clientDOB = mysqli_real_escape_string($connect,$_POST['dob']);
-    $clientGender = mysqli_real_escape_string($connect,$_POST['gender']);
+if (isset($_POST['submit'])) {
+
+    $clientFullName = mysqli_real_escape_string($connect, $_POST['fname']);
+    $clientPrimaryNumber = mysqli_real_escape_string($connect, $_POST['primaryno']);
+    $clientAlternateNumber = mysqli_real_escape_string($connect, $_POST['alternateno']);
+    $clientEmail = mysqli_real_escape_string($connect, $_POST['email']);
+    $clientAddress1 = mysqli_real_escape_string($connect, $_POST['addr1']);
+    $clientAddress2 = mysqli_real_escape_string($connect, $_POST['addr2']);
+    $clientLocation = mysqli_real_escape_string($connect, $_POST['location']);
+    $clientDistrict = mysqli_real_escape_string($connect, $_POST['district']);
+    $clientPincode = mysqli_real_escape_string($connect, $_POST['pincode']);
+    $clientDOB = mysqli_real_escape_string($connect, $_POST['dob']);
+    $clientGender = mysqli_real_escape_string($connect, $_POST['gender']);
     $clientPhotoId = $_FILES['idproof'];
 //    ----------------Form 1 end-------------------------
     $trainerName = '';
     $transactionNo = '';
-    $membershipType = mysqli_real_escape_string($connect,$_POST['membership']);
-    $trainerName = mysqli_real_escape_string($connect,$_POST['trainer']);
-    $clientPackageName = mysqli_real_escape_string($connect,$_POST['packname']);
-    $clientPackageDuration = mysqli_real_escape_string($connect,$_POST['duration']);
-    $batchSelected = mysqli_real_escape_string($connect,$_POST['batch']);
-    $startDate = mysqli_real_escape_string($connect,$_POST['startdate']);
-    $endDate = mysqli_real_escape_string($connect,$_POST['enddate']);
-    $clientEmergConatctName = mysqli_real_escape_string($connect,$_POST['emgname']);
-    $clientEmergContactNo = mysqli_real_escape_string($connect,$_POST['emgnum']);
+    $membershipType = mysqli_real_escape_string($connect, $_POST['membership']);
+    $trainerName = mysqli_real_escape_string($connect, $_POST['trainer']);
+    $clientPackageName = mysqli_real_escape_string($connect, $_POST['packname']);
+    $clientPackageDuration = mysqli_real_escape_string($connect, $_POST['duration']);
+    $batchSelected = mysqli_real_escape_string($connect, $_POST['batch']);
+    $startDate = mysqli_real_escape_string($connect, $_POST['startdate']);
+    $endDate = mysqli_real_escape_string($connect, $_POST['enddate']);
+    $clientEmergConatctName = mysqli_real_escape_string($connect, $_POST['emgname']);
+    $clientEmergContactNo = mysqli_real_escape_string($connect, $_POST['emgnum']);
     $medicalReport = $_FILES['medicalrpt'];
-    $medicalProblem = mysqli_real_escape_string($connect,$_POST['medicalprblm']);
+    $medicalProblem = mysqli_real_escape_string($connect, $_POST['medicalprblm']);
 //    ----------------------- Form 2 end-----------------
-    $paymentMode = mysqli_real_escape_string($connect,$_POST['mode']);
-    $totalAmount = mysqli_real_escape_string($connect,$_POST['totalamount']);
-    $amountPaid = mysqli_real_escape_string($connect,$_POST['amountpaid']);
-    $amountDue = mysqli_real_escape_string($connect,$_POST['amtdue']);
-    $dueDate = mysqli_real_escape_string($connect,$_POST['duedate']);
-    $transactionNo = mysqli_real_escape_string($connect,$_POST['transno']);
+    $paymentMode = mysqli_real_escape_string($connect, $_POST['mode']);
+    $totalAmount = mysqli_real_escape_string($connect, $_POST['totalamount']);
+    $amountPaid = mysqli_real_escape_string($connect, $_POST['amountpaid']);
+    $amountDue = mysqli_real_escape_string($connect, $_POST['amtdue']);
+    $dueDate = mysqli_real_escape_string($connect, $_POST['duedate']);
+    $transactionNo = mysqli_real_escape_string($connect, $_POST['transno']);
     $PhotoIdFileLocation = '';
-    
+
     $filePhotoId = $clientPhotoId['name'];
     $fileMedicalReport = $medicalReport['name'];
     $filePhotoIdSize = $clientPhotoId['size'];
@@ -66,12 +51,11 @@ if(isset($_POST['submit']))
     $filePhotoIdLower = strtolower(end($fileProfileExtension));
     $fileMedicalReportLower = strtolower(end($fileMedicalReportExtension));
     $fileStoreExtension = array('png', 'jpg', 'jpeg');
-    
-    $userquery = "SELECT contactNo FROM temp_client WHERE contactNo = '$clientPrimaryNumber'";        
-    $Result =  mysqli_query ($connect, $userquery);
+
+    $userquery = "SELECT contactNo FROM temp_client WHERE contactNo = '$clientPrimaryNumber'";
+    $Result = mysqli_query($connect, $userquery);
     $checkUser = mysqli_num_rows($Result);
-    if(!$checkUser == TRUE)
-    {
+    if (!$checkUser == TRUE) {
         if (in_array($filePhotoIdLower, $fileStoreExtension)) {
             if ($filePhotoIdSize < 1048576) {
                 $newPhotoIdName = uniqid($clientFullName, false);
@@ -97,68 +81,65 @@ if(isset($_POST['submit']))
             }
         }
 
-//            echo 'Data Inserted';
-//            mysqli_close($connect);
-//            header('Location:client.php');
-            $subject = "Welcome to TRYON";
-            $body = "Greetings $clientFullName,\n\nThanks for joining TRYON – we’re excited to have you on board! You’ve taken "
-                ."the first step towards achieving your fitness goals .\n\n"
-                ."Get started by collecting your Access Card from reception. "
-                ."During this session we’ll prepare a workout program to"
-                ."help you achieve your goals and show you how to use all of the equipment.\n\n"
-                ."You’ll informed our opening times, class timetable, and a list of what to bring while "
-                ."coming to GYM. If you have any questions, then please don’t hesitate to get in touch. "
-                ."Just give a call on +919876543210 or email us at help@tryon.me and we’ll respond asap.\n\n"
-                ."Here are some information about your membership:\nMember Name: $clientFullName\nContact No: $clientPrimaryNumber\n"
-                ."Membership Type: $membershipType\nTrainer: $trainerName\nPackage Selected: $clientPackageName for $clientPackageDuration\n"
-                ."Batch Time: $batchSelected\nMembership starts from $startDate to $endDate\nPackage Amount: $totalAmount\nAmount Paid: $amountPaid\n"
-                ."Balance Amount: $amountDue\n"
-                ."Kind regards\n\n"
-                ."[Team TRYON]";
-    
-            $headers = "From: tryongymsoftware@gmail.com";
-    
-            if (mail($clientEmail, $subject, $body, $headers)) {
-                $insertClient = "INSERT INTO temp_client (fullName, contactNo, altContactNo, email, add1,"
-                . "add2, location, district, pincode, dob, gender, photoID, memberType, trainerName, packageName,"
-                . "packageDuration, batchTime, startDate, endDate, EmgContactName, EmgContactNo, medicalReport, medicalProblem,"
-                . "paymentMode, totalAmount, amountPaid, amountDue, dueDate, transactionNo, notification, dtoc)"
-                ." VALUES ('$clientFullName','$clientPrimaryNumber','$clientAlternateNumber','$clientEmail','$clientAddress1',"
-                . "'$clientAddress2','$clientLocation','$clientDistrict','$clientPincode','$clientDOB','$clientGender',"
-                . "'$PhotoIdFileLocation','$membershipType','$trainerName','$clientPackageName','$clientPackageDuration','$batchSelected',"
-                . "'$startDate','$endDate','$clientEmergConatctName','$clientEmergContactNo','$MedicalReportLocation','$medicalProblem',"
-                . "'$paymentMode','$totalAmount','$amountPaid','$amountDue','$dueDate','$transactionNo','1', NOW())";
-                //echo "Email successfully sent to $clientEmail.";
-            } 
-            else {
-                $insertClient = "INSERT INTO temp_client (fullName, contactNo, altContactNo, email, add1,"
-                . "add2, location, district, pincode, dob, gender, photoID, memberType, trainerName, packageName,"
-                . "packageDuration, batchTime, startDate, endDate, EmgContactName, EmgContactNo, medicalReport, medicalProblem,"
-                . "paymentMode, totalAmount, amountPaid, amountDue, dueDate, transactionNo, notification, dtoc)"
-                ." VALUES ('$clientFullName','$clientPrimaryNumber','$clientAlternateNumber','$clientEmail','$clientAddress1',"
-                . "'$clientAddress2','$clientLocation','$clientDistrict','$clientPincode','$clientDOB','$clientGender',"
-                . "'$PhotoIdFileLocation','$membershipType','$trainerName','$clientPackageName','$clientPackageDuration','$batchSelected',"
-                . "'$startDate','$endDate','$clientEmergConatctName','$clientEmergContactNo','$MedicalReportLocation','$medicalProblem',"
-                . "'$paymentMode','$totalAmount','$amountPaid','$amountDue','$dueDate','$transactionNo','0', NOW())";
-                //echo "Email sending failed...<br>";
-                //echo $insertClient;
-            }
-            $insertQuery = mysqli_query ($connect, $insertClient);
-            header("Location:../client.php");
-        
-         if($insertQuery == true) {
-            move_uploaded_file($filePhotoIdTmp, $PhotoIdFileLocation);
-            move_uploaded_file($fileMedicalReportTmp, $MedicalReportLocation);   
+        $subject = "Welcome to TRYON";
+        $body = "Greetings $clientFullName,\n\nThanks for joining TRYON – we’re excited to have you on board! You’ve taken "
+                . "the first step towards achieving your fitness goals .\n\n"
+                . "Get started by collecting your Access Card from reception. "
+                . "During this session we’ll prepare a workout program to"
+                . "help you achieve your goals and show you how to use all of the equipment.\n\n"
+                . "You’ll informed our opening times, class timetable, and a list of what to bring while "
+                . "coming to GYM. If you have any questions, then please don’t hesitate to get in touch. "
+                . "Just give a call on +919876543210 or email us at help@tryon.me and we’ll respond asap.\n\n"
+                . "Here are some information about your membership:\nMember Name: $clientFullName\nContact No: $clientPrimaryNumber\n"
+                . "Membership Type: $membershipType\nTrainer: $trainerName\nPackage Selected: $clientPackageName for $clientPackageDuration\n"
+                . "Batch Time: $batchSelected\nMembership starts from $startDate to $endDate\nPackage Amount: $totalAmount\nAmount Paid: $amountPaid\n"
+                . "Balance Amount: $amountDue\n"
+                . "Kind regards\n\n"
+                . "[Team TRYON]";
+
+        $headers = "From: Tryon <tryongymsoftware@gmail.com>";
+
+        if (mail($clientEmail, $subject, $body, $headers) == TRUE) {
+            $insertClient = "INSERT INTO temp_client (fullName, contactNo, altContactNo, email, add1,"
+                    . "add2, location, district, pincode, dob, gender, photoID, memberType, trainerName, packageName,"
+                    . "packageDuration, batchTime, startDate, endDate, EmgContactName, EmgContactNo, medicalReport, medicalProblem,"
+                    . "paymentMode, totalAmount, amountPaid, amountDue, dueDate, transactionNo, notification, dtoc)"
+                    . " VALUES ('$clientFullName','$clientPrimaryNumber','$clientAlternateNumber','$clientEmail','$clientAddress1',"
+                    . "'$clientAddress2','$clientLocation','$clientDistrict','$clientPincode','$clientDOB','$clientGender',"
+                    . "'$PhotoIdFileLocation','$membershipType','$trainerName','$clientPackageName','$clientPackageDuration','$batchSelected',"
+                    . "'$startDate','$endDate','$clientEmergConatctName','$clientEmergContactNo','$MedicalReportLocation','$medicalProblem',"
+                    . "'$paymentMode','$totalAmount','$amountPaid','$amountDue','$dueDate','$transactionNo','1', NOW())";
+            $emailStatus = "INSERT INTO email_list (emailReceipent, emailSubject, emailBody, status) VALUES "
+                    . "('$clientEmail','$subject', '$body', '1' )";
+            //echo "Email successfully sent to $clientEmail.";
+        } else {
+            $insertClient = "INSERT INTO temp_client (fullName, contactNo, altContactNo, email, add1,"
+                    . "add2, location, district, pincode, dob, gender, photoID, memberType, trainerName, packageName,"
+                    . "packageDuration, batchTime, startDate, endDate, EmgContactName, EmgContactNo, medicalReport, medicalProblem,"
+                    . "paymentMode, totalAmount, amountPaid, amountDue, dueDate, transactionNo, notification, dtoc)"
+                    . " VALUES ('$clientFullName','$clientPrimaryNumber','$clientAlternateNumber','$clientEmail','$clientAddress1',"
+                    . "'$clientAddress2','$clientLocation','$clientDistrict','$clientPincode','$clientDOB','$clientGender',"
+                    . "'$PhotoIdFileLocation','$membershipType','$trainerName','$clientPackageName','$clientPackageDuration','$batchSelected',"
+                    . "'$startDate','$endDate','$clientEmergConatctName','$clientEmergContactNo','$MedicalReportLocation','$medicalProblem',"
+                    . "'$paymentMode','$totalAmount','$amountPaid','$amountDue','$dueDate','$transactionNo','0', NOW())";
+            $emailStatus = "INSERT INTO email_list (emailReceipent, emailSubject, emailBody, status) VALUES "
+                    . "('$clientEmail','$subject', '$body', '0' )";
+            //echo "Email sending failed...<br>";
+            //echo $insertClient;
         }
-        else 
-        {
+        $insertQuery = mysqli_query($connect, $insertClient);
+        $execEmailStatus = mysqli_query($connect, $emailStatus);
+        header("Location:../client.php");
+
+        if ($insertQuery == true) {
+            move_uploaded_file($filePhotoIdTmp, $PhotoIdFileLocation);
+            move_uploaded_file($fileMedicalReportTmp, $MedicalReportLocation);
+        } else {
             echo "Failed<br>";
             echo $insertClient;
             //mysqli_close($connect);
         }
-    }
-    else
-    {
+    } else {
         echo 'Already exist';
         mysqli_close($connect);
     }

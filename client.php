@@ -261,15 +261,15 @@ include 'includes/include_once/db.php';
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Total Amount</label>
-                                                        <input type="text" name="totalamount" class="form-control" id="totalamt" oninput="calculateAmountDue()">
+                                                        <input type="text" name="totalamount" class="form-control" id="totalamt" oninput="calculateAmount()">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Paid</label>
-                                                        <input type="text" name="amountpaid" class="form-control" id="amtpaid" oninput="calculateAmountDue()">
+                                                        <input type="text" name="amountpaid" class="form-control" id="amtpaid" oninput="calculateAmount()">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Due</label>
-                                                        <input type="text" name="amtdue" class="form-control" id="amtdue">
+                                                        <input type="text" name="amtdue" class="form-control" id="amtdue" value="" readonly>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Due Date</label>
@@ -285,13 +285,12 @@ include 'includes/include_once/db.php';
                                                 </div>
                                                 <script type="text/javascript">
 
-                                                    function Calculate() {
-                                                        var totalamt = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*/()";
-                                                        var amtpaid = Math.floor(Math.random() * (max - min + 1)) + min;
-                                                        var randPassword = Array(randPwLen).fill(passwordChars).map(function (x) {
-                                                            return x[Math.floor(Math.random() * x.length)]
-                                                        }).join('');
-                                                        return randPassword;
+                                                    function calculateAmount(){
+                                                        var totalAmount = document.getElementById("totalamt").value;
+                                                        var paidAmount = document.getElementById("amtpaid").value;
+                                                        var balanceAmount = totalAmount - paidAmount;
+                                                        //alert(balanceAmount);
+                                                        document.getElementById("amtdue").value = balanceAmount;
                                                     }
                                                     document.getElementById("generatePassword").addEventListener("click", function () {
                                                         random_password = random_password_generate(16, 8);

@@ -156,9 +156,9 @@ $result = mysqli_fetch_assoc($execQuery);
                                     <div class="form-group col-md-4">
                                         <label >Shift Timing<span style="color:red">*</span></label>
                                         <select id="inputState" class="form-control" required name="shifttime">
-                                            <option value="5:30 am - 9:30 am"<?php echo ($result['sShiftTime']== '5:30 am - 9:30 am || 4:00 pm - 8:00 pm')?' selected':'';?>>5:30 am - 9:30 am || 4:00 pm - 8:00 pm</option>
-                                            <option value="6:00 am - 10:00 am"<?php echo ($result['sShiftTime']== '6:00 am - 10:00 am || 4:30 pm - 8:30 pm')?' selected':'';?>>6:00 am - 10:00 am || 4:30 pm - 8:30 pm</option>
-                                            <option value="7:00 am - 11:00 am"<?php echo ($result['sShiftTime']== '7:00 am - 11:00 am || 5:00 pm - 9:00 pm')?' selected':'';?>>7:00 am - 11:00 am || 5:00 pm - 9:00 pm</option>
+                                            <option value="5:30 am - 9:30 am || 4:00 pm - 8:00 pm"<?php echo ($result['sShiftTime']== '5:30 am - 9:30 am || 4:00 pm - 8:00 pm')?' selected':'';?>>5:30 am - 9:30 am || 4:00 pm - 8:00 pm</option>
+                                            <option value="6:00 am - 10:00 am || 4:30 pm - 8:30 pm"<?php echo ($result['sShiftTime']== '6:00 am - 10:00 am || 4:30 pm - 8:30 pm')?' selected':'';?>>6:00 am - 10:00 am || 4:30 pm - 8:30 pm</option>
+                                            <option value="7:00 am - 11:00 am || 5:00 pm - 9:00 pm"<?php echo ($result['sShiftTime']== '7:00 am - 11:00 am || 5:00 pm - 9:00 pm')?' selected':'';?>>7:00 am - 11:00 am || 5:00 pm - 9:00 pm</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">

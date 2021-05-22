@@ -28,11 +28,15 @@ $result = mysqli_fetch_array($execQueryResult);
                 </div>
             </div>
             <div class="row">
+                <?php $sumAmount = mysqli_query($connect, "SELECT sum(amountDue) FROM temp_client");
+                $sumResult = mysqli_fetch_array($sumAmount);
+                $sumAmount = $sumResult['0'];
+                ?>
                 <div class="col-sm-4">
                     <div class="card border-primary mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Total Amount Due</h5>
-                            <p class="card-text">₹25000</p>                            
+                            <p class="card-text zoomprice">₹<?=$sumAmount;?></p>                            
                         </div>
                     </div>
                 </div>
@@ -40,7 +44,7 @@ $result = mysqli_fetch_array($execQueryResult);
                     <div class="card border-primary mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Membership Expired</h5>
-                            <p class="card-text"><?=$total = $result['0'];?></p>                            
+                            <p class="card-text" style="color:red;"><?=$total = $result['0'];?> People</p>                            
                         </div>
                     </div>
                 </div>
@@ -62,7 +66,7 @@ $result = mysqli_fetch_array($execQueryResult);
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
                             Notification List
                         </button>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#incomereport">
                             Income Report
                         </button>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notificationList">
@@ -155,7 +159,7 @@ $result = mysqli_fetch_array($execQueryResult);
                                                         <?php
                                                         $sr = 0;
                                                         include('includes/include_once/db.php');
-                                                        $data = "SELECT * FROM email_list";
+                                                        $data = "SELECT * FROM email_list WHERE status = 0";
                                                         $query = mysqli_query($connect, $data);
                                                         while ($result = mysqli_fetch_assoc($query)) {
                                                         //print_r($result);
@@ -172,6 +176,68 @@ $result = mysqli_fetch_array($execQueryResult);
                                                                     <a class="fa fa-bell btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Notify" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
                                                                 </td>
                                                             </tr>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="collapse" id="incomereport"  data-spy="scroll">
+                        <div class="row">
+                            <!-- Column -->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="table-responsive m-t-20 no-wrap">
+                                                <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <!--<th>Sr. No.</th>-->
+                                                            <!--<th>Profile</th>-->
+                                                            <th>Membership Type </th>
+                                                            <th>Total No. of Admission</th>
+                                                            <th>Total Amount Collected</th>
+<!--                                                            <th>Membership</th>
+                                                            <th>Balance Amount</th>
+                                                            <th>Action</th>-->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                        <tr>
+                                                            <td><h6>General Membership</h6></td>
+                                                            <td><h6>Personal Training</h6></td>
+                                                            <td><h6>General Membership</h6></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h6>Personal Training</h6></td>
+                                                            <td><h6>General Membership</h6></td>
+                                                            <td><h6>General Membership</h6></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h6>Premium Membership</h6></td>
+                                                            <td><h6>General Membership</h6></td>
+                                                            <td><h6>General Membership</h6></td>
+                                                        </tr>
+                                                            
+                                                        <?php
+                                                        $sr = 0;
+                                                        include('includes/include_once/db.php');
+                                                        $data = "SELECT * FROM membershiprenewal WHERE status = 0"; //SELECT sum(amountPaid),paymentDate FROM temp_client WHERE paymentDate = date(now()) 
+                                                        $query = mysqli_query($connect, $data);
+                                                        while ($result = mysqli_fetch_assoc($query)) {
+                                                        //print_r($result);
+                                                        //exit();
+                                                            ?>
+                                                            
                                                             <?php
                                                         }
                                                         ?>

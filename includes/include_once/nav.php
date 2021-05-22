@@ -84,7 +84,7 @@
                 <li> <a class="waves-effect waves-dark" href="settings.php" aria-expanded="false"><i
                             class="fa fa-cogs"></i><span class="hide-menu">Settings</span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" href="test.php" aria-expanded="false"><i
+                <!--<li> <a class="waves-effect waves-dark" href="test.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test2.php" aria-expanded="false"><i
@@ -92,7 +92,7 @@
                 </li>
                 <li> <a class="waves-effect waves-dark" href="test3.php" aria-expanded="false"><i
                             class="fa fa-bookmark-o"></i><span class="hide-menu">Test-3</span></a>
-                </li>
+                </li>-->
             </ul>
         </nav>
     </div>

@@ -95,15 +95,18 @@ $result = mysqli_fetch_assoc($execQuery);
                                             <div class="form-group col-md-6">
                                                 <label>Contact Number<span style="color:red">*</span></label>
                                                 <input type="text" name="sprimaryno" class="form-control" value="<?= $result['sPrimaryContact']; ?>" required>
+                                                <p style="color:red">invalid Contact number</p>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Alternate Number</label>
                                                 <input type="text" name="salternateno" class="form-control" value="<?= $result['sAlternateContact']; ?>" required>
+                                                <p style="color:red">invalid Contact number</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>E-mail<span style="color:red">*</span></label>
                                             <input type="email" name="semail" class="form-control" value="<?= $result['sEmail']; ?>" required>
+                                            <p style="color:red">invalid email address</p>
                                         </div>
                                     </div>                            
                                 </div>
@@ -148,6 +151,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                     <div class="form-group col-md-4">
                                         <label >Pincode<span style="color:red">*</span></label>
                                         <input type="text" name="pincode" class="form-control" value="<?= $result['sPincode']; ?>" required>
+                                        <p style="color:red">invalid pincode</p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Joining Date<span style="color:red">*</span></label>

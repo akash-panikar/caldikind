@@ -36,6 +36,7 @@ $defaultImage = "images/people/6.png";
                                 <div class="form-group col-md-3">
                                     <label>Amount<span style="color:red">*</span></label>
                                     <input type="text" class="form-control" name="amount">
+                                    <p style="color:red">invalid amount</p>
                                 </div>
                                 
                                 <div class="form-group col-md-3">

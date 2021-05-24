@@ -27,24 +27,27 @@ include('includes/include_once/db.php');
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Fullname<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="fname" id="inputEmail4">
+                                    <input type="text" class="form-control" name="fname" required>
                                 </div>                               
                                 <div class="form-group col-md-6">
                                     <label>email</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="email" id="email" oninput="validateEmail()">
+                                    <p style="color:red" id="email-message"></p>
                                 </div>
                                 
                                 <div class="form-group col-md-4">
                                     <label>Primary Contact Number<span style="color:red">*</span></label>
-                                    <input type="phone" class="form-control" name="primarycontact" >
+                                    <input type="phone" class="form-control" name="primarycontact" id="mobile" onchange="CheckNumber()" required>
+                                    <p style="color:red" id="mobile-message"></p>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Alternate Contact Number</label>
-                                    <input type="phone" class="form-control" name="alternatecontact" >
+                                    <input type="phone" class="form-control" name="alternatecontact" id="mobile1" onchange="CheckAlternateNumber()">
+                                    <p style="color:red" id="mobile1-message"></p>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputState">Gender<span style="color:red">*</span></label>
-                                    <select id="inputState" class="form-control" name="gender">
+                                    <select id="inputState" class="form-control" name="gender" required>
                                         <option selected disabled>Choose...</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -53,11 +56,11 @@ include('includes/include_once/db.php');
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Location</label>
-                                    <input type="phone" class="form-control" name="address">
+                                    <input type="phone" class="form-control" name="address" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEnq">Enquiry Type<span style="color:red">*</span></label>
-                                    <select id="inputEnq" class="form-control" name="enqtype">
+                                    <select id="inputEnq" class="form-control" name="enqtype" required>
                                         <option selected>Choose...</option>
                                         <option value="Phone">Phone</option>
                                         <option value="Walk-IN">Walk-IN</option>
@@ -139,6 +142,47 @@ include('includes/include_once/db.php');
                                                                             //alert(document.getElementById("deleteForm").action);
                                                                             document.getElementById("notInterested").action = "process/enquiryProcess.php?id=" + id;
                                                                         }
+                                                                        
+                                                                        // email validation
+                                                                        function validateEmail(email) {
+                                                                            const regex_pattern =      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                                                                            if (regex_pattern.test(email)) {
+                                                                                //alert('The email address is valid');
+                                                                                //document.getElementById("email-message").inner.HTML
+                                                                            }
+                                                                            else {
+                                                                                //alert('The email address is not valid');
+                                                                                document.getElementById("email-message").innerHTML = 'The email address is not valid';
+                                                                            }
+                                                                        }
+
+                                                                        // Mobile Number valiadtion
+                                                                        function CheckNumber(mobile)   
+                                                                        {  
+                                                                            var a = /^\d{10}$/;  
+                                                                            if (a.test(mobile))   
+                                                                            {  
+                                                                                alert("Your Mobile Number Is Valid.")  
+                                                                            }   
+                                                                            else   
+                                                                            {  
+                                                                                document.getElementById("mobile-message").innerHTML = 'invalid Contact number';
+                                                                            }  
+                                                                        }; 
+                                                                                // Alternate mobile number
+                                                                        //function CheckAlternateNumber()   
+                                                                        //{  
+                                                                         //   var value = document.getElementById('mobile1');
+                                                                         //   if (isNaN(value))   
+                                                                         //   {  
+                                                                         //       return "true";  
+                                                                         //   }   
+                                                                         //   else   
+                                                                         //   {  
+                                                                         //       document.getElementById("mobile1-message").innerHTML = 'invalid Contact number';
+                                                                         //   }  
+                                                                        //}; 
                                                                     </script>
                                                                 </div>
                                                             </div>

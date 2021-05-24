@@ -52,15 +52,18 @@ include 'includes/include_once/db.php';
                                                             <div class="form-group col-md-6">
                                                                 <label>Contact Number<span style="color:red">*</span></label>
                                                                 <input type="text" name="primaryno" class="form-control" id="contact" required>
+                                                                <p style="color:red">invalid Contact number</p>
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label>Alternate Number</label>
                                                                 <input type="text" name="alternateno" class="form-control">
+                                                                <p style="color:red">invalid Contact number</p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>E-mail<span style="color:red">*</span></label>
                                                             <input type="email" name="email" class="form-control" id="email"oninput="checkEmail()" required>
+                                                            <p style="color:red">invalid email address</p>
                                                         </div>
                                                     </div> 
                                                     <div class="col-md-5">
@@ -92,6 +95,7 @@ include 'includes/include_once/db.php';
                                                     <div class="form-group col-md-4">
                                                         <label >Pincode<span style="color:red">*</span></label>
                                                         <input type="text" name="pincode" class="form-control" required>
+                                                        <p style="color:red">invalid pincode</p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Date of Birth<span style="color:red">*</span></label>
@@ -222,6 +226,7 @@ include 'includes/include_once/db.php';
                                                     <div class="form-group col-md-4">
                                                         <label >Contact Number</label>
                                                         <input type="text" name="emgnum" class="form-control">
+                                                        <p style="color:red">invalid Contact number</p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label >Medical Report (Optional)</label>
@@ -262,10 +267,12 @@ include 'includes/include_once/db.php';
                                                     <div class="form-group col-md-4">
                                                         <label>Total Amount</label>
                                                         <input type="text" name="totalamount" class="form-control" id="totalamt" oninput="calculateAmount()">
+                                                        <p style="color:red">invalid amount</p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Paid</label>
                                                         <input type="text" name="amountpaid" class="form-control" id="amtpaid" oninput="calculateAmount()">
+                                                        <p style="color:red">invalid amount</p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Due</label>
@@ -284,7 +291,6 @@ include 'includes/include_once/db.php';
                                                     </div>
                                                 </div>
                                                 <script type="text/javascript">
-
                                                     function calculateAmount(){
                                                         var totalAmount = document.getElementById("totalamt").value;
                                                         var paidAmount = document.getElementById("amtpaid").value;

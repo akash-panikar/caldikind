@@ -34,22 +34,22 @@ include('includes/include_once/nav.php');
                                 <form method="POST" action="process/userProcess.php">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label>Fullname</label>
-                                            <input type="text" class="form-control" name="fname">
+                                            <label>Fullname<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" name="fname" required>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Contact Number</label>
-                                            <input type="text" class="form-control" name="cntno">
+                                            <label>Contact Number<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" name="cntno" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>email</label>
-                                        <input type="email" class="form-control" name="email">
+                                        <label>email<span style="color:red">*</span></label>
+                                        <input type="email" class="form-control" name="email" required>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label>Password</label>
-                                            <input type="text" class="form-control" name="password" id="password">
+                                            <label>Password<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" name="password" id="password" autocomplete="false" required>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label>Want System To Generate Password ?</label>
@@ -63,13 +63,13 @@ include('includes/include_once/nav.php');
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label>Confirm Password</label>
-                                            <input type="password" class="form-control" name="cnfpass" id="cnfpass" oninput="matchPassword();">
+                                            <label>Confirm Password<span style="color:red">*</span></label>
+                                            <input type="password" class="form-control" name="cnfpass" id="cnfpass" oninput="matchPassword();" required>
                                             <span id = "message" style="color:red"> </span>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label>User Type</label>
-                                            <select class="form-control" name="usertype">
+                                            <label>User Type<span style="color:red">*</span></label>
+                                            <select class="form-control" name="usertype" required>
                                                 <option selected disabled>Choose...</option>
                                                 <option>Admin</option>
                                                 <option>Manager</option>
@@ -78,8 +78,8 @@ include('includes/include_once/nav.php');
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label>Status</label>
-                                            <select class="form-control" name="status">
+                                            <label>Status<span style="color:red">*</span></label>
+                                            <select class="form-control" name="status" required>
                                                 <option selected disabled>Choose...</option>
                                                 <option>Active</option>
                                                 <option>Inactive</option>
@@ -222,18 +222,20 @@ include('includes/include_once/nav.php');
                                                         <td><?php echo $result['status']; ?></td>
                                                         <td class="table-action">
                                                             <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
-                                                            <span data-toggle="modal" data-target="#deleteModel"><a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['uID']; ?>" onclick="myButton(<?php echo $result['sID']; ?>)" type="button" data-toggle="tooltip" data-placement="right" title="suspend"></a></span>
+                                                            <span data-toggle="modal" data-target="#suspendModel"><a class="fa fa-ban btn btn-outline-warning" value="<?php echo $result['uID']; ?>" onclick="suspend(<?php echo $result['uID']; ?>)" type="button" data-toggle="tooltip" data-placement="right" title="suspend"></a></span>
+                                                            <span data-toggle="modal" data-target="#deleteModel"><a class="fa fa-trash btn btn-outline-danger" value="<?php echo $result['uID']; ?>" onclick="myButton(<?php echo $result['uID']; ?>)" type="button" data-toggle="tooltip" data-placement="right" title="Delete"></a></span>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
-                                                                        <form action="process/staffProcess.php" id="deleteForm" method="POST">
+                                                                        <form action="process/userProcess.php" id="deleteForm" method="POST">
                                                                             <div class="modal-body">
-                                                                                Are You Sure You Want To Delete ?
+                                                                                <h3>Are You Sure You Want To Delete ?</h3>
+                                                                                <h5>Once you delete the account account, you won't able to<br> recover it back.</h5>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -243,7 +245,32 @@ include('includes/include_once/nav.php');
                                                                         <script>
                                                                             function myButton(id) {
                                                                                 //alert(document.getElementById("deleteForm").action);
-                                                                                document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
+                                                                                document.getElementById("deleteForm").action = "process/userProcess.php?id=" + id;
+                                                                            }
+                                                                        </script>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal fade" id="suspendModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Suspend Account</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <form action="process/userProcess.php" id="suspendForm" method="POST">
+                                                                            <div class="modal-body">
+                                                                                <h4>Are You Sure You Want To Suspend This Account ?</h4>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary" name="suspend">Suspend</button>
+                                                                            </div>
+                                                                        </form>
+                                                                        <script>
+                                                                            function suspend(id) {
+                                                                                //alert(document.getElementById("deleteForm").action);
+                                                                                document.getElementById("suspendForm").action = "process/userProcess.php?id=" + id;
                                                                             }
                                                                         </script>
                                                                     </div>

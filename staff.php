@@ -96,15 +96,18 @@ $defaultImage = "images/people/6.png";
                                             <div class="form-group col-md-6">
                                                 <label>Contact Number<span style="color:red">*</span></label>
                                                 <input type="text" name="sprimaryno" class="form-control" required>
+                                                <p style="color:red">invalid Contact number</p>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Alternate Number</label>
                                                 <input type="text" name="salternateno" class="form-control" required>
+                                                <p style="color:red">invalid Contact number</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>E-mail<span style="color:red">*</span></label>
                                             <input type="text" name="semail" class="form-control" required>
+                                            <p style="color:red">invalid email address</p>
                                         </div>
                                     </div>                            
                                 </div>
@@ -151,6 +154,7 @@ $defaultImage = "images/people/6.png";
                                     <div class="form-group col-md-4">
                                         <label >Pincode<span style="color:red">*</span></label>
                                         <input type="text" name="pincode" class="form-control" required>
+                                        <p style="color:red">invalid pincode</p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Joining Date<span style="color:red">*</span></label>
@@ -177,14 +181,17 @@ $defaultImage = "images/people/6.png";
                                     <div class="form-group col-md-4">
                                         <label >School/College Marksheet</label>
                                         <input type="file" name="marksheet" class="form-control" id="marksheet" onchange="imageValidation('marksheet')" >
+                                        <p style="color:red">invalid file selected</p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Certification (Optional)</label>
                                         <input type="file" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
+                                        <p style="color:red">invalid file selected</p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label > Photo ID Proof<span style="color:red">*</span></label>
                                         <input type="file" name="idproof" class="form-control" required id="idproof" onchange="imageValidation('idproof')">
+                                        <p style="color:red">invalid file selected</p>
                                     </div>
 
                                     <div class="form-check">

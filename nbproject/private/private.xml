@@ -7,13 +7,9 @@
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/nav.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/includes/include_once/header.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/report.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/process/paymentProcess.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/users.php</file>
             <file>file:/G:/xampp/htdocs/caldikind/receipt.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/client.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/resetPassword.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/forgot.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/process/renewProcess.php</file>
-            <file>file:/G:/xampp/htdocs/caldikind/renew.php</file>
+            <file>file:/G:/xampp/htdocs/caldikind/editEnquiry.php</file>
         </group>
     </open-files>
 </project-private>

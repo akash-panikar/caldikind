@@ -30,16 +30,19 @@ $result = mysqli_fetch_assoc($execQuery);
                                 </div>                               
                                 <div class="form-group col-md-6">
                                     <label>email</label>
-                                    <input type="email" class="form-control" value="<?= $result['vEmail']; ?>" name="email">
+                                    <input type="email" class="form-control" value="<?= $result['vEmail']; ?>" name="email" id="email" oninput="validateEmail()">
+                                    <p style="color:red" id="email-wrong"></p> <p style="color:green" id="email-right"></p>
                                 </div>
                                 
                                 <div class="form-group col-md-4">
                                     <label>Primary Contact Number<span style="color:red">*</span></label>
-                                    <input type="phone" class="form-control" value="<?= $result['vMobile']; ?>" name="eprimaryno">
+                                    <input type="phone" class="form-control" value="<?= $result['vMobile']; ?>" name="eprimaryno" id="mobile" onchange="CheckNumber()">
+                                    <p style="color:red" id="mobile-message"></p>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Alternate Contact Number</label>
                                     <input type="phone" class="form-control" value="<?= $result['vMobile2']; ?>" name="ealterno">
+                                    <p style="color:red"></p>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Gender<span style="color:red">*</span></label>
@@ -71,6 +74,35 @@ $result = mysqli_fetch_assoc($execQuery);
                             <button type="submit" class="btn btn-primary" name="update">submit</button>
                         </form>
                     </div>
+            <script>
+                //------------------------ email validation-----------------------------------
+                function validateEmail(email) {
+                    const regex_pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                    if (regex_pattern.test(email)) {
+                        //alert('The email address is valid');
+                        document.getElementById("email-right").innerHTML = 'email address is valid';
+                    }
+                    else {
+                        //alert('The email address is not valid');
+                        document.getElementById("email-wrong").innerHTML = 'The email address is not valid';
+                    }
+                }
+
+                //------------------ Mobile Number valiadtion------------------------------
+                function CheckNumber(mobile)   
+                {  
+                    var a = /^\d{10}$/;  
+                    if (a.test(mobile))   
+                    {  
+                        alert("Your Mobile Number Is Valid.")  
+                    }   
+                    else   
+                    {  
+                        document.getElementById("mobile-message").innerHTML = 'invalid Contact number';
+                    }  
+                }; 
+            </script>
                 </div>
             </div>
             <footer class="footer"> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>

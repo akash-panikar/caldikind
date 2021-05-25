@@ -19,7 +19,7 @@ include('includes/include_once/db.php');
                     </ol>
                 </div>
             </div>
-            <div>
+<!--            <div>
                 <p>
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">
                         Add Receipt
@@ -39,7 +39,7 @@ include('includes/include_once/db.php');
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Mobile Number<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="mobile" value="<?=$result['contactNo'];?>">
+                                    <input type="text" class="form-control" name="mobile" value="<?//=$result['contactNo'];?>">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Amount<span style="color:red">*</span></label>
@@ -50,10 +50,10 @@ include('includes/include_once/db.php');
                                     <label>Balance Amount<span style="color:red">*</span></label>
                                     <input type="text" class="form-control" name="paidby" >
                                 </div>
-<!--                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-2">
                                     <label>categories</label>
                                     <input type="phone" class="form-control" name="alternatecontact" >
-                                </div>-->
+                                </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputState">Payment Mode<span style="color:red">*</span></label>
                                     <select id="inputState" class="form-control" name="categories">
@@ -74,7 +74,7 @@ include('includes/include_once/db.php');
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="row">
                 <!-- Column -->
                 <div class="col-lg-12">
@@ -86,10 +86,10 @@ include('includes/include_once/db.php');
                                         <thead>
                                             <tr>
                                                 <th>Sr. No.</th>
-                                                <th>Date</th>
-                                                <th>Amount</th>
-                                                <th>Paid by</th>
-                                                <th>categories</th>
+                                                <th>Name</th>
+                                                <th>Amount Paid</th>
+                                                <th>Paid On</th>
+                                                <th>Membership</th>
                                                 <th>Remark</th>
                                                 <th>Action</th>
                                             </tr>
@@ -106,13 +106,13 @@ include('includes/include_once/db.php');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo ++$sr; ?></td>
-                                                    <td><h6><?php echo $result['date']; ?></h6></td>
+                                                    <td><h6><?php echo $result['ePaidBy']; ?></h6></td>
                                                     <td><h6><?php echo '₹ '.$result['eAmount']; ?></h6></td>
-                                                    <td><?php echo $result['ePaidBy']; ?></td>
+                                                    <td><?php echo $result['date']; ?></td>
                                                     <td><?php echo $result['eCategories']; ?></td>
                                                     <td><?php echo $result['remark']; ?></td>
                                                     <td class="table-action">
-                                                        <a class="fa fa-edit btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editStaff.php?id=<?= $result['sID']; ?>"></a>
+                                                        <a class="fa fa-edit btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editReceipt.php?id=<?= $result['eID']; ?>"></a>
                                                     </td>
                                                 </tr>
                                                 <?php

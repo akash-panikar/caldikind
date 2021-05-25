@@ -44,7 +44,8 @@ include('includes/include_once/nav.php');
                                     </div>
                                     <div class="form-group">
                                         <label>email<span style="color:red">*</span></label>
-                                        <input type="email" class="form-control" name="email" required>
+                                        <input type="email" class="form-control" name="email" id="email" required onchange="validateE()">
+                                        <p id="email-message"></p>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -64,8 +65,8 @@ include('includes/include_once/nav.php');
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Confirm Password<span style="color:red">*</span></label>
-                                            <input type="password" class="form-control" name="cnfpass" id="cnfpass" oninput="matchPassword();" required>
-                                            <span id = "message" style="color:red"> </span>
+                                            <input type="password" class="form-control" name="cnfpass" id="cnfpass" onchange="matchPassword();" required>
+                                            <p id="password-wrong"></p>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>User Type<span style="color:red">*</span></label>
@@ -111,17 +112,6 @@ include('includes/include_once/nav.php');
                         random_password = random_password_generate(16, 8);
                         document.getElementById("password").value = random_password;
                     });
-
-//                        function matchPassword() {  
-//                            var password = document.getElementById("password");  
-//                            var confirmpassword = document.getElementById("cnfpass");  
-//                            if(confirmpassword !== password)  
-//                            {   
-//                              document.getElementById("message").innerHTML = "**Password does not match**";
-//                            } else {  
-//                              document.getElementById("message").innerHTML = "**Password matched**";
-//                            }  
-//                          };
 
                     var percentage = 0;
                     function check(n, m) {
@@ -174,11 +164,38 @@ include('includes/include_once/nav.php');
                         $("#password").keyup(function () {
                             var m = $(this).val();
                             var n = m.length;
-
                             // Function for checking
                             check(n, m);
                         });
                     });
+                    // ---------------------------------- Password match --------------------------
+                    function matchPassword() {
+                    var x= document.getElementById("password");
+                        var y= document.getElementById("cnfpass");
+                        if(x.value==y.value){
+                            document.getElementById("password-wrong").innerHTML = 'Password match';
+                            document.getElementById("password-wrong").style.color = "green";
+                        }
+                        else{
+                            document.getElementById("password-wrong").innerHTML = 'Password do not match';
+                            document.getElementById("password-wrong").style.color = "red";
+                        }
+                    }
+                    // ------------------------------------- Email Validation
+                        function validateEmail() {
+                            var email = document.getElementById("email").value;
+                            if(email.indexOf('@')<=0){
+                                    document.getElementById('email-message').innerHTML="Invalid email address";
+                                    return false;
+                            }     
+                            else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+                                    document.getElementById('email-message').innerHTML="Invalid email address";
+                                    return false;
+                            }
+                            else {
+                                document.getElementById('email-message').innerHTML="";
+                            }
+                        }                        
                 </script>
                 <!-- ============================================================== -->
                 <div class="row">

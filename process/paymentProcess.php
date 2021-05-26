@@ -10,6 +10,7 @@ if(isset($_POST['pay_id'])){
      $data['name'] = $result['fullName'];
      $data['contactNo'] = $result['contactNo'];
      $data['balAmount'] = $result['amountDue'];
+     $data['totalAmount'] = $result['totalAmount'];
  } 
  echo json_encode($data);
 exit;
@@ -23,6 +24,9 @@ if(isset($_POST['updatePayment'])){
     $amount = $_POST['amount'];
     $paymentMode = $_POST['paymentmode'];
     $remark = $_POST['remark'];
+    $name = $_POST['fname'];
+    $clientPrimaryNumber = $_POST['cntno']; 
+    $totalAmount = $_POST['totalamount'];
     $checkQuery = "SELECT fullName, email, totalAmount, amountDue FROM temp_client WHERE tID = $id";
     $execQuery = mysqli_query($connect,$checkQuery);
     $result = mysqli_fetch_assoc($execQuery);
@@ -34,7 +38,12 @@ if(isset($_POST['updatePayment'])){
             . ", amountDue = '$amountDue'"
             . ", paymentMode = '$paymentMode' WHERE tID = '$id'";
     $execUpdatePayment = mysqli_query($connect,$updatePayment);
-    if($execUpdatePayment == TRUE){
+    
+    $insertPayment = "INSERT INTO receipt_details (cName, contactNo, totalAmount, amountPaid, amountDueBefore, amountDueAfter, remark) VALUES"
+            . "('$name', '$clientPrimaryNumber', '$totalAmount', '$amount', '$balAmount', '$amountDue', 'Membership Part Payment' )";
+    $execInsertPayemnt = mysqli_query($connect, $insertPayment);
+    
+    if(($execUpdatePayment && $execInsertPayemnt) == TRUE){
         if(!empty($remark)){
             $emailRemarkSubject = "Client Payment Remark";
             $emailRemarkBody = "Dear Manager,\n$remark\n\nAbove message is from $clientName";

@@ -38,7 +38,7 @@
                 </li>
                 <li class="dropdown-menu">
                     <a class="nav-link" href="profile.php">Profile</a>
-                    <a class="nav-link" href="manage.php" data-toggle="modal" data-target="#staticBackdrop">Change Password</a>
+                    <a class="nav-link" href="" data-toggle="modal" data-target="#staticBackdrop">Change Password</a>
                     <a class="nav-link" href="logout.php">Logout</a>
                 </li>
             </ul>
@@ -70,7 +70,7 @@
                             class="fa fa-cutlery"></i><span class="hide-menu">Diet Plans</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="receipt.php" aria-expanded="false"><i
-                            class="fa fa-money"></i><span class="hide-menu" style="color: red;">Receipt</span></a>
+                            class="fa fa-money"></i><span class="hide-menu">Receipt</span></a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="expense.php" aria-expanded="false"><i
                             class="fa fa-bolt"></i><span class="hide-menu">Expense</span></a>
@@ -113,7 +113,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <form method="POST" action="../../process/changePassword.php">
+          <form method="POST" action="process/changePassword.php">
               <div class="form-group">
                   <label>New Password</label>
                   <input type="password" class="form-control" placeholder="New Password" autocomplete="new-password">

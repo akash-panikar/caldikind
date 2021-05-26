@@ -5,15 +5,15 @@ include('includes/include_once/db.php');
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $password = mysqli_real_escape_string($connect, $_POST['pass']);
-    $check = "SELECT * FROM gymusers WHERE email = '$email'";       //and accountStatus = 'Active"
+    $check = "SELECT * FROM users WHERE email = '$email'";       //and accountStatus = 'Active"
     $exec = mysqli_query($connect, $check);
     $find = mysqli_num_rows($exec);
     if ($find == TRUE) {
         $checkPass = mysqli_fetch_assoc($exec);
-        $tempPass = $checkPass['passwd'];
+        $tempPass = $checkPass['password'];
         $decode_pass = password_verify($password, $tempPass);
         $_SESSION['fullName'] = $checkPass['fullName'];
-        $accountStatus = $checkPass['accountStatus'];
+        $accountStatus = $checkPass['status'];
         if ($decode_pass) {
             if ($accountStatus == Active) {
                 session_start('mID');

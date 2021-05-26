@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     $fileMedicalReportLower = strtolower(end($fileMedicalReportExtension));
     $fileStoreExtension = array('png', 'jpg', 'jpeg');
 
-    $userquery = "SELECT contactNo FROM temp_client WHERE contactNo = '$clientPrimaryNumber'";
+    $userquery = "SELECT fullName, contactNo FROM temp_client WHERE contactNo = '$clientPrimaryNumber'";
     $Result = mysqli_query($connect, $userquery);
     $checkUser = mysqli_num_rows($Result);
     if (!$checkUser == TRUE) {
@@ -134,6 +134,9 @@ if (isset($_POST['submit'])) {
         if ($insertQuery == true) {
             move_uploaded_file($filePhotoIdTmp, $PhotoIdFileLocation);
             move_uploaded_file($fileMedicalReportTmp, $MedicalReportLocation);
+            $insertPayment = "INSERT INTO receipt_details (cName, contactNo, totalAmount, amountPaid, amountDueBefore, amountDueAfter, remark) VALUES"
+            . "('$clientFullName', '$clientPrimaryNumber', '$totalAmount', '$amountPaid', '0', '$amountDue', 'New Joining' )";
+            $execInsertPayemnt = mysqli_query($connect, $insertPayment);
         } else {
             echo "Failed<br>";
             echo $insertClient;

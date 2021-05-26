@@ -51,19 +51,19 @@ include 'includes/include_once/db.php';
                                                         <div class="row">
                                                             <div class="form-group col-md-6">
                                                                 <label>Contact Number<span style="color:red">*</span></label>
-                                                                <input type="text" name="primaryno" class="form-control" id="contact" required>
-                                                                <p style="color:red">invalid Contact number</p>
+                                                                <input type="text" name="primaryno" class="form-control" id="mobile" onchange="ValidateNo()" onkeypress="return isNumber(event)" required>
+                                                                <p style="color:red" id="mobile-message"></p>
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label>Alternate Number</label>
-                                                                <input type="text" name="alternateno" class="form-control">
-                                                                <p style="color:red">invalid Contact number</p>
+                                                                <input type="text" name="alternateno" class="form-control" id="mobile1" onchange="AlternateMobileNo()" onkeypress="return isNumber(event)">
+                                                                <p style="color:red" id="mobile1-message"></p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>E-mail<span style="color:red">*</span></label>
-                                                            <input type="email" name="email" class="form-control" id="email"oninput="checkEmail()" required>
-                                                            <p style="color:red">invalid email address</p>
+                                                            <input type="email" name="email" class="form-control" id="email" onchange="validateEmail()" required>
+                                                            <p style="color:red" id="email-message"></p>
                                                         </div>
                                                     </div> 
                                                     <div class="col-md-5">
@@ -149,13 +149,6 @@ include 'includes/include_once/db.php';
                                                                 echo "<option value='" . $dropdownTrainer['sName'] . "'>" . $dropdownTrainer['sName'] . "</option>";
                                                             }
                                                             ?>   
-                                                            <!--   <option selected disabled value="NA">Choose...</option>
-                                                               <option value="Reuben">Reuben</option>
-                                                               <option value="Vaibhav">Vaibhav</option>
-                                                               <option value="Shriraj">Shriraj</option>
-                                                               <option value="Neeke">Neeke</option>
-                                                               <option value="Scully">Scully</option>
-                                                               <option value="Astaha">Astaha</option>-->
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-md-6">
@@ -169,11 +162,6 @@ include 'includes/include_once/db.php';
                                                                 echo "<option value='" . $dropdownPackage['pName'] . "'>" . $dropdownPackage['pName'] . "</option>";
                                                             }
                                                             ?>
-                                                            <!--   <option selected disabled>Choose...</option>
-                                                               <option value="Muscels Build-up Silver">Muscles Build-up Silver</option>
-                                                               <option value="Muscles Build-up Gold">Muscles Build-up Gold</option>
-                                                               <option value="Weight Loss Baby Steps">Weight Loss Baby Steps</option>
-                                                               <option value="Weight Loss Power">Weight Loss Power</option>-->
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-md-6">
@@ -310,6 +298,86 @@ include 'includes/include_once/db.php';
                                                             document.getElementById('transno').disabled = '';
                                                         }
                                                     }
+                                                    // -------------------------email validation -----------------------------
+                                                    function validateEmail() {
+                                                        //var email = document.emailform.email.value;
+                                                        var email = document.getElementById("email").value;
+                                                        if(email.indexOf('@')<=0){
+                                                                document.getElementById('email-message').innerHTML="Invalid email address";
+                                                                return false;
+                                                        }     
+                                                        else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+                                                                document.getElementById('email-message').innerHTML="Invalid email address";
+                                                                return false;
+                                                        }
+                                                        else {
+                                                            document.getElementById('email-message').innerHTML="";
+                                                        }
+                                                    }
+
+                                                // ---------------------------------- Mobile Number valiadtion --------------------------------
+                                                function isNumber(evt) {
+                                                    evt = (evt) ? evt : window.event;
+                                                    var numbertype = (evt.which) ? evt.which : evt.keyCode;
+                                                    if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
+                                                        document.getElementById("mobile-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
+                                                      return false;
+                                                    }
+                                                    return true;
+                                                  }
+                                                  function ValidateNo() {
+                                                    var moNumber = document.getElementById('mobile');
+                                                    if (moNumber.value == "" || moNumber.value == null) {
+                                                        document.getElementById("mobile-message").innerHTML = 'Please enter your Mobile No.';
+                                                      return false;
+                                                    }
+                                                    if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+                                                        document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+                                                      return false;
+                                                    }
+                                                    document.getElementById("mobile-message").innerHTML = '';
+                                                    return true;
+                                                  }
+                                                    // --------------------- Alternate mobile number ------------------------------------------
+                                                function isNumber(evt) {
+                                                    evt = (evt) ? evt : window.event;
+                                                    var numbertype = (evt.which) ? evt.which : evt.keyCode;
+                                                    if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
+                                                        document.getElementById("mobile1-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
+                                                      return false;
+                                                    }
+                                                    return true;
+                                                  }
+                                                  function AlternateMobileNo() {
+                                                    var moNumber = document.getElementById('mobile1');
+                                                    if (moNumber.value == "" || moNumber.value == null) {
+                                                        document.getElementById("mobile1-message").innerHTML = 'Please enter your Mobile No.';
+                                                      return false;
+                                                    }
+                                                    if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+                                                        document.getElementById("mobile1-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+                                                      return false;
+                                                    }
+                                                    document.getElementById("mobile1-message").innerHTML = '';
+                                                    return true;
+                                                  }
+                                                  // ---------------------------  Gender -------------------------------------------------------
+                                                  function dropdownCheck()
+                                                  {
+                                                    var genderCheck = document.getElementById("gender");
+                                                    var selectedOption = genderCheck.options[genderCheck.selectedIndex].value;
+                                                    if(selectedOption == 0) {
+                                                        document.getElementById("gender-message").innerHTML = 'Please select gender';
+                                                        document.getElementById("gender-message").style.color ="red";
+                                                    }
+
+                                                    var typeCheck = document.getElementById("inputEnq");
+                                                    var selectedVal = typeCheck.options[typeCheck.selectedIndex].value;
+                                                    if(selectedVal == 0){
+                                                        document.getElementById("enquiry-message").innerHTML = 'Please select enquiry type';
+                                                        document.getElementById("enquiry-message").style.color ="red";
+                                                    }
+                                                  }
                                                 </script>
                                                 <a type="button" class="btn btn-primary m-t-10" id="previous_btn_contact_details">Back</a>
                                                 <button type="submit" class="btn btn-primary m-t-10" name="submit">Submit</button>
@@ -411,6 +479,7 @@ include 'includes/include_once/db.php';
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label>Balance Amount</label>
+                                    <input type="hidden" name="totalamount" id="totalamount" readonly>
                                     <input type="text" class="form-control" name="balamount" id="balamount" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -494,7 +563,8 @@ include 'includes/include_once/db.php';
                                    $('#id').val(output.id);
                                    $('#fname').val(output.name);
                                    $('#cntno').val(output.contactNo);
-                                   $('#balamount').val(output.balAmount);                               
+                                   $('#balamount').val(output.balAmount);  
+                                   $('#totalamount').val(output.totalAmount); 
                                   jQuery.noConflict(); 
                                    $("#makepayment").modal('show'); 
                                }

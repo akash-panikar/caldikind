@@ -29,6 +29,7 @@ if (isset($_POST['renewSubmit'])) {
     $balAmount = $_POST['balamt'];
     $amount = $_POST['amtpaid'];
     $clientName = $_POST['fname'];
+    $contactNumber = $_POST['cntno'];
     $clientEmail = $_POST['email'];
     $date = date('y-m-d');
     $insertRenewal = "INSERT INTO membershiprenewal (renewalDate, startDate, endDate, packageName) VALUES "
@@ -43,6 +44,10 @@ if (isset($_POST['renewSubmit'])) {
                 . ", packageDuration = '$period'"
                 . ", packageName = '$package' WHERE tID = '$id'";
         $execUpdateRenewal = mysqli_query($connect, $updateRenewal);
+        
+        $insertPayment = "INSERT INTO receipt_details (cName, contactNo, totalAmount, amountPaid, amountDueBefore, amountDueAfter, remark) VALUES"
+            . "('$clientName', '$contactNumber', '$totalAmount', '$amount', '0', '$balAmount', 'Renewal' )";
+        $execInsertPayemnt = mysqli_query($connect, $insertPayment);
 
 
         if ($execUpdateRenewal == TRUE) {

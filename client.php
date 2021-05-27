@@ -416,7 +416,7 @@ include 'includes/include_once/db.php';
                                             <tbody>
                                                 <?php
                                                 $sr = 0;
-                                                $data = "SELECT tID, fullName, memberType, batchTime, packageName, contactNo, trainerName, startDate, endDate FROM temp_client";
+                                                $data = "SELECT tID, fullName, memberType, batchTime, packageName, contactNo, trainerName, startDate, endDate FROM temp_client WHERE status = 'Active'";
                                                 $query = mysqli_query($connect, $data);
                                                 while ($result = mysqli_fetch_assoc($query)) {
 //                                                print_r($result);
@@ -437,7 +437,7 @@ include 'includes/include_once/db.php';
                                                         <td class="table-action">
                                                             <a class="fa fa-money btn btn-outline-success pay_data_<?php echo $result['tID']; ?>" name="pay" data-toggle="modal" onclick="showModal(this)" id="<?php echo $result['tID']; ?>"></a>
                                                             <a class="fa fa-pencil-square-o btn btn-outline-primary" name="edit" href="editClient.php?id=<?=$result['tID']; ?>"></a>
-                                                            <a class="fa fa-trash-o btn btn-outline-danger" value="<?php echo $result['tID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal"  data-target="#deleteModal"></a>
+                                                            <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['tID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal"  data-target="#deleteModal"></a>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -515,22 +515,30 @@ include 'includes/include_once/db.php';
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Staff</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Freeze Membership</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="process/staffProcess.php" id="deleteForm" method="POST">
                         <div class="modal-body">
-                            Are You Sure You Want To Delete ?
+                            <label>Please select the duration</label> 
+                            <select class="form-control col-md-6">
+                                <option selected disabled>Choose...</option>
+                                <option name="freeze" value="7 Days">7 Days</option>
+                                <option name="freeze" value="15 Days">15 Days</option>
+                                <option name="freeze" value="20 Days">20 Days</option>
+                                <option name="freeze" value="25 Days">25 Days</option>
+                                <option name="freeze" value="30 Days">30 Days</option>
+                            </select>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="delete">Yes ! Delete</button>
+                            <button type="submit" class="btn btn-primary" name="delete">Freeze</button>
                         </div>
                     </form>
                     <script>
                         function myButton(id) {
                             //alert(document.getElementById("deleteForm").action);
-                            document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
+                            document.getElementById("deleteForm").action = "process/clientProcess.php?id=" + id;
                         }
                         
                         $('.addAttr').click(function() {

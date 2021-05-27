@@ -12,9 +12,9 @@ if (isset($_POST['submit'])) {
     $enquiryPersonEnquiryType = $_POST['enqtype'];
     $enquiryPersonRemark = $_POST['remark'];
 
-    $insertEnquiry = "INSERT INTO gymenquiry (vName, vEmail, vMobile, vMobile2, vGender, vLocation, vType, remark, date) VALUES "
-            . "('$enquiryPersonName', '$enquiryPersonEmail', '$enquiryPersonPrimaryContact', $enquiryPersonAlternateContact, '$enquiryPersonGender', '$enquiryPersonLocation',"
-            . "'$enquiryPersonEnquiryType', '$enquiryPersonRemark', NOW())";
+    $insertEnquiry = "INSERT INTO gymenquiry (vName, vEmail, vMobile, vMobile2, vGender, vLocation, vType, remark) VALUES "
+            . "('$enquiryPersonName', '$enquiryPersonEmail', '$enquiryPersonPrimaryContact', '$enquiryPersonAlternateContact', '$enquiryPersonGender', '$enquiryPersonLocation',"
+            . "'$enquiryPersonEnquiryType', '$enquiryPersonRemark')";
     $query = mysqli_query($connect, $insertEnquiry);
 
     if ($query == true) {
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
         $body = "Greetings $enquiryPersonName,\n\nThanks for your interest in our service.\nWe hope the given information addresses your needs."
                 . " If you require further clarifications, please do not hesitate to contact us.\nWe look forward to hear from you soon.\n"
                 . "Sincerly\n\n[Team Tryon]";
-        $headers = "From: tryongymsoftware@gmail.com";
+        $headers = "From: TRYON <tryongymsoftware@gmail.com>";
         mail($enquiryPersonEmail, $subject, $body, $headers);
 //                echo $insertEnquiry;
         mysqli_close($connect);

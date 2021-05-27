@@ -113,19 +113,28 @@
         </button>
       </div>
       <div class="modal-body">
-          <form method="POST" action="process/changePassword.php">
+          <form method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
               <div class="form-group">
                   <label>New Password</label>
-                  <input type="password" class="form-control" placeholder="New Password" autocomplete="new-password">
+                  <input type="password" class="form-control" name="newpass" placeholder="New Password" autocomplete="new-password">
               </div>
               <div class="form-group">
                   <label>New Password</label>
-                  <input type="password" class="form-control" placeholder="Repeat New Password" autocomplete="new-password">
+                  <input type="password" class="form-control" name="cnfpass" placeholder="Repeat New Password" autocomplete="new-password">
               </div>
-              <button type="submit" class="btn btn-primary">Change</button>
+              <button type="submit" class="btn btn-primary" name="changePass">Change</button>
           </form>
       </div>
       
     </div>
   </div>
 </div>
+<?php 
+if(isset($_POST['changePass'])){
+    $newpassword = $_POST['newpass'];
+    $confirmpassword = $_POST['cnfpass'];
+    if($newpassword == $confirmpassword){
+        echo 'working';
+    }
+}
+?>

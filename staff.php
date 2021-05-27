@@ -95,19 +95,19 @@ $defaultImage = "images/people/6.png";
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label>Contact Number<span style="color:red">*</span></label>
-                                                <input type="text" name="sprimaryno" class="form-control" required>
-                                                <p style="color:red">invalid Contact number</p>
+                                                <input type="text" name="sprimaryno" class="form-control" onchange="ValidateNo()" onkeypress="return isNumber(event)" required>
+                                                <p style="color:red" id="mobile-message"></p>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Alternate Number</label>
-                                                <input type="text" name="salternateno" class="form-control" required>
-                                                <p style="color:red">invalid Contact number</p>
+                                                <input type="text" name="salternateno" class="form-control" id="mobile1" onchange="ValidateNo()" required>
+                                                <p style="color:red" id="moible1-message"></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>E-mail<span style="color:red">*</span></label>
-                                            <input type="text" name="semail" class="form-control" required>
-                                            <p style="color:red">invalid email address</p>
+                                            <input type="text" name="semail" class="form-control" id="email" required>
+                                            <p style="color:red" id="email-message"></p>
                                         </div>
                                     </div>                            
                                 </div>
@@ -126,12 +126,13 @@ $defaultImage = "images/people/6.png";
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Gender<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="sgender">
+                                        <select id="inputState" class="form-control" required name="sgender" id="gender">
                                             <option selected disabled>Choose...</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="other">Other</option>
                                         </select>
+                                        <p style="color:red" id="gender-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Marital Status<span style="color:red">*</span></label>
@@ -274,6 +275,78 @@ $defaultImage = "images/people/6.png";
                                                                             //alert(document.getElementById("deleteForm").action);
                                                                             document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
                                                                         }
+                                                                        
+                                                                        // -------------------------email validation -----------------------------
+                                                                        function validateEmail() {
+                                                                            //var email = document.emailform.email.value;
+                                                                            var email = document.getElementById("email").value;
+                                                                            if(email.indexOf('@')<=0){
+                                                                                    document.getElementById('email-message').innerHTML="Invalid email address";
+                                                                                    return false;
+                                                                            }     
+                                                                            else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+                                                                                    document.getElementById('email-message').innerHTML="Invalid email address";
+                                                                                    return false;
+                                                                            }
+                                                                            else {
+                                                                                document.getElementById('email-message').innerHTML="";
+                                                                            }
+                                                                        }
+
+                                                                    // ---------------------------------- Mobile Number valiadtion --------------------------------
+                                                                    function isNumber(evt) {
+                                                                        evt = (evt) ? evt : window.event;
+                                                                        var numbertype = (evt.which) ? evt.which : evt.keyCode;
+                                                                        if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
+                                                                            document.getElementById("mobile-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
+                                                                          return false;
+                                                                        }
+                                                                        return true;
+                                                                      }
+                                                                      function ValidateNo() {
+                                                                        var moNumber = document.getElementById('mobile');
+                                                                        if (moNumber.value == "" || moNumber.value == null) {
+                                                                            document.getElementById("mobile-message").innerHTML = 'Please enter your Mobile No.';
+                                                                          return false;
+                                                                        }
+                                                                        if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+                                                                            document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+                                                                          return false;
+                                                                        }
+                                                                        document.getElementById("mobile-message").innerHTML = '';
+                                                                        return true;
+                                                                      }
+                                                                      // --------------------- Alternate mobile number ------------------------------------------
+                                                                      function AlternateMobileNo() {
+                                                                        var moNumber = document.getElementById('mobile1');
+                                                                        if (moNumber.value == "" || moNumber.value == null) {
+                                                                            document.getElementById("mobile1-message").innerHTML = 'Please enter your Mobile No.';
+                                                                          return false;
+                                                                        }
+                                                                        if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+                                                                            document.getElementById("mobile1-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+                                                                          return false;
+                                                                        }
+                                                                        document.getElementById("mobile1-message").innerHTML = '';
+                                                                        return true;
+                                                                      }
+                                                                      // ---------------------------  Gender -------------------------------------------------------
+                                                                      function dropdownCheck()
+                                                                      {
+                                                                        var genderCheck = document.getElementById("gender");
+                                                                        var selectedOption = genderCheck.options[genderCheck.selectedIndex].value;
+                                                                        if(selectedOption == 0) {
+                                                                            document.getElementById("gender-message").innerHTML = 'Please select gender';
+                                                                            document.getElementById("gender-message").style.color ="red";
+                                                                        }
+
+                                                                        var typeCheck = document.getElementById("inputEnq");
+                                                                        var selectedVal = typeCheck.options[typeCheck.selectedIndex].value;
+                                                                        if(selectedVal == 0){
+                                                                            document.getElementById("enquiry-message").innerHTML = 'Please select enquiry type';
+                                                                            document.getElementById("enquiry-message").style.color ="red";
+                                                                        }
+                                                                      }
                                                                     </script>
                                                                 </div>
                                                             </div>

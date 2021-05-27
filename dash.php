@@ -80,6 +80,7 @@ $chartData = json_encode($data);
                             <div class="message-center ps ps--theme_default ps--active-y"
                                 data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
                                 <!-- Message -->
+                                <?php $enquiry = mysqli_query($connect, "SELECT * FROM gymenq ") ?>
                                 <a href="#">
                                     <div class="btn btn-danger btn-circle"><i class="fa fa-internet-explorer"></i></div>
                                     <div class="mail-contnet">
@@ -141,59 +142,6 @@ $chartData = json_encode($data);
                                     <?php
                                     }
                                     ?>
-<!--                                    <li>
-                                        <div class="bg-light-inverse"><i class="fa fa-bell-o"></i></div> New Version
-                                        just arrived. <span class="text-muted">27 May</span>
-                                    </li>  
-                                    <li>
-                                        <div class="bg-light-inverse"><i class="fa fa-bell-o"></i></div> New Version
-                                        just arrived. <span class="text-muted">27 May</span>
-                                    </li>  -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Feeds -->
-                </div>
-<!--            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex m-b-30 no-block">
-                                <h5 class="card-title m-b-0 align-self-center">Staff Attendance</h5>
-                            </div>
-                            <div id="attendance" style="height:260px; width:100%;"></div>
-                            <ul class="list-inline m-t-30 text-center font-12">
-                                <li><i class="fa fa-circle text-info"></i> Present</li>
-                                <li><i class="fa fa-circle text-purple"></i> Absent</li>
-                                <li><i class="fa fa-circle text-success"></i> Leave</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                 Column 
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex no-block">
-                                <div>
-                                    <h5 class="card-title m-b-0">Sales Chart</h5>
-                                </div>
-                                <div class="ml-auto">
-                                    <ul class="list-inline text-center font-12">
-                                        <li><i class="fa fa-circle text-success"></i> SITE A</li>
-                                        <li><i class="fa fa-circle text-info"></i> SITE B</li>
-                                        <li><i class="fa fa-circle text-primary"></i> SITE C</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="" id="income"></div>
-                        </div>
-                    </div>
-                </div>
-                 Column 
-                
-            </div>-->
             <footer class="footer"> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
             
         </div>

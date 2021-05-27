@@ -65,14 +65,15 @@ if (isset($_POST['submit'])) {
                         <span class="forgot-pass-title p-b-20 p-t-27">Forgot Password ?</span>
                         <?php
                         if($_SESSION['msg']){
-                            echo '<div class="alert alert-success" role="alert">Email send successfully</div>';
+                            //echo '<div class="alert alert-success" role="alert">Email send successfully</div>';
                         }
                         
                         ?>
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="email" placeholder="Enter your email">
+                            <input class="input100" type="email" name="email" placeholder="Enter your email" id="email" onchange="validateEmail()" required>
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
+                        <p style="color: red;" id="email-message"></p>
                         
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn" type="submit" name="submit">
@@ -93,20 +94,38 @@ if (isset($_POST['submit'])) {
                             //    $('#2').toast('show');
                             //})
                         </script>
-                        <!-- Then put toasts within -->                        
-<!--                            <div class="toast" role="alert" data-delay="5000">
+                        <!-- Then put toasts within -->  
+                        <?php if($message != ''){ ?>
+                            <div class="toast" role="alert" data-delay="5000">
                                 <div class="toast-header" style="background-color:#ce0e58;">
-                                    <strong class="mr-auto" style="color: white;">Login Failed</strong>
+                                    <strong class="mr-auto" style="color: white;">Email</strong>
                                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="toast-body">
-                                    <?//=$message; ?>
+                                    <?=$message; ?>
                                 </div>
-                            </div>     -->
+                            </div> 
+                           <?php } ?>
                     </div>
                 </div>
+                <script>
+                function validateEmail() {
+                    var email = document.getElementById("email").value;
+                    if(email.indexOf('@')<=0){
+                            document.getElementById('email-message').innerHTML="Invalid email address";
+                            return false;
+                    }     
+                    else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+                            document.getElementById('email-message').innerHTML="Invalid email address";
+                            return false;
+                    }
+                    else {
+                        document.getElementById('email-message').innerHTML="";
+                    }
+                }
+                </script>
             </div>
         </div>
     </body>

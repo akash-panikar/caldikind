@@ -106,7 +106,7 @@ include('includes/include_once/db.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $data = "SELECT * FROM gymenquiry WHERE status='Active' ORDER BY date DESC";
+                                            $data = "SELECT * FROM `gymenquiry` WHERE status='Active' ORDER BY `gymenquiry`.`date` DESC "; //SELECT * FROM gymenquiry WHERE status='Active' ORDER BY vID DESC";
                                             $query = mysqli_query($connect, $data);
                                             while ($result = mysqli_fetch_assoc($query)) {
                                                 ?>
@@ -186,15 +186,6 @@ include('includes/include_once/db.php');
                                                                             return true;
                                                                           }
                                                                             // --------------------- Alternate mobile number ------------------------------------------
-                                                                        function isNumber(evt) {
-                                                                            evt = (evt) ? evt : window.event;
-                                                                            var numbertype = (evt.which) ? evt.which : evt.keyCode;
-                                                                            if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
-                                                                                document.getElementById("mobile1-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
-                                                                              return false;
-                                                                            }
-                                                                            return true;
-                                                                          }
                                                                           function AlternateMobileNo() {
                                                                             var moNumber = document.getElementById('mobile1');
                                                                             if (moNumber.value == "" || moNumber.value == null) {
@@ -216,6 +207,8 @@ include('includes/include_once/db.php');
                                                                             if(selectedOption == 0) {
                                                                                 document.getElementById("gender-message").innerHTML = 'Please select gender';
                                                                                 document.getElementById("gender-message").style.color ="red";
+                                                                            } else {
+                                                                                document.getElementById("gender-message").innerHTML = '';
                                                                             }
                                                                             
                                                                             var typeCheck = document.getElementById("inputEnq");
@@ -223,6 +216,8 @@ include('includes/include_once/db.php');
                                                                             if(selectedVal == 0){
                                                                                 document.getElementById("enquiry-message").innerHTML = 'Please select enquiry type';
                                                                                 document.getElementById("enquiry-message").style.color ="red";
+                                                                            } else {
+                                                                                document.getElementById("enquiry-message").innerHTML = '';
                                                                             }
                                                                           }
                                                                     </script>

@@ -100,15 +100,16 @@ $(function() {
         bindto: '#income',
         data: {
             columns: [
-                ['Growth Income', 100, 200, 100, 300],
-                ['Net Income', 130, 100, 140, 200]
+                ['Income', 100, 200, 100, 300],
+                ['Expense', 130, 100, 140, 200],
+                ['Profit', 100, 100, 140, 20]
             ],
             type: 'bar'
         },
         bar: {
             space: 0.2,
             // or
-            width: 15 // this makes bar width 100px
+            width: 30 // this makes bar width 100px
         },
         axis: {
             y: {
@@ -120,7 +121,7 @@ $(function() {
             }
         },
         legend: {
-            hide: true
+            hide: false
             //or hide: 'data1'
             //or hide: ['data1', 'data2']
         },
@@ -129,14 +130,14 @@ $(function() {
                 show: false
             },
             y: {
-                show: true
+                show: false
             }
         },
         size: {
             height: 339
         },
         color: {
-            pattern: ['#24d2b5', '#20aee3']
+            pattern: ['#24d2b5', '#20aee3', '#6772e5']
         }
     });
 

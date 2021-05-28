@@ -8,8 +8,8 @@ if (isset($_POST['contactform'])) {
     $contactEmail = mysqli_real_escape_string($connect, $_POST['email']);
     $contactMessage = mysqli_real_escape_string($connect, $_POST['message']);
 
-    $insertEnquiry = "INSERT INTO gymenq (vName, vEmail, vMobile, vType, remark) VALUES "
-            . "('$conatctName', '$contactEmail', '$contactNumber', 'Website', '$contactMessage')";
+    $insertEnquiry = "INSERT INTO gymenq (vName, vEmail, vMobile, status, vType, remark) VALUES "
+            . "('$conatctName', '$contactEmail', '$contactNumber', 'Active', 'Website', '$contactMessage')";
     $query = mysqli_query($connect, $insertEnquiry);
     if($query == TRUE){
         $subject = "Enquiry at TRYOn website";

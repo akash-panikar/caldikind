@@ -49,13 +49,13 @@ include('includes/include_once/db.php');
 //                                                exit();
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo ++$sr; ?></td>
-                                                    <td><h6><?php echo $result['cName']; ?></h6></td>
-                                                    <td><h6><?php $result['contactNo']; ?></h6></td>
-                                                    <td><?php echo $result['paidOn']; ?></td>
-                                                    <td><?php echo '₹ '.$result['amountPaid']; ?></td>
-                                                    <td><?php echo '₹ '. $result['amountDueAfter']; ?></td>
-                                                    <td><?php echo $result['remark']; ?></td>
+                                                    <td><?=++$sr; ?></td>
+                                                    <td><h6><?=$result['cName']; ?></h6></td>
+                                                    <td><h6><?=$result['contactNo']; ?></h6></td>
+                                                    <td><?=$result['paidOn']; ?></td>
+                                                    <td><?='₹ '.$result['amountPaid']; ?></td>
+                                                    <td><?='₹ '. $result['amountDueAfter']; ?></td>
+                                                    <td><?=$result['remark']; ?></td>
                                                 </tr>
                                                 <?php
                                             }

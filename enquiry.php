@@ -120,7 +120,7 @@ include('includes/include_once/db.php');
                                                     <td><?php echo $result['remark']; ?></td>
                                                     <td class="table-action">
                                                         <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="editEnquiry.php?id=<?= $result['vID']; ?>"></a>
-                                                        <a class="fa fa-plus btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="join" name="join"></a>
+                                                        <!--<a class="fa fa-plus btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="join" name="join"></a>-->
                                                         <a class="fa fa-flag btn btn-outline-danger" value="<?php echo $result['vID']; ?>" onclick="myButton(<?php echo $result['vID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Not Interested"  data-target="#exampleModal"></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

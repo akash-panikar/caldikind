@@ -5,6 +5,7 @@ include('includes/include_once/nav.php');
 include 'includes/include_once/db.php';
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/validation.js"></script>
 <div id="main-wrapper">
     <div class="page-wrapper">
         <div class="container-fluid">
@@ -46,7 +47,8 @@ include 'includes/include_once/db.php';
                                                     <div class="col-md-7">
                                                         <div class="form-group">
                                                             <label>Fullname<span style="color:red">*</span></label>
-                                                            <input type="text" name="fname" class="form-control" id="fullname" required>
+                                                            <input type="text" name="fname" class="form-control" id="fullname" onkeypress="return Validate(event);" required>
+                                                            <p style="color:red" id="name-message"></p>
                                                         </div>
                                                         <div class="row">
                                                             <div class="form-group col-md-6">
@@ -94,8 +96,8 @@ include 'includes/include_once/db.php';
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label >Pincode<span style="color:red">*</span></label>
-                                                        <input type="text" name="pincode" class="form-control" required>
-                                                        <p style="color:red">invalid pincode</p>
+                                                        <input type="text" name="pincode" id="pincode" class="form-control" required>
+                                                        <p id="pin-message"></p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Date of Birth<span style="color:red">*</span></label>
@@ -254,7 +256,7 @@ include 'includes/include_once/db.php';
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Total Amount</label>
-                                                        <input type="text" name="totalamount" class="form-control" value="<?=$dropdownPackage['pRegularAmount'];?>"
+                                                        <input type="text" name="totalamount" class="form-control"
                                                                id="totalamt" oninput="calculateAmount()" onchange="checkAmount()">
                                                         <p id="form-amount-message"></p>
                                                     </div>
@@ -355,15 +357,6 @@ include 'includes/include_once/db.php';
                                                     return true;
                                                   }
                                                     // --------------------- Alternate mobile number ------------------------------------------
-                                                function isNumber(evt) {
-                                                    evt = (evt) ? evt : window.event;
-                                                    var numbertype = (evt.which) ? evt.which : evt.keyCode;
-                                                    if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
-                                                        document.getElementById("mobile1-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
-                                                      return false;
-                                                    }
-                                                    return true;
-                                                  }
                                                   function AlternateMobileNo() {
                                                     var moNumber = document.getElementById('mobile1');
                                                     if (moNumber.value == "" || moNumber.value == null) {
@@ -701,7 +694,6 @@ include 'includes/include_once/db.php';
 
             });
         </script>
-        <script src="js/validation.js"></script>
         <footer class="footer"><img src="images/logo/logo3.png" class="my-logo" /> Made by <a href="https://tryon.caldikind.xyz">Group 7</a> </footer>
     </div>
     <?php

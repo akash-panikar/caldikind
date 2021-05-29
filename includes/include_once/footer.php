@@ -21,6 +21,8 @@
 <script src="includes/c3-master/c3.min.js"></script>
 <!-- Chart JS -->
 <script src="js/dashboard1.js"></script>
+<!------------------------ VAlidation----------------->
+<script src="js/validation.js"></script>
 <!----------------- Data Table ------------------------------->
 <script>
 $(document).ready(function() {

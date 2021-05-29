@@ -1,7 +1,6 @@
 <?php
-session_start(); 
-if(!isset($_SESSION['fullName']))
-{
+session_start();
+if (!isset($_SESSION['fullName'])) {
     header('Location:index.php');
 }
 include('includes/include_once/header.php');
@@ -50,6 +49,18 @@ $defaultImage = "images/people/6.png";
                                                 $("#profile-img").change(function () {
                                                     readURL(this);
                                                 });
+                                                
+                                                $("#marksheet").change(function () {
+                                                    readURL(this);
+                                                });
+                                                
+                                                $("#cert").change(function () {
+                                                    readURL(this);
+                                                });
+                                                
+                                                $("#idproof").change(function () {
+                                                    readURL(this);
+                                                });
 
                                                 function imageValidation(id) {
                                                     var formData = new FormData();
@@ -90,34 +101,37 @@ $defaultImage = "images/people/6.png";
                                     <div class="col-md-7">
                                         <div class="form-group">
                                             <label>Fullname<span style="color:red">*</span></label>
-                                            <input type="text" name="sfname" class="form-control" required >
+                                            <input type="text" name="sfname" class="form-control" id="sfname" onkeypress="return Validate(event);" required>
+                                            <p id="name-message"></p>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label>Contact Number<span style="color:red">*</span></label>
-                                                <input type="text" name="sprimaryno" class="form-control" onchange="ValidateNo()" onkeypress="return isNumber(event)" required>
-                                                <p style="color:red" id="mobile-message"></p>
+                                                <input type="text" name="sprimaryno" class="form-control" id="mobile" onchange="ValidateNo()" onkeypress="return isNumber(event)" required>
+                                                <p id="mobile-message"></p>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label>Alternate Number</label>
-                                                <input type="text" name="salternateno" class="form-control" id="mobile1" onchange="ValidateNo()" required>
-                                                <p style="color:red" id="moible1-message"></p>
+                                                <label>Alternate Number<span style="color:red">*</span></label>
+                                                <input type="text" name="salternateno" class="form-control" id="salternateno" onchange="AlternateMobileNo()" required>
+                                                <p id="moible1-message"></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>E-mail<span style="color:red">*</span></label>
-                                            <input type="text" name="semail" class="form-control" id="email" required>
-                                            <p style="color:red" id="email-message"></p>
+                                            <input type="email" name="semail" class="form-control" id="email" onchange="validateEmail()" required>
+                                            <p id="email-message"></p>
                                         </div>
                                     </div>                            
                                 </div>
                                 <div class="form-group">
                                     <label>Address 1<span style="color:red">*</span></label>
-                                    <input type="text" name="saddr1" class="form-control" required>
+                                    <input type="text" name="saddr1" id="saddr1" class="form-control" required>
+                                    <p id="saddr1-message"></p>
                                 </div>
                                 <div class="form-group">
                                     <label>Address 2<span style="color:red">*</span></label>
-                                    <input type="text" name="saddr2" class="form-control" required>
+                                    <input type="text" name="saddr2" id="saddr2" class="form-control" required>
+                                    <p id="saddr2-message"></p>
                                 </div>
                                 <div class="row ">
                                     <div class="form-group col-md-4">
@@ -126,36 +140,39 @@ $defaultImage = "images/people/6.png";
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Gender<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="sgender" id="gender">
-                                            <option selected disabled>Choose...</option>
+                                        <select class="form-control" required name="sgender" id="gender" onchange="staffDropdownCheck()">
+                                            <option value="0" selected disabled>Choose...</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="other">Other</option>
                                         </select>
-                                        <p style="color:red" id="gender-message"></p>
+                                        <p id="gender-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Marital Status<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="marstatus">
-                                            <option selected disabled>Choose...</option>
+                                        <select id="marstatus" class="form-control" required name="marstatus" onchange="staffDropdownCheck()">
+                                            <option value="0" selected disabled>Choose...</option>
                                             <option value="Unmarried">Unmarried</option>
                                             <option value="Married">Married</option>
                                             <option value="Divorced">Divorced</option>
                                             <option value="Widowed">Widowed</option>
                                         </select>
+                                        <p id="marital-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >City<span style="color:red">*</span></label>
-                                        <input type="text" name="scity" class="form-control" required>
+                                        <input type="text" name="scity" id="scity" class="form-control" required>
+                                        <p id="scity-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >State<span style="color:red">*</span></label>
-                                        <input type="text" name="state" class="form-control" required>
+                                        <input type="text" name="state" id="state" class="form-control" required>
+                                        <p id="state-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Pincode<span style="color:red">*</span></label>
-                                        <input type="text" name="pincode" class="form-control" required>
-                                        <p style="color:red">invalid pincode</p>
+                                        <input type="text" name="pincode" id="pincode" class="form-control" onkeypress="return validateStaffPincode()" required>
+                                        <p id="pin-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Joining Date<span style="color:red">*</span></label>
@@ -163,36 +180,38 @@ $defaultImage = "images/people/6.png";
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Shift Timing<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="shifttime">
-                                            <option selected disabled>Choose...</option>
+                                        <select id="shifttime" class="form-control" required name="shifttime" onchange="staffDropdownCheck()">
+                                            <option value="0" selected disabled>Choose...</option>
                                             <option value="5:30 am - 9:30 am || 4:00 pm - 8:00 pm">5:30 am - 9:30 am || 4:00 pm - 8:00 pm</option>
                                             <option value="6:00 am - 10:00 am || 4:30 pm - 8:30 pm">6:00 am - 10:00 am || 4:30 pm - 8:30 pm</option>
                                             <option value="7:00 am - 11:00 am || 5:00 pm - 9:00 pm">7:00 am - 11:00 am || 5:00 pm - 9:00 pm</option>
                                         </select>
+                                        <p id="shifttime-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Designation<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="designation">
-                                            <option selected disabled>Choose...</option>
+                                        <select id="designation" class="form-control" required name="designation" onchange="staffDropdownCheck()">
+                                            <option value="0" selected disabled>Choose...</option>
                                             <option value="Manager">Manager</option>
                                             <option value="Trainer">Trainer</option>
                                             <option value="Office Assistant">Office Assistant</option>
                                         </select>
+                                        <p id="designation-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >School/College Marksheet</label>
                                         <input type="file" name="marksheet" class="form-control" id="marksheet" onchange="imageValidation('marksheet')" >
-                                        <p style="color:red">invalid file selected</p>
+                                        <p id="marksheet-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Certification (Optional)</label>
                                         <input type="file" name="certification" class="form-control" id="cert" onchange="imageValidation('cert')" >
-                                        <p style="color:red">invalid file selected</p>
+                                        <p id="cert-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label > Photo ID Proof<span style="color:red">*</span></label>
                                         <input type="file" name="idproof" class="form-control" required id="idproof" onchange="imageValidation('idproof')">
-                                        <p style="color:red">invalid file selected</p>
+                                        <p id="idproof-message"></p>
                                     </div>
 
                                     <div class="form-check">
@@ -202,7 +221,7 @@ $defaultImage = "images/people/6.png";
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary m-t-10" id="submit" name="submit">Submit</button>
+                                <button type="submit" class="btn btn-primary m-t-10" id="staff-submit" onclick="staffDropdownCheck()" name="submit">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -275,78 +294,59 @@ $defaultImage = "images/people/6.png";
                                                                             //alert(document.getElementById("deleteForm").action);
                                                                             document.getElementById("deleteForm").action = "process/staffProcess.php?id=" + id;
                                                                         }
-                                                                        
+
                                                                         // -------------------------email validation -----------------------------
                                                                         function validateEmail() {
                                                                             //var email = document.emailform.email.value;
                                                                             var email = document.getElementById("email").value;
-                                                                            if(email.indexOf('@')<=0){
-                                                                                    document.getElementById('email-message').innerHTML="Invalid email address";
-                                                                                    return false;
-                                                                            }     
-                                                                            else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
-                                                                                    document.getElementById('email-message').innerHTML="Invalid email address";
-                                                                                    return false;
-                                                                            }
-                                                                            else {
-                                                                                document.getElementById('email-message').innerHTML="";
+                                                                            if (email.indexOf('@') <= 0) {
+                                                                                document.getElementById('email-message').innerHTML = "Invalid email address";
+                                                                                return false;
+                                                                            } else if ((email.charAt(email.length - 4) != '.') && (email.charAt(email.length - 3) != '.')) {
+                                                                                document.getElementById('email-message').innerHTML = "Invalid email address";
+                                                                                return false;
+                                                                            } else {
+                                                                                document.getElementById('email-message').innerHTML = "";
                                                                             }
                                                                         }
-
-                                                                    // ---------------------------------- Mobile Number valiadtion --------------------------------
-                                                                    function isNumber(evt) {
-                                                                        evt = (evt) ? evt : window.event;
-                                                                        var numbertype = (evt.which) ? evt.which : evt.keyCode;
-                                                                        if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
-                                                                            document.getElementById("mobile-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
-                                                                          return false;
+                                                                        
+                                                                        // ---------------------------------- Mobile Number valiadtion --------------------------------
+                                                                        function isNumber(evt) {
+                                                                            evt = (evt) ? evt : window.event;
+                                                                            var numbertype = (evt.which) ? evt.which : evt.keyCode;
+                                                                            if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
+                                                                                document.getElementById("mobile-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
+                                                                                return false;
+                                                                            }
+                                                                            return true;
                                                                         }
-                                                                        return true;
-                                                                      }
-                                                                      function ValidateNo() {
-                                                                        var moNumber = document.getElementById('mobile');
-                                                                        if (moNumber.value == "" || moNumber.value == null) {
-                                                                            document.getElementById("mobile-message").innerHTML = 'Please enter your Mobile No.';
-                                                                          return false;
+                                                                        function ValidateNo() {
+                                                                            var moNumber = document.getElementById('mobile');
+                                                                            if (moNumber.value == "" || moNumber.value == null) {
+                                                                                document.getElementById("mobile-message").innerHTML = 'Please enter your Mobile No.';
+                                                                                return false;
+                                                                            }
+                                                                            if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+                                                                                document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+                                                                                return false;
+                                                                            }
+                                                                            document.getElementById("mobile-message").innerHTML = '';
+                                                                            return true;
                                                                         }
-                                                                        if (moNumber.value.length < 10 || moNumber.value.length > 10) {
-                                                                            document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
-                                                                          return false;
+                                                                        // --------------------- Alternate mobile number ------------------------------------------                                                                       
+                                                                        function AlternateMobileNo() {
+                                                                            var altMobile = document.getElementById('salternateno');
+                                                                            if (altMobile.value == "" || altMobile.value == null) {
+                                                                                document.getElementById("mobile1-message").innerHTML = 'Please enter your Mobile No.';
+                                                                                return false;
+                                                                            }
+                                                                            if (altMobile.value.length < 10 || altMobile.value.length > 10) {
+                                                                                document.getElementById("mobile1-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+                                                                            }
+                                                                            document.getElementById("mobile1-message").innerHTML = '';
+                                                                            return true;
                                                                         }
-                                                                        document.getElementById("mobile-message").innerHTML = '';
-                                                                        return true;
-                                                                      }
-                                                                      // --------------------- Alternate mobile number ------------------------------------------
-                                                                      function AlternateMobileNo() {
-                                                                        var moNumber = document.getElementById('mobile1');
-                                                                        if (moNumber.value == "" || moNumber.value == null) {
-                                                                            document.getElementById("mobile1-message").innerHTML = 'Please enter your Mobile No.';
-                                                                          return false;
-                                                                        }
-                                                                        if (moNumber.value.length < 10 || moNumber.value.length > 10) {
-                                                                            document.getElementById("mobile1-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
-                                                                          return false;
-                                                                        }
-                                                                        document.getElementById("mobile1-message").innerHTML = '';
-                                                                        return true;
-                                                                      }
-                                                                      // ---------------------------  Gender -------------------------------------------------------
-                                                                      function dropdownCheck()
-                                                                      {
-                                                                        var genderCheck = document.getElementById("gender");
-                                                                        var selectedOption = genderCheck.options[genderCheck.selectedIndex].value;
-                                                                        if(selectedOption == 0) {
-                                                                            document.getElementById("gender-message").innerHTML = 'Please select gender';
-                                                                            document.getElementById("gender-message").style.color ="red";
-                                                                        }
-
-                                                                        var typeCheck = document.getElementById("inputEnq");
-                                                                        var selectedVal = typeCheck.options[typeCheck.selectedIndex].value;
-                                                                        if(selectedVal == 0){
-                                                                            document.getElementById("enquiry-message").innerHTML = 'Please select enquiry type';
-                                                                            document.getElementById("enquiry-message").style.color ="red";
-                                                                        }
-                                                                      }
+                                                                        
                                                                     </script>
                                                                 </div>
                                                             </div>

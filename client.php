@@ -254,13 +254,14 @@ include 'includes/include_once/db.php';
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Total Amount</label>
-                                                        <input type="text" name="totalamount" class="form-control" id="totalamt" oninput="calculateAmount()">
-                                                        <p style="color:red">invalid amount</p>
+                                                        <input type="text" name="totalamount" class="form-control" value="<?=$dropdownPackage['pRegularAmount'];?>"
+                                                               id="totalamt" oninput="calculateAmount()" onchange="checkAmount()">
+                                                        <p id="form-amount-message"></p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Paid</label>
                                                         <input type="text" name="amountpaid" class="form-control" id="amtpaid" oninput="calculateAmount()">
-                                                        <p style="color:red">invalid amount</p>
+                                                        <p id="form-amount-message"></p>
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Amount Due</label>
@@ -279,6 +280,21 @@ include 'includes/include_once/db.php';
                                                     </div>
                                                 </div>
                                                 <script type="text/javascript">
+                                                    function checkAmount(){
+                                                        if(isNaN(document.getElementById('totalamt').value)){
+                                                        document.getElementById("form-amount-message").innerHTML = 'Invalid input, enter only number';
+                                                        document.getElementById("form-amount-message").style.color ="red";
+                                                        document.getElementById('amtpaid').disabled = 'true';
+                                                        document.getElementById('duedate').disabled = 'true';
+                                                        document.getElementById('client-form-submit').disabled = 'true';
+                                                      }
+                                                      else {
+                                                        document.getElementById("form-amount-message").innerHTML = '';
+                                                        document.getElementById('amtpaid').disabled = '';
+                                                        document.getElementById('duedate').disabled = '';
+                                                        document.getElementById('client-form-submit').disabled = '';
+                                                      }
+                                                    }
                                                     function calculateAmount(){
                                                         var totalAmount = document.getElementById("totalamt").value;
                                                         var paidAmount = document.getElementById("amtpaid").value;
@@ -378,9 +394,10 @@ include 'includes/include_once/db.php';
                                                         document.getElementById("enquiry-message").style.color ="red";
                                                     }
                                                   }
+                                                  
                                                 </script>
                                                 <a type="button" class="btn btn-primary m-t-10" id="previous_btn_contact_details">Back</a>
-                                                <button type="submit" class="btn btn-primary m-t-10" name="submit">Submit</button>
+                                                <button type="submit" class="btn btn-primary m-t-10" id="client-form-submit" name="submit">Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -464,7 +481,7 @@ include 'includes/include_once/db.php';
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" id="pay_update">
+                    <div class="modal-body" id="pay_update" onmouseenter="checkAmountDue()">
                         <form method="POST" action="process/paymentProcess.php" id="pay_form">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -484,11 +501,12 @@ include 'includes/include_once/db.php';
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Amount</label>
-                                    <input type="text" class="form-control" name="amount" id="amount">
+                                    <input type="text" class="form-control" name="amount" id="amount" onchange="minimumValue()">
+                                    <p id="minamt-message"></p>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Payment Mode</label>
-                                    <select class="form-control" name="paymentmode" id="paymenttype">
+                                    <select class="form-control" name="paymentmode" id="paymenttype" required>
                                         <option selected disabled>Choose...</option>
                                         <option name="paymentmode" value="Cash">Cash</option>
                                         <option name="paymentmode" value="Card">Card</option>
@@ -503,7 +521,7 @@ include 'includes/include_once/db.php';
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" name="updatePayment">Add Payment</button>
+                                <button type="submit" class="btn btn-primary" id="updatePayment" name="updatePayment">Add Payment</button>
                             </div>
                         </form>
                     </div>
@@ -536,6 +554,49 @@ include 'includes/include_once/db.php';
                         </div>
                     </form>
                     <script>
+                        //========================= Payment Check ========================
+                        function checkAmountDue() {
+                          if (document.getElementById('balamount').value == '0') {
+                              document.getElementById('amount').disabled = 'true';
+                              document.getElementById('paymenttype').disabled = 'true';
+                              document.getElementById('remark').disabled = 'true';
+                          } else {
+                              document.getElementById('amount').disabled = '';
+                              document.getElementById('paymenttype').disabled = '';
+                              document.getElementById('remark').disabled = '';
+                          }
+                      }
+                      
+                      //================================ Minimum Value ==============================
+                      function minimumValue(){
+//                          alert(document.getElementById('amount').value-"10");
+                          if(document.getElementById('amount').value < 500){
+                              document.getElementById("minamt-message").innerHTML = 'amount cannot be less then ₹500';
+                              document.getElementById("minamt-message").style.color ="red";
+                              document.getElementById('paymenttype').disabled = 'true';
+                              document.getElementById('remark').disabled = 'true';
+                              document.getElementById('updatePayment').disabled = 'true';
+                          } else {
+                              document.getElementById("minamt-message").innerHTML = '';
+                              document.getElementById('paymenttype').disabled = '';
+                              document.getElementById('remark').disabled = '';
+                              document.getElementById('updatePayment').disabled = '';
+                              if(isNaN(document.getElementById('amount').value)){
+                                document.getElementById("minamt-message").innerHTML = 'Invalid input, enter only number';
+                                document.getElementById("minamt-message").style.color ="red";
+                                document.getElementById('paymenttype').disabled = 'true';
+                                document.getElementById('remark').disabled = 'true';
+                                document.getElementById('updatePayment').disabled = 'true';
+                              }
+                              else {
+                                document.getElementById("minamt-message").innerHTML = '';
+                                document.getElementById('paymenttype').disabled = '';
+                                document.getElementById('remark').disabled = '';
+                                document.getElementById('updatePayment').disabled = '';
+                              }
+                          }
+                      }
+                      //============================== Delete Form ====================                            
                         function myButton(id) {
                             //alert(document.getElementById("deleteForm").action);
                             document.getElementById("deleteForm").action = "process/clientProcess.php?id=" + id;

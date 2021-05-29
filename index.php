@@ -90,9 +90,6 @@ if (isset($_POST['submit'])) {
                             $(function () {
                                 $('.toast').toast('show');
                             });
-                            //$(function(){
-                            //    $('#2').toast('show');
-                            //})
                         </script>
                         <?php if($message != ''){?>
                         <!-- Then put toasts within -->                        

@@ -1,4 +1,3 @@
-//alert("Hello Richard");
 $(function() {
     
     "use strict";
@@ -25,6 +24,7 @@ $(function() {
         }
         
     }
+    
     var chart = c3.generate({
         bindto: '#members',
         data: {
@@ -35,9 +35,9 @@ $(function() {
             ],
 
             type: 'pie',
-            onclick: function(d, i) { console.log("onclick", d, i); },
-            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function(d, i) { console.log("onmouseout", d, i); }
+            onclick: function(d, i) { ("onclick", d, i); },
+            onmouseover: function(d, i) {("onmouseover", d, i); },
+            onmouseout: function(d, i) { ("onmouseout", d, i); }
         },
         pie: {
             label: {
@@ -57,52 +57,55 @@ $(function() {
             pattern: ['#24d2b5', '#6772e5', '#20aee3']
         }
     });
-    // ============================================================== 
-    // Our Visitor
-    // ============================================================== 
-
-    var chart = c3.generate({
-        bindto: '#attendance',
-        data: {
-            columns: [
-                ['Desktop', 4],
-                ['Tablet', 6],
-                ['Mobile', 90],
-            ],
-
-            type: 'donut',
-            onclick: function(d, i) { console.log("onclick", d, i); },
-            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function(d, i) { console.log("onmouseout", d, i); }
-        },
-        donut: {
-            label: {
-                show: false
-            },
-            title: "Visits",
-            width: 20,
-
-        },
-
-        legend: {
-            hide: true
-            //or hide: 'data1'
-            //or hide: ['data1', 'data2']
-        },
-        color: {
-            pattern: ['#24d2b5', '#6772e5', '#20aee3']
-        }
-    });
+    
     // ====================='#eceff1', ========================================= 
     // Our Income
-    // ==============================================================
+    // =========================================================================   
+    var graph_income=$('#graphIncome').text();
+   graph_income=JSON.parse(graph_income);
+   var income_one=graph_income[0];
+   var income_two=graph_income[1];
+   var income_three=graph_income[2];
+   
+    var graph_exp=$('#grapExpense').text();
+   graph_exp=JSON.parse(graph_exp);
+   var exp_1=graph_exp[0];
+   var exp_2=graph_exp[1];
+   var exp_3=graph_exp[2];
+   
+   var profit_array=[];
+   var total_profit_cnt=graph_income.length+1
+   for(var p=0; p<graph_income.length; p++){
+       if(p==0){
+           profit_array[p]='Profit';
+       }else{
+           profit_array[p] = graph_income[p] - graph_exp[p];
+           
+           if(profit_array[p] < 0){
+               profit_array[p]=0;
+           }
+       }
+       
+//   var profit_2 = income_two - exp_2;
+//   var profit_3 = income_three - exp_3;
+   }
+   
+   //var profit = graph_income - graph_exp;
+//   var profit_1 = income_one - exp_1;
+//   var profit_2 = income_two - exp_2;
+//   var profit_3 = income_three - exp_3;
+   
+    
     var chart = c3.generate({
         bindto: '#income',
         data: {
             columns: [
-                ['Income', 100, 200, 100, 300],
-                ['Expense', 130, 100, 140, 200],
-                ['Profit', 100, 100, 140, 20]
+                //['Income', income_one, income_two, income_three, 900],
+                graph_income,
+                graph_exp,
+                profit_array
+                //['Expense', exp_1, exp_2, 140, 200],
+                //['Profit', profit_1, profit_2, profit_3, 20]
             ],
             type: 'bar'
         },
@@ -114,7 +117,7 @@ $(function() {
         axis: {
             y: {
                 tick: {
-                    count: 4,
+                    count: 5,
 
                     outer: false
                 }
@@ -125,9 +128,14 @@ $(function() {
             //or hide: 'data1'
             //or hide: ['data1', 'data2']
         },
+        labels: {
+            x: {
+                xkey: 'month',
+            }
+        },
         grid: {
             x: {
-                show: false
+                show: true
             },
             y: {
                 show: false
@@ -293,6 +301,41 @@ $(function() {
         resize: true
 
     });
+// ============================================================== 
+    // Our Visitor
+    // ============================================================== 
 
+    var chart = c3.generate({
+        bindto: '#attendance',
+        data: {
+            columns: [
+                ['Desktop', 4],
+                ['Tablet', 6],
+                ['Mobile', 90],
+            ],
+
+            type: 'donut',
+            onclick: function(d, i) { console.log("onclick", d, i); },
+            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function(d, i) { console.log("onmouseout", d, i); }
+        },
+        donut: {
+            label: {
+                show: false
+            },
+            title: "Visits",
+            width: 20,
+
+        },
+
+        legend: {
+            hide: true
+            //or hide: 'data1'
+            //or hide: ['data1', 'data2']
+        },
+        color: {
+            pattern: ['#24d2b5', '#6772e5', '#20aee3']
+        }
+    });
 
 });

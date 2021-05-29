@@ -14,8 +14,8 @@
 <!--Custom JavaScript -->
 <script src="js/custom.min.js"></script>
 <!--morris JavaScript -->
-<script src="includes/raphael/raphael-min.js"></script>
-<script src="includes/morrisjs/morris.min.js"></script>
+<!--<script src="includes/raphael/raphael-min.js"></script>-->
+<!--<script src="includes/morrisjs/morris.min.js"></script>-->
 <!--c3 JavaScript -->
 <script src="includes/d3/d3.min.js"></script>
 <script src="includes/c3-master/c3.min.js"></script>

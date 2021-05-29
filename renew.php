@@ -17,7 +17,6 @@ include('includes/include_once/db.php');
             </div>
             <div>
                 <!-- ============================================================== -->
-
                 <!-- ============================================================== -->
                 <div class="row">
                     <!-- Column -->
@@ -40,20 +39,20 @@ include('includes/include_once/db.php');
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $data = "SELECT * FROM temp_client WHERE endDate <= date(NOW())+3";
+                                                $data = "SELECT * FROM temp_client WHERE endDate <= date(NOW())";
                                                 $query = mysqli_query($connect, $data);
                                                 while ($result = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $result['fullName']; ?></td>
-                                                        <td><?php echo $result['contactNo']; ?></td>
-                                                        <td><?php echo $result['endDate']; ?></td>
-                                                        <td><?php echo $result['amountDue']; ?></td>
-                                                        <td><?php echo $result['memberType']; ?></td>
-                                                        <td><?php echo $result['packageName']; ?></td>
+                                                        <td><?=$result['fullName']; ?></td>
+                                                        <td><?=$result['contactNo']; ?></td>
+                                                        <td><?=$result['endDate']; ?></td>
+                                                        <td><?=$result['amountDue']; ?></td>
+                                                        <td><?=$result['memberType']; ?></td>
+                                                        <td><?=$result['packageName']; ?></td>
                                                         <td class="table-action">
                                                             <a class="fa fa-refresh btn btn-outline-success renew<?php echo $result['tID']; ?>" name="pay" data-toggle="modal" onclick="showModal(this)" id="<?php echo $result['tID']; ?>"></a>
-                                                            <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['vID']; ?>" onclick="myButton(<?php echo $result['vID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Not Interested"  data-target="#exampleModal"></a>
+                                                            <a class="fa fa-ban btn btn-outline-danger" value="<?php echo $result['tID']; ?>" onclick="myButton(<?php echo $result['tID']; ?>)" type="button" data-toggle="modal" data-placement="left" title="Not Interested"  data-target="#exampleModal"></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
@@ -120,7 +119,7 @@ include('includes/include_once/db.php');
                                             <input type="date" class="form-control" name="expired" id="expired" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label>Amount Due</label>
+                                            <label>Balance Amount</label>
                                             <input type="text" class="form-control" name="balamount" id="amtdue" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
@@ -182,7 +181,7 @@ include('includes/include_once/db.php');
                 </div>
                 <!-- footer -->
                 <script type="text/javascript">
-//                    document.getElementById("amtdue").onload = function() {checkAmountDue()};
+                    
                     function checkAmountDue() {
                         if (document.getElementById('amtdue').value > '0') {
                             document.getElementById('period').disabled = 'true';

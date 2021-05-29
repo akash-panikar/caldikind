@@ -39,11 +39,10 @@ if(isset($_POST['updatePayment'])){
             . ", paymentMode = '$paymentMode' WHERE tID = '$id'";
     $execUpdatePayment = mysqli_query($connect,$updatePayment);
     
-    $insertPayment = "INSERT INTO receipt_details (cName, contactNo, totalAmount, amountPaid, amountDueBefore, amountDueAfter, remark) VALUES"
+    if($execUpdatePayment == TRUE){
+        $insertPayment = "INSERT INTO receipt_details (cName, contactNo, totalAmount, amountPaid, amountDueBefore, amountDueAfter, remark) VALUES"
             . "('$name', '$clientPrimaryNumber', '$totalAmount', '$amount', '$balAmount', '$amountDue', 'Membership Part Payment' )";
-    $execInsertPayemnt = mysqli_query($connect, $insertPayment);
-    
-    if(($execUpdatePayment && $execInsertPayemnt) == TRUE){
+        $execInsertPayemnt = mysqli_query($connect, $insertPayment);
         if(!empty($remark)){
             $emailRemarkSubject = "Client Payment Remark";
             $emailRemarkBody = "Dear Manager,\n$remark\n\nAbove message is from $clientName";
@@ -72,13 +71,18 @@ if(isset($_POST['updatePayment'])){
                 . "('$clientReceiptEmail','$emailReceiptSubject', '$emailReceiptBody', '0' )";
         }
         mysqli_query($connect, $emailReceiptInsert);
+        $_SESSION['msg'] = 'Data Inserted ..';
         header('Location:../client.php');
         exit();
     } else {
-        echo $updatePayment;
-        echo '<br>Something went wrong--1';
+        //$_SESSION['msg'] = 'Something went wrong !!!';
+        header('Location:../client.php');
+//        echo $updatePayment;
+//        echo '<br>Something went wrong--1';
     }
 } else {
-        echo 'Something went wrong';
+    //$_SESSION['msg'] = 'Something went wrong !!!';
+    header('Location:../client.php');
+    //echo 'Something went wrong--2';
     }
 ?>

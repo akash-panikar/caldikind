@@ -21,18 +21,41 @@ $incomeGraph = mysqli_query($connect,"select extract(MONTH from `paidOn`) as mon
 $expenseGraph = mysqli_query($connect,"select extract(MONTH from `date`) as month,sum(`eAmount`) as totalExpense from gymexpense group by month");
 
 $graphValueIncome = '';
-$graphValueIncome = '';
+$graphValueExpense = '';
 $j = 0;
 $graphData = array();
+
+$incomeArray=array();
+$m=0;
+$incomeArray[$m]='Income';
+$m++;
 while ($row = mysqli_fetch_array($incomeGraph)){
-    $graphValueIncome .= "{ Income:'" . $row["totalIncome"] . ",}";
-//    $graphValueExpense .= "{ Expense:'" . $row["totalExpense"] . ",}";
-//    $graphData[$j]['memberType'] = $row["memberType"];
+    $incomeArray[$m]=$row["totalIncome"];
+    $m++;
+    //$graphData[$j]['totalIncome'] = $row["totalIncome"];
 //    $graphData[$j]['totalNums'] = $row["totalNums"];
-//    $i++;
+    //$j++;
 //    $graphData. = "{ Income:'". $row["total_value"].",}";
 }
+ $expenseArray=array();
+   $n=0;
+   $expenseArray[$n]='Expense';
+    $n++;
+while ($row = mysqli_fetch_array($expenseGraph)){
+     $expenseArray[$n]=$row["totalExpense"];
+    $n++;
+    //$graphData[$j]['totalExpense'] = $row["totalExpense"];
+//    $graphData[$j]['totalNums'] = $row["totalNums"];
+    //$j++;
+//    $graphData. = "{ Income:'". $row["total_value"].",}";
+}
+$charDataIncome= json_encode($incomeArray);
+$charDataExpense= json_encode($expenseArray);
+
+
 ?>
+
+
 
 <div id="main-wrapper">
     <div class="page-wrapper">
@@ -58,9 +81,11 @@ while ($row = mysqli_fetch_array($incomeGraph)){
                                     <h5 class="card-title m-b-2">Monthly Activity</h5>
                                 </div>
                             </div>
-                            <div class="" id="income" style="height: 339px;"></div>
-                            <?=$graphValueIncome;?>
-                            <?=$graphValueExpense;?>
+                            <div class="" id="income" style="height: 339px;">
+                                <div id="graphIncome" style="visibility: hidden;"><?php echo $charDataIncome; ?></div>
+                                <div id="grapExpense" style="visibility: hidden;"><?php echo $charDataExpense; ?></div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -82,6 +107,7 @@ while ($row = mysqli_fetch_array($incomeGraph)){
                 </div>
             </div>
             <div id="graphData" style="visibility: hidden;"><?php echo $chartData; ?></div>
+                   <div id="graphData" style="visibility: hidden;"><?php echo $chartData; ?></div>
             <div class="row">
                 <!-- Start Notification -->
                 <div class="col-lg-6 col-md-12">

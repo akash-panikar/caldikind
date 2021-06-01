@@ -82,41 +82,64 @@ $result = mysqli_fetch_assoc($execQuery);
                                                         return false;
                                                     }
                                                 }
+                                                function isNumber(evt) {
+                                                    evt = (evt) ? evt : window.event;
+                                                    var numbertype = (evt.which) ? evt.which : evt.keyCode;
+                                                    if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
+                                                        document.getElementById("mobile-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
+                                                        document.getElementById("mobile-message").style.color = "red";
+                                                        return false;
+                                                    }
+                                                    return true;
+                                                }
+                                                function isAltNumber(evt) {
+                                                    evt = (evt) ? evt : window.event;
+                                                    var numbertype = (evt.which) ? evt.which : evt.keyCode;
+                                                    if (numbertype > 31 && (numbertype < 48 || numbertype > 57)) {
+                                                        document.getElementById("mobile1-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
+                                                        document.getElementById("mobile1-message").style.color = "red";
+                                                        return false;
+                                                    }
+                                                    return true;
+                                                }
                                             </script>
                                         </center>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="form-group">
                                             <label>Fullname<span style="color:red">*</span></label>
-                                            <input type="text" name="sfname" class="form-control" value="<?=$result['sName'];?>" required >
+                                            <input type="text" name="sfname" id="sfname" class="form-control" value="<?=$result['sName'];?>" required >
+                                            <p id="name-message"></p>
                                             <input type="text" name="rowID" value="<?php echo $rowID; ?>" style="display:none;">
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label>Contact Number<span style="color:red">*</span></label>
-                                                <input type="text" name="sprimaryno" class="form-control" value="<?= $result['sPrimaryContact']; ?>" required>
-                                                <p style="color:red">invalid Contact number</p>
+                                                <input type="text" name="sprimaryno" id="mobile" class="form-control" onchange="staffDropdownCheck()" onkeypress="return isNumber(event)" value="<?= $result['sPrimaryContact']; ?>" required>
+                                                <p id="mobile-message"></p>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Alternate Number</label>
-                                                <input type="text" name="salternateno" class="form-control" value="<?= $result['sAlternateContact']; ?>" required>
-                                                <p style="color:red">invalid Contact number</p>
+                                                <input type="text" name="salternateno" id="salternateno" class="form-control" onchange="staffDropdownCheck()" onkeypress="return isAltNumber(event)" value="<?= $result['sAlternateContact']; ?>" required>
+                                                <p id="mobile1-message"></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>E-mail<span style="color:red">*</span></label>
-                                            <input type="email" name="semail" class="form-control" value="<?= $result['sEmail']; ?>" required>
-                                            <p style="color:red">invalid email address</p>
+                                            <input type="email" name="semail" id="email" class="form-control" onchange="validateEmail()" value="<?= $result['sEmail']; ?>" required>
+                                            <p id="email-message"></p>
                                         </div>
                                     </div>                            
                                 </div>
                                 <div class="form-group">
                                     <label>Address 1<span style="color:red">*</span></label>
-                                    <input type="text" name="saddr1" class="form-control" value="<?= $result['sAddress1']; ?>" required>
+                                    <input type="text" name="saddr1" id="saddr1" class="form-control" value="<?= $result['sAddress1']; ?>" required >
+                                    <p id="saddr1-message"></p>
                                 </div>
                                 <div class="form-group">
                                     <label>Address 2<span style="color:red">*</span></label>
-                                    <input type="text" name="saddr2" class="form-control" value="<?= $result['sAddress2']; ?>">
+                                    <input type="text" name="saddr2" id="saddr2" class="form-control" value="<?= $result['sAddress2']; ?>">
+                                    <p id="saddr2-message"></p>
                                 </div>
                                 <div class="row ">
                                     <div class="form-group col-md-4">
@@ -125,53 +148,59 @@ $result = mysqli_fetch_assoc($execQuery);
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Gender<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="sgender">
+                                        <select class="form-control" required name="sgender" id="gender">
                                             <option value="Male" <?php echo ($result['sGender']== 'Male')?' selected':'';?>>Male</option>
                                             <option value="Female" <?php echo ($result['sGender']== 'Female')?' selected':'';?>>Female</option>
                                             <option value="other" <?php echo ($result['sGender']== 'other')?' selected':'';?>>Other</option>
                                         </select>
+                                        <p id="gender-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Marital Status<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="marstatus">
+                                        <select class="form-control" required name="marstatus" id="marstatus">
                                             <option value="Unmarried" <?php echo ($result['sMaritalStatus']== 'Unmarried')?' selected':'';?>>Unmarried</option>
                                             <option value="Married" <?php echo ($result['sMaritalStatus']== 'Married')?' selected':'';?>>Married</option>
                                             <option value="Divorced" <?php echo ($result['sMaritalStatus']== 'Divorced')?' selected':'';?>>Divorced</option>
                                             <option value="Widowed" <?php echo ($result['sMaritalStatus']== 'Widowed')?' selected':'';?>>Widowed</option>
                                         </select>
+                                        <p id="marstatus"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >City<span style="color:red">*</span></label>
-                                        <input type="text" name="scity" class="form-control" value="<?= $result['sCity']; ?>" required>
+                                        <input type="text" name="scity" id="scity" class="form-control" value="<?= $result['sCity']; ?>" required>
+                                        <p id="scity-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >State<span style="color:red">*</span></label>
-                                        <input type="text" name="state" class="form-control" value="<?= $result['sState']; ?>" required>
+                                        <input type="text" name="state" id="state" class="form-control" value="<?= $result['sState']; ?>" required>
+                                        <p id="state-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Pincode<span style="color:red">*</span></label>
-                                        <input type="text" name="pincode" class="form-control" value="<?= $result['sPincode']; ?>" required>
-                                        <p style="color:red">invalid pincode</p>
+                                        <input type="text" id="pincode" name="pincode" class="form-control" value="<?= $result['sPincode']; ?>" required>
+                                        <p id="pin-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Joining Date<span style="color:red">*</span></label>
-                                        <input type="date" name="joindate" class="form-control" value="<?= $result['sJoiningDate']; ?>" required>
+                                        <input type="date" name="joindate" id="" class="form-control" value="<?= $result['sJoiningDate']; ?>" readonly>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Shift Timing<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="shifttime">
+                                        <select id="shifttime" class="form-control" required name="shifttime">
                                             <option value="5:30 am - 9:30 am || 4:00 pm - 8:00 pm"<?php echo ($result['sShiftTime']== '5:30 am - 9:30 am || 4:00 pm - 8:00 pm')?' selected':'';?>>5:30 am - 9:30 am || 4:00 pm - 8:00 pm</option>
                                             <option value="6:00 am - 10:00 am || 4:30 pm - 8:30 pm"<?php echo ($result['sShiftTime']== '6:00 am - 10:00 am || 4:30 pm - 8:30 pm')?' selected':'';?>>6:00 am - 10:00 am || 4:30 pm - 8:30 pm</option>
                                             <option value="7:00 am - 11:00 am || 5:00 pm - 9:00 pm"<?php echo ($result['sShiftTime']== '7:00 am - 11:00 am || 5:00 pm - 9:00 pm')?' selected':'';?>>7:00 am - 11:00 am || 5:00 pm - 9:00 pm</option>
                                         </select>
+                                        <p id="shifttime-message"></p>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label >Designation<span style="color:red">*</span></label>
-                                        <select id="inputState" class="form-control" required name="designation">
+                                        <select id="designation" class="form-control" required name="designation">
                                             <option value="Manager"<?php echo ($result['sDesignation']== 'Manager')?' selected':'';?>>Manager</option>
                                             <option value="Trainer"<?php echo ($result['sDesignation']== 'Trainer')?' selected':'';?>>Trainer</option>
                                             <option value="Office Assistant"<?php echo ($result['sDesignation']== 'Office Assistant')?' selected':'';?>>Office Assistant</option>
                                         </select>
+                                        <p id="designation-message"></p>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="status" name="status" value="YES"<?php echo ($result['sAccountStatus']== 'YES')?' checked':'';?>>
@@ -180,7 +209,7 @@ $result = mysqli_fetch_assoc($execQuery);
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" id="update" name="update">Update</button>
+                                <button type="submit" class="btn btn-primary" id="update" onclick="staffDropdownCheck()" name="update">Update</button>
                             </form>
                         </div>
             </div>

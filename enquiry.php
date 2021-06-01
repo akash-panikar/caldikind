@@ -27,7 +27,8 @@ include('includes/include_once/db.php');
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Fullname<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="fname" required>
+                                    <input type="text" class="form-control" name="fname" id="fname" onchange="enquiryFormCheck()" required>
+                                    <p style="color:red" id="name-message"></p>
                                 </div>                               
                                 <div class="form-group col-md-6">
                                     <label>email</label>
@@ -37,7 +38,7 @@ include('includes/include_once/db.php');
                                 
                                 <div class="form-group col-md-4">
                                     <label>Primary Contact Number<span style="color:red">*</span></label>
-                                    <input type="phone" class="form-control" name="primarycontact" id="mobile" onchange="ValidateNo()" onkeypress="return isNumber(event)" required>
+                                    <input type="phone" class="form-control" name="primarycontact" id="mobile" onchange="enquiryFormCheck()" onkeypress="return isNumber(event)" required>
                                     <p style="color:red" id="mobile-message"></p>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -47,7 +48,7 @@ include('includes/include_once/db.php');
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Gender<span style="color:red">*</span></label>
-                                    <select class="form-control" name="gender" id="gender" required>
+                                    <select class="form-control" name="gender" id="gender" onchange="enquiryFormCheck()" required>
                                         <option value="0" selected disabled>Choose...</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -56,12 +57,13 @@ include('includes/include_once/db.php');
                                     <p id="gender-message"></p>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Location</label>
-                                    <input type="phone" class="form-control" name="address" required>
+                                    <label>Location<span style="color:red">*</span></label>
+                                    <input type="phone" class="form-control" name="address" id="city" onchange="enquiryFormCheck()" required>
+                                    <p id="city-message"></p>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEnq">Enquiry Type<span style="color:red">*</span></label>
-                                    <select id="inputEnq" class="form-control" name="enqtype" required>
+                                    <select id="inputEnq" class="form-control" name="enqtype" onchange="enquiryFormCheck()" required>
                                         <option value="0" selected>Choose...</option>
                                         <option value="Phone">Phone</option>
                                         <option value="Walk-IN">Walk-IN</option>
@@ -76,7 +78,7 @@ include('includes/include_once/db.php');
                                     <textarea type="text" class="form-control" name="remark"></textarea>
                                 </div>                               
                             </div>
-                            <button type="submit" class="btn btn-primary" name="submit" onclick="dropdownCheck()">submit</button>
+                            <button type="submit" class="btn btn-primary" name="submit" onclick="enquiryFormCheck()">submit</button>
                         </form>
                     </div>
                 </div>
@@ -145,24 +147,7 @@ include('includes/include_once/db.php');
                                                                             document.getElementById("notInterested").action = "process/enquiryProcess.php?id=" + id;
                                                                         }
                                                                         
-                                                                        // -------------------------email validation -----------------------------
-                                                                            function validateEmail() {
-                                                                                //var email = document.emailform.email.value;
-                                                                                var email = document.getElementById("email").value;
-                                                                                if(email.indexOf('@')<=0){
-                                                                                        document.getElementById('email-message').innerHTML="Invalid email address";
-                                                                                        return false;
-                                                                                }     
-                                                                                else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
-                                                                                        document.getElementById('email-message').innerHTML="Invalid email address";
-                                                                                        return false;
-                                                                                }
-                                                                                else {
-                                                                                    document.getElementById('email-message').innerHTML="";
-                                                                                }
-                                                                            }
-
-                                                                        // ---------------------------------- Mobile Number valiadtion --------------------------------
+                                                                        // --------------------- mobile number ------------------------
                                                                         function isNumber(evt) {
                                                                             evt = (evt) ? evt : window.event;
                                                                             var numbertype = (evt.which) ? evt.which : evt.keyCode;
@@ -170,19 +155,6 @@ include('includes/include_once/db.php');
                                                                                 document.getElementById("mobile-message").innerHTML = 'Please enter only Numbers. Not any String or Special Char';
                                                                               return false;
                                                                             }
-                                                                            return true;
-                                                                          }
-                                                                          function ValidateNo() {
-                                                                            var moNumber = document.getElementById('mobile');
-                                                                            if (moNumber.value == "" || moNumber.value == null) {
-                                                                                document.getElementById("mobile-message").innerHTML = 'Please enter your Mobile No.';
-                                                                              return false;
-                                                                            }
-                                                                            if (moNumber.value.length < 10 || moNumber.value.length > 10) {
-                                                                                document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
-                                                                              return false;
-                                                                            }
-                                                                            document.getElementById("mobile-message").innerHTML = '';
                                                                             return true;
                                                                           }
                                                                             // --------------------- Alternate mobile number ------------------------------------------
@@ -198,27 +170,6 @@ include('includes/include_once/db.php');
                                                                             }
                                                                             document.getElementById("mobile1-message").innerHTML = '';
                                                                             return true;
-                                                                          }
-                                                                          // ---------------------------  Gender -------------------------------------------------------
-                                                                          function dropdownCheck()
-                                                                          {
-                                                                            var genderCheck = document.getElementById("gender");
-                                                                            var selectedOption = genderCheck.options[genderCheck.selectedIndex].value;
-                                                                            if(selectedOption == 0) {
-                                                                                document.getElementById("gender-message").innerHTML = 'Please select gender';
-                                                                                document.getElementById("gender-message").style.color ="red";
-                                                                            } else {
-                                                                                document.getElementById("gender-message").innerHTML = '';
-                                                                            }
-                                                                            
-                                                                            var typeCheck = document.getElementById("inputEnq");
-                                                                            var selectedVal = typeCheck.options[typeCheck.selectedIndex].value;
-                                                                            if(selectedVal == 0){
-                                                                                document.getElementById("enquiry-message").innerHTML = 'Please select enquiry type';
-                                                                                document.getElementById("enquiry-message").style.color ="red";
-                                                                            } else {
-                                                                                document.getElementById("enquiry-message").innerHTML = '';
-                                                                            }
                                                                           }
                                                                     </script>
                                                                 </div>

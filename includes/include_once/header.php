@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--<link rel="stylesheet" href="css/font-awesome.css">-->
 </head>
-<div class="preloader">
+<div class="preloader" id="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
         <p class="loader__label">Loading...</p>

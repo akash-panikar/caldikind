@@ -159,31 +159,60 @@ include('includes/include_once/db.php');
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label>Total Amount</label>
-                                            <input type="text" class="form-control" name="totalamt" id="totalamt">
+                                            <input type="text" class="form-control" name="totalamt" id="totalamt" onchange="totalAmount()">
+                                            <p id="totalamt-message"></p>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Amount Paid</label>
                                             <input type="text" class="form-control" name="amtpaid" id="amtpaid" oninput="calculateAmount()">
+                                            <p id="amtpaid-message"></p>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Balance Amount</label>
                                             <input type="text" class="form-control" name="balamt" id="balamt" value="">
+                                            <p id="balamt-message">invalid Amount</p>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="renewSubmit">Renew</button>
+                                        <button type="submit" class="btn btn-primary" name="renewSubmit" onclick="postLoader()">Renew</button>
                                     </div>
                                 </form>
+<!--                                <div class="preloader" id="postloader">
+                                    <div class="loader">
+                                        <div class="loader__figure"></div>
+                                        <p class="loader__label">Loading...</p>
+                                    </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- footer -->
                 <script type="text/javascript">
+//                    function postLoader(){
+//                        alert(document.getElementById('postloader'));
+//                    }
+                    function totalAmount(){
+                        var max_min = document.getElementById('totalamt').value;
+                        if (max_min < 5000) {
+                            document.getElementById("totalamt-message").innerHTML = 'Amount cannot be less then ₹5000';
+                            document.getElementById("totalamt-message").style.color = "red";
+                            return false;
+                        }
+                        else if (max_min > 50000){
+                            document.getElementById("totalamt-message").innerHTML = 'Amount cannot be more then ₹50000';
+                            document.getElementById("totalamt-message").style.color = "red";
+                            return false;
+                        }
+                        else {
+                            document.getElementById("totalamt-message").innerHTML = '';
+                            return true;
+                        }
+                    }
                     
                     function checkAmountDue() {
-                        if (document.getElementById('amtdue').value > '0') {
+                        if (document.getElementById('amtdue').value > 0) {
                             document.getElementById('period').disabled = 'true';
                             document.getElementById('totalamt').disabled = 'true';
                             document.getElementById('amtpaid').disabled = 'true';
@@ -234,6 +263,22 @@ include('includes/include_once/db.php');
                    var balanceAmount = totalAmount - paidAmount;
                    //alert(balanceAmount);
                    document.getElementById("balamt").value = balanceAmount;
+                   
+                   //var max_min = document.getElementById('amtpaid').value;
+                    if (paidAmount < 2000) {
+                        document.getElementById("amtpaid-message").innerHTML = 'Amount cannot be less then ₹2000';
+                        document.getElementById("amtpaid-message").style.color = "red";
+                        return false;
+                    }
+                    else if (paidAmount > 50000){
+                        document.getElementById("amtpaid-message").innerHTML = 'Amount cannot be more then ₹50000';
+                        document.getElementById("amtpaid-message").style.color = "red";
+                        return false;
+                    }
+                    else {
+                        document.getElementById("totalamt-message").innerHTML = '';
+                        return true;
+                    }
                }
                 </script>
                 <!-- ============================================================== -->

@@ -20,7 +20,6 @@ include('includes/include_once/nav.php');
                         Add User
                     </button>
                 </p>
-
                 <div class="modal fade" id="adduser" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -36,21 +35,107 @@ include('includes/include_once/nav.php');
                                         <div class="form-group col-md-6">
                                             <label>Fullname<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" name="fname" required>
+                                            <p style="color: red;">Field cannot be empty</p>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Contact Number<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" name="cntno" required>
+                                            <p style="color: red;">Field cannot be empty</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>email<span style="color:red">*</span></label>
                                         <input type="email" class="form-control" name="email" id="email" required onchange="validateE()">
+                                        <p style="color: red;">Field cannot be empty</p>
                                         <p id="email-message"></p>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Password<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" name="password" id="password" autocomplete="false" required>
+                                            <p style="color: red;">Field cannot be empty</p>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label>Want System To Generate Password ?</label>
+                                            <a class="btn btn-outline-danger" id="generatePassword">Generate</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Confirm Password<span style="color:red">*</span></label>
+                                            <input type="password" class="form-control" name="cnfpass" id="cnfpass" onchange="matchPassword();" required>
+                                            <p id="password-wrong"></p>
+                                            <p style="color: red;">Field cannot be empty</p>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>User Type<span style="color:red">*</span></label>
+                                            <select class="form-control" name="usertype" required>
+                                                <option selected disabled>Choose...</option>
+                                                <option>Admin</option>
+                                                <option>Manager</option>
+                                                <option>Staff</option>
+                                                <option>User</option>
+                                            </select>
+                                            <p style="color: red;">Please select user type</p>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Status<span style="color:red">*</span></label>
+                                            <select class="form-control" name="status" required>
+                                                <option selected disabled>Choose...</option>
+                                                <option>Active</option>
+                                                <option>Inactive</option>
+                                            </select>
+                                            <p style="color: red;">please select status</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" name="submit">Add User</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="edit_user_modal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="process/userProcess.php" id="edit_user_form">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Fullname<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" name="fname" id="fname" required>
+                                            <p style="color: red;"></p>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Contact Number<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" name="cntno" id="cntno" required>
+                                            <p style="color: red;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>email<span style="color:red">*</span></label>
+                                        <input type="email" class="form-control" name="email" id="uemail" required onchange="validateE()">
+                                        <p id="email-message"></p>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Password<span style="color:red">*</span></label>
+                                            <input type="text" class="form-control" name="password" id="password" autocomplete="false" required>
+                                            <p style="color: red;"></p>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label>Want System To Generate Password ?</label>
@@ -70,7 +155,7 @@ include('includes/include_once/nav.php');
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>User Type<span style="color:red">*</span></label>
-                                            <select class="form-control" name="usertype" required>
+                                            <select class="form-control" name="usertype" id="role" required>
                                                 <option selected disabled>Choose...</option>
                                                 <option>Admin</option>
                                                 <option>Manager</option>
@@ -80,10 +165,10 @@ include('includes/include_once/nav.php');
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Status<span style="color:red">*</span></label>
-                                            <select class="form-control" name="status" required>
+                                            <select class="form-control" name="status" id="status" required>
                                                 <option selected disabled>Choose...</option>
                                                 <option>Active</option>
-                                                <option>Inactive</option>
+                                                <option>Suspended</option>
                                             </select>
                                         </div>
                                     </div>
@@ -170,32 +255,29 @@ include('includes/include_once/nav.php');
                     });
                     // ---------------------------------- Password match --------------------------
                     function matchPassword() {
-                    var x= document.getElementById("password");
-                        var y= document.getElementById("cnfpass");
-                        if(x.value==y.value){
+                        var x = document.getElementById("password");
+                        var y = document.getElementById("cnfpass");
+                        if (x.value == y.value) {
                             document.getElementById("password-wrong").innerHTML = 'Password match';
                             document.getElementById("password-wrong").style.color = "green";
-                        }
-                        else{
+                        } else {
                             document.getElementById("password-wrong").innerHTML = 'Password do not match';
                             document.getElementById("password-wrong").style.color = "red";
                         }
                     }
                     // ------------------------------------- Email Validation
-                        function validateEmail() {
-                            var email = document.getElementById("email").value;
-                            if(email.indexOf('@')<=0){
-                                    document.getElementById('email-message').innerHTML="Invalid email address";
-                                    return false;
-                            }     
-                            else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
-                                    document.getElementById('email-message').innerHTML="Invalid email address";
-                                    return false;
-                            }
-                            else {
-                                document.getElementById('email-message').innerHTML="";
-                            }
-                        }                        
+                    function validateEmail() {
+                        var email = document.getElementById("email").value;
+                        if (email.indexOf('@') <= 0) {
+                            document.getElementById('email-message').innerHTML = "Invalid email address";
+                            return false;
+                        } else if ((email.charAt(email.length - 4) != '.') && (email.charAt(email.length - 3) != '.')) {
+                            document.getElementById('email-message').innerHTML = "Invalid email address";
+                            return false;
+                        } else {
+                            document.getElementById('email-message').innerHTML = "";
+                        }
+                    }
                 </script>
                 <!-- ============================================================== -->
                 <div class="row">
@@ -229,16 +311,16 @@ include('includes/include_once/nav.php');
                                                     ?>
                                                     <tr>
                                                         <td><?php echo ++$sr; ?></td>
-                                                        <!--<td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profile_image'];   ?>" > </td>-->
+                                                        <!--<td style="width:50px;"><img class="round" src="<?php //echo 'images/' . $result['profile_image'];    ?>" > </td>-->
                                                         <td>
-                                                            <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php //echo $result['dob'];   ?></small>
+                                                            <h6><?php echo $result['fullName']; ?></h6><small class="text-muted"><?php //echo $result['dob'];    ?></small>
                                                         </td>
                                                         <td><h6><?php echo $result['email']; ?></h6></td>
                                                         <td><?php echo $result['contactNo']; ?></td>
                                                         <td><?php echo $result['role']; ?></td>
                                                         <td><?php echo $result['status']; ?></td>
                                                         <td class="table-action">
-                                                            <a class="fa fa-pencil-square-o btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
+                                                            <a class="fa fa-pencil-square-o btn btn-outline-primary edit_user_data<?php echo $result['uID']; ?>" data-toggle="tooltip" onclick="showModal(this)" name="edit_user" id="<?php echo $result['uID']; ?>"></a>
                                                             <span data-toggle="modal" data-target="#suspendModel"><a class="fa fa-ban btn btn-outline-warning" value="<?php echo $result['uID']; ?>" onclick="suspend(<?php echo $result['uID']; ?>)" type="button" data-toggle="tooltip" data-placement="right" title="suspend"></a></span>
                                                             <span data-toggle="modal" data-target="#deleteModel"><a class="fa fa-trash btn btn-outline-danger" value="<?php echo $result['uID']; ?>" onclick="myButton(<?php echo $result['uID']; ?>)" type="button" data-toggle="tooltip" data-placement="right" title="Delete"></a></span>
                                                             <!-- Modal -->
@@ -264,6 +346,31 @@ include('includes/include_once/nav.php');
                                                                                 //alert(document.getElementById("deleteForm").action);
                                                                                 document.getElementById("deleteForm").action = "process/userProcess.php?id=" + id;
                                                                             }
+                                                                            //---------------------- edit user ----------------------
+                                                                            function showModal(e){
+                                                                            //alert('hello');
+                                                                            //e.preventDefault();
+                                                                           var edit_id = $(e).attr('id');
+                                                                           document.getElementById("edit_user_form").action = "process/userProcess.php?id=" + edit_id;
+                                                                           //alert(pay_id);
+                                                                           $.ajax({
+                                                                               url:'https://localhost/caldikind/process/userProcess.php',
+                                                                               type:'POST',
+                                                                               data:{edit_id:edit_id},
+                                                                               success:function(data){
+                                                                                   //alert(data);
+                                                                                    var output = JSON.parse(data);
+                                                                                   //alert(output.name);
+                                                                                   $('#id').val(output.id);
+                                                                                   $('#fname').val(output.name);
+                                                                                   $('#cntno').val(output.contactNo);
+                                                                                   $('#uemail').val(output.email);  
+                                                                                   $('#role').val(output.role); 
+                                                                                   $('#status').val(output.status); 
+                                                                                  jQuery.noConflict(); 
+                                                                                   $("#edit_user_modal").modal('show'); 
+                                                                               }
+                                                                           })}
                                                                         </script>
                                                                     </div>
                                                                 </div>

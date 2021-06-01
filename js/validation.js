@@ -98,7 +98,7 @@ function validateStaffPincode(){
     }
 }
 
-// ---------------------------  Gender -------------------------------------------------------
+
 function staffDropdownCheck()
 {
     var genderCheck = document.getElementById("gender");
@@ -194,6 +194,14 @@ function staffDropdownCheck()
         document.getElementById("mobile-message").innerHTML = '';
     }
     
+    if (mobileCheck.value.length < 10 || moNumber.value.length > 10) {
+        document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+        document.getElementById("mobile-message").style.color = "red";
+      return false;
+    }
+    document.getElementById("mobile-message").innerHTML = '';
+    return true;
+    
     var mobile2Check = document.getElementById("salternateno").value;
     if (mobile2Check == '') {
         document.getElementById("moible1-message").innerHTML = 'alternate mobile number cannot be empty';
@@ -257,3 +265,93 @@ function imageValidation(id) {
         return false;
     }
 }
+
+function enquiryFormCheck()
+{
+    var nameCheck = document.getElementById("fname").value;
+    if (nameCheck == '') {
+        document.getElementById("name-message").innerHTML = 'name cannot be empty';
+        document.getElementById("name-message").style.color = "red";
+    }else {
+        document.getElementById("name-message").innerHTML = '';
+    }
+    
+    var mobileCheck = document.getElementById("mobile").value;
+    if (mobileCheck == '') {
+        document.getElementById("mobile-message").innerHTML = 'mobile number cannot be empty';
+        document.getElementById("mobile-message").style.color = "red";
+    }else {
+        document.getElementById("mobile-message").innerHTML = '';
+    }
+    
+    var moNumber = document.getElementById("mobile").value;
+    if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+        document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+        document.getElementById("mobile-message").style.color = "red";
+      return false;
+    }
+    document.getElementById("mobile-message").innerHTML = '';
+    return true;
+    
+    
+    var genderCheck = document.getElementById("gender");
+    var selectedOption = genderCheck.options[genderCheck.selectedIndex].value;
+    if (selectedOption == 0) {
+        document.getElementById("gender-message").innerHTML = 'Please select gender';
+        document.getElementById("gender-message").style.color = "red";
+    } else {
+        document.getElementById("gender-message").innerHTML = '';
+    }
+    
+    var cityCheck = document.getElementById("city").value;
+    if (cityCheck == '') {
+        document.getElementById("city-message").innerHTML = 'Location cannot be empty';
+        document.getElementById("city-message").style.color = "red";
+    }else {
+        document.getElementById("city-message").innerHTML = '';
+    }
+    
+    var typeCheck = document.getElementById("inputEnq");
+    var selectedVal = typeCheck.options[typeCheck.selectedIndex].value;
+    if (selectedVal == 0) {
+        document.getElementById("enquiry-message").innerHTML = 'Please select enquiry type';
+        document.getElementById("enquiry-message").style.color = "red";
+    }
+    else {
+        document.getElementById("enquiry-message").innerHTML = '';
+    }    
+    
+    // ---------------------------------- Mobile Number valiadtion --------------------------------
+    
+}
+
+// -------------------------email validation -----------------------------
+    function validateEmail() {
+        //var email = document.emailform.email.value;
+        var email = document.getElementById("email").value;
+        if(email.indexOf('@')<=0){
+                document.getElementById('email-message').innerHTML="Invalid email address";
+                return false;
+        }     
+        else if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+                document.getElementById('email-message').innerHTML="Invalid email address";
+                return false;
+        }
+        else {
+            document.getElementById('email-message').innerHTML="";
+        }
+    }
+    
+    function ValidateNo() {
+        var moNumber = document.getElementById('mobile');
+        if (moNumber.value == "" || moNumber.value == null) {
+            document.getElementById("mobile-message").innerHTML = 'Please enter your Mobile No.';
+          return false;
+        }
+        if (moNumber.value.length < 10 || moNumber.value.length > 10) {
+            document.getElementById("mobile-message").innerHTML = 'Mobile Number is not valid, Enter Working 10 Digit Mobile Number';
+          return false;
+        }
+        document.getElementById("mobile-message").innerHTML = '';
+        return true;
+      }

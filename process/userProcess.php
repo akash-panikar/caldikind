@@ -76,4 +76,21 @@ if (isset($_POST['delete'])) {
         exit();
     }
 }
+
+if(isset($_POST['edit_id'])){
+ $id = $_POST['edit_id'];
+ $sql = "SELECT * FROM users WHERE uID = '$id'";
+ $results = mysqli_query($connect, $sql);
+ $data = array();
+ while($result = mysqli_fetch_array($results)){
+     $data['id'] = $result['uID'];
+     $data['name'] = $result['fullName'];
+     $data['contactNo'] = $result['contactNo'];
+     $data['email'] = $result['email'];
+     $data['role'] = $result['role'];
+     $data['status'] = $result['status'];
+ } 
+ echo json_encode($data);
+exit;
+}
 ?>

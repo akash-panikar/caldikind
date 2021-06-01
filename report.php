@@ -48,11 +48,15 @@ $result = mysqli_fetch_array($execQueryResult);
                         </div>
                     </div>
                 </div>
+                <?php 
+                $renew = mysqli_query($connect, "SELECT COUNT(rID) as renewed FROM membershiprenewal WHERE YEAR(renewalDate) = YEAR(CURDATE())");
+                $renewResult = mysqli_fetch_assoc($renew);
+                ?>
                 <div class="col-sm-4">
                     <div class="card border-primary mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Membership Renewed</h5>
-                            <p class="card-text">05 People</p>
+                            <p class="card-text"><?=$renewResult['renewed'].'  People';?></p>
                         </div>
                     </div>
                 </div>
@@ -173,7 +177,7 @@ $result = mysqli_fetch_array($execQueryResult);
 <!--                                                                <td><h6><?php //echo $result['memberType']; ?></h6><small class="text-muted"><?php //echo $result['endDate']; ?></small></td>
                                                                 <td><?php //echo '₹' . $result['amountDue']; ?></td>-->
                                                                 <td class="table-action">
-                                                                    <a class="fa fa-bell btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Notify" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>
+                                                                    <!--<a class="fa fa-bell btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Notify" name="edit" href="userProcess.php?id=<?= $result['uID']; ?>"></a>-->
                                                                 </td>
                                                             </tr>
                                                             <?php
@@ -200,46 +204,57 @@ $result = mysqli_fetch_array($execQueryResult);
                                                 <table id="example" class="table vm no-th-brd pro-of-month" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <!--<th>Sr. No.</th>-->
-                                                            <!--<th>Profile</th>-->
+                                                           <?php
+                                                           $GenMem = mysqli_query($connect, "SELECT COUNT(memberType) as member, SUM(amountPaid) as amount"
+                                                                   . " FROM temp_client WHERE memberType = 'General Membership' AND"
+                                                                   . " month(dtoc) = month(CURRENT_DATE())-1");
+                                                           $PerTrn = mysqli_query($connect, "SELECT COUNT(memberType) as member, SUM(amountPaid) as amount"
+                                                                   . " FROM temp_client WHERE memberType = 'Personal Training' AND"
+                                                                   . " month(dtoc) = month(CURRENT_DATE())-1");
+                                                           $PreMem = mysqli_query($connect, "SELECT COUNT(memberType) as member, SUM(amountPaid) as amount"
+                                                                   . " FROM temp_client WHERE memberType = 'Premium Membership' AND"
+                                                                   . " month(dtoc) = month(CURRENT_DATE())-1");
+                                                           $GenMemResult = mysqli_fetch_assoc($GenMem);
+                                                           $PerTrnResult = mysqli_fetch_assoc($PerTrn);
+                                                           $PreMemResult = mysqli_fetch_assoc($PreMem);
+                                                           ?>
+                                                            <!--<th>Profile</th>--> 
                                                             <th>Membership Type </th>
-                                                            <th>Total No. of Admission</th>
-                                                            <th>Total Amount Collected</th>
+                                                            <th style="text-align: center;">Total No. of Admission</th>
+                                                            <th style="text-align: center;">Total Amount Collected</th>
 <!--                                                            <th>Membership</th>
                                                             <th>Balance Amount</th>
                                                             <th>Action</th>-->
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        
                                                         <tr>
                                                             <td><h6>General Membership</h6></td>
-                                                            <td><h6>Personal Training</h6></td>
-                                                            <td><h6>General Membership</h6></td>
+                                                            <td style="text-align: center;"><h6><?=$GenMemResult['member'];?></h6></td>
+                                                            <td style="text-align: center;"><h6><?=$GenMemResult['amount'];?></h6></td>
                                                         </tr>
                                                         <tr>
                                                             <td><h6>Personal Training</h6></td>
-                                                            <td><h6>General Membership</h6></td>
-                                                            <td><h6>General Membership</h6></td>
+                                                            <td style="text-align: center;"><h6><?=$PerTrnResult['member'];?></h6></td>
+                                                            <td style="text-align: center;"><h6><?=$PerTrnResult['amount'];?></h6></td>
                                                         </tr>
                                                         <tr>
                                                             <td><h6>Premium Membership</h6></td>
-                                                            <td><h6>General Membership</h6></td>
-                                                            <td><h6>General Membership</h6></td>
+                                                            <td style="text-align: center;"<h6><?=$PreMemResult['member'];?></h6></td>
+                                                            <td style="text-align: center;"><h6><?=$PreMemResult['amount'];?></h6></td>
                                                         </tr>
                                                             
                                                         <?php
-                                                        $sr = 0;
-                                                        include('includes/include_once/db.php');
-                                                        $data = "SELECT * FROM membershiprenewal WHERE status = 0"; //SELECT sum(amountPaid),paymentDate FROM temp_client WHERE paymentDate = date(now()) 
-                                                        $query = mysqli_query($connect, $data);
-                                                        while ($result = mysqli_fetch_assoc($query)) {
+//                                                        $sr = 0;
+//                                                        $data = "SELECT * FROM membershiprenewal WHERE status = 0"; //SELECT sum(amountPaid),paymentDate FROM temp_client WHERE paymentDate = date(now()) 
+//                                                        $query = mysqli_query($connect, $data);
+//                                                        while ($result = mysqli_fetch_assoc($query)) {
                                                         //print_r($result);
                                                         //exit();
                                                             ?>
                                                             
                                                             <?php
-                                                        }
+                                                        //}
                                                         ?>
                                                     </tbody>
                                                 </table>

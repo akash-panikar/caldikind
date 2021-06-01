@@ -529,7 +529,7 @@ include 'includes/include_once/db.php';
                         <h5 class="modal-title" id="exampleModalLabel">Freeze Membership</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="process/staffProcess.php" id="deleteForm" method="POST">
+                    <form action="process/clientProcess.php" id="deleteForm" method="POST">
                         <div class="modal-body">
                             <label>Please select the duration</label> 
                             <select class="form-control col-md-6">
@@ -543,7 +543,7 @@ include 'includes/include_once/db.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="delete">Freeze</button>
+                            <button type="submit" class="btn btn-primary" name="freeze">Freeze</button>
                         </div>
                     </form>
                     <script>

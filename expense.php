@@ -32,6 +32,7 @@ $defaultImage = "images/people/6.png";
                                 <div class="form-group col-md-3">
                                     <label>Date<span style="color:red">*</span></label>
                                     <input type="date" class="form-control" name="date" id="inputEmail4">
+                                    <p style="color:red">select date</p>
                                 </div>                               
                                 <div class="form-group col-md-3">
                                     <label>Amount<span style="color:red">*</span></label>
@@ -42,6 +43,7 @@ $defaultImage = "images/people/6.png";
                                 <div class="form-group col-md-3">
                                     <label>Paid By<span style="color:red">*</span></label>
                                     <input type="text" class="form-control" name="paidby" >
+                                    <p style="color:red">field cannot be empty</p>
                                 </div>
 <!--                                <div class="form-group col-md-2">
                                     <label>categories</label>
@@ -58,6 +60,7 @@ $defaultImage = "images/people/6.png";
                                         <option value="Miscellaneous">Miscellaneous</option>
                                         <option value="Others">Others</option>
                                     </select>
+                                    <p style="color:red">please select the category</p>
                                 </div>
                             </div>
                             <div class="form-row">
